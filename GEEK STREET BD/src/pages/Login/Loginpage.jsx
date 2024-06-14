@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import './style.css';
-
+import React, { useState } from "react";
+import "./style.css";
+import { FaFacebookF,FaGoogle } from "react-icons/fa";
 function Loginpage() {
     const [isActive, setIsActive] = useState(false);
 
@@ -14,15 +14,20 @@ function Loginpage() {
 
     return (
         <div className="login-page">
-            <div className={`container ${isActive ? 'active' : ''}`} id="container">
+            <div
+                className={`container ${isActive ? "active" : ""}`}
+                id="container"
+            >
                 <div className="form-container sign-up">
                     <form>
                         <h1>Create Account</h1>
                         <div className="social-icons">
-                            <a href="#" className="icon"><i className="fa-brands fa-google-plus-g"></i></a>
-                            <a href="#" className="icon"><i className="fa-brands fa-facebook-f"></i></a>
-                            <a href="#" className="icon"><i className="fa-brands fa-github"></i></a>
-                            <a href="#" className="icon"><i className="fa-brands fa-linkedin-in"></i></a>
+                            <a href="#" className="icon">
+                                <i className="fa-brands fa-google-plus-g"><FaGoogle /></i>
+                            </a>
+                            <a href="#" className="icon">
+                                <i className="fa-brands fa-facebook-f"><FaFacebookF /></i>
+                            </a>
                         </div>
                         <span>or use your email for registration</span>
                         <input type="text" placeholder="Name" />
@@ -35,10 +40,12 @@ function Loginpage() {
                     <form>
                         <h1>Sign In</h1>
                         <div className="social-icons">
-                            <a href="#" className="icon"><i className="fa-brands fa-google-plus-g"></i></a>
-                            <a href="#" className="icon"><i className="fa-brands fa-facebook-f"></i></a>
-                            <a href="#" className="icon"><i className="fa-brands fa-github"></i></a>
-                            <a href="#" className="icon"><i className="fa-brands fa-linkedin-in"></i></a>
+                            <a href="#" className="icon">
+                                <i className="fa-brands fa-google-plus-g"><FaGoogle /></i>
+                            </a>
+                            <a href="#" className="icon">
+                                <i className="fa-brands fa-facebook-f"><FaFacebookF /></i>
+                            </a>
                         </div>
                         <span>or use your email for password</span>
                         <input type="email" placeholder="Email" />
@@ -51,13 +58,31 @@ function Loginpage() {
                     <div className="toggle">
                         <div className="toggle-panel toggle-left">
                             <h1>Welcome Back!</h1>
-                            <p>Enter your personal details to use all of the site features</p>
-                            <button className="hidden" id="login" onClick={handleLoginClick}>Sign In</button>
+                            <p>
+                                Enter your personal details to use all of the
+                                site features
+                            </p>
+                            <button
+                                className="hidden"
+                                id="login"
+                                onClick={handleLoginClick}
+                            >
+                                Sign In
+                            </button>
                         </div>
                         <div className="toggle-panel toggle-right">
                             <h1>Hello, Friend!</h1>
-                            <p>Register with your personal details to use all of the site features</p>
-                            <button className="hidden" id="register" onClick={handleRegisterClick}>Sign Up</button>
+                            <p>
+                                Register with your personal details to use all
+                                of the site features
+                            </p>
+                            <button
+                                className="hidden"
+                                id="register"
+                                onClick={handleRegisterClick}
+                            >
+                                Sign Up
+                            </button>
                         </div>
                     </div>
                 </div>

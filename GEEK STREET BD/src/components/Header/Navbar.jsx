@@ -1,13 +1,22 @@
-// import { navItems } from "./Navbari";
 import { Link } from "react-router-dom";
-import "./Navbar_style.css"
+import { MdOutlineShoppingCart, MdSearch } from "react-icons/md";
+import { GiCharacter } from "react-icons/gi";
+import "./Navbar_style.css";
 
 const Navbar = () => {
+    window.addEventListener("scroll", function () {
+        const navbar = document.querySelector(".nav");
+        if (window.scrollY > 0) {
+            navbar.classList.add("sticky");
+        } else {
+            navbar.classList.remove("sticky");
+        }
+    });
     const navItems = [
         { name: "Home", href: "/" },
+        { name: "Shop", href: "/Shop" },
         { name: "About", href: "/About" },
         { name: "Login/Signup", href: "/Login" },
-        { name: "Profile", href: "/Profile" }
     ];
 
     return (
@@ -20,6 +29,19 @@ const Navbar = () => {
                     </li>
                 ))}
             </ul>
+            <div className="Right">
+                <ul className="Righter">
+                    <div>
+                        <MdSearch />
+                    </div>
+                    <div>
+                        <GiCharacter />
+                    </div>
+                    <div>
+                        <MdOutlineShoppingCart />
+                    </div>
+                </ul>
+            </div>
         </nav>
     );
 };
