@@ -1,0 +1,78 @@
+/* Home.css */
+
+.homepage {
+    padding: 20px;
+  }
+  
+  /* Carousel */
+  .image-carousel {
+    height: 400px;
+    overflow: hidden;
+    margin-bottom: 20px;
+  }
+  
+  .image-carousel img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  /* Title Line */
+  .title-line {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 30px 0;
+  }
+  
+  .title-line .line {
+    flex: 1;
+    height: 2px;
+    background-color: #2a3d55;
+  }
+  
+  .title-line .title {
+    margin: 0 15px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffffff;
+  }
+  
+  /* Featured Shop */
+  .featured-shop .row {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .featured-shop .product {
+    flex: 1;
+    margin-right: 10px;
+  }
+  
+  .featured-shop .product:last-child {
+    margin-right: 0;
+  }
+  
+  .featured-shop img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+  
+  .featured-shop button {
+    display: block;
+    width: 100%;
+    background-color: #2976f2;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  .featured-shop button:hover {
+    background-color: #0047b3;
+  }
+  
