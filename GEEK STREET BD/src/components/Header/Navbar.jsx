@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { MdOutlineShoppingCart, MdSearch, MdMenu, MdClose } from "react-icons/md";
-import { GiCharacter } from "react-icons/gi";
+//import { GiCharacter } from "react-icons/gi";
 import "./Navbar_style.css";
 
 const Navbar = () => {
@@ -54,9 +54,9 @@ const Navbar = () => {
                             <MdSearch onClick={toggleSearch} />
                         )}
                     </div>
-                    <div>
+                    {/* <div>
                         <GiCharacter />
-                    </div>
+                    </div> */}
                     <div>
                         <MdOutlineShoppingCart />
                     </div>
