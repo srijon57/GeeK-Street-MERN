@@ -1,10 +1,6 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     /* align-items: center; */
-  }
-  
-  body {
-    background-color: #213a5b;
-  }
+}

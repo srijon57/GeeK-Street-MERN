@@ -1,17 +1,13 @@
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { MdOutlineShoppingCart, MdSearch } from "react-icons/md";
-import { GiCharacter } from "react-icons/gi";
+import { MdOutlineShoppingCart, MdMenu, MdClose } from "react-icons/md";
+//import { GiCharacter } from "react-icons/gi";
+import Search from "../search/search";
 import "./Navbar_style.css";
 
 const Navbar = () => {
-    window.addEventListener("scroll", function () {
-        const navbar = document.querySelector(".nav");
-        if (window.scrollY > 0) {
-            navbar.classList.add("sticky");
-        } else {
-            navbar.classList.remove("sticky");
-        }
-    });
+    const [isOpen, setIsOpen] = useState(false);
+
     const navItems = [
         { name: "Home", href: "/" },
         { name: "Shop", href: "/Shop" },
@@ -19,10 +15,14 @@ const Navbar = () => {
         { name: "Login/Signup", href: "/Login" },
     ];
 
+    const toggleMenu = () => {
+        setIsOpen(!isOpen);
+    };
+
     return (
         <nav className="nav">
             <div className="nav-logo">GEEK STREED BD</div>
-            <ul className="nav-ul">
+            <ul className={`nav-ul ${isOpen ? "active" : ""}`}>
                 {navItems.map((item, idx) => (
                     <li key={idx} className="nav-item">
                         <Link to={item.href}>{item.name}</Link>
@@ -32,13 +32,16 @@ const Navbar = () => {
             <div className="Right">
                 <ul className="Righter">
                     <div>
-                        <MdSearch />
+                        <Search />
                     </div>
-                    <div>
+                    {/* <div>
                         <GiCharacter />
-                    </div>
+                    </div> */}
                     <div>
                         <MdOutlineShoppingCart />
+                    </div>
+                    <div id="ham" className="hamburger" onClick={toggleMenu}>
+                        {isOpen ? <MdClose /> : <MdMenu />}
                     </div>
                 </ul>
             </div>
