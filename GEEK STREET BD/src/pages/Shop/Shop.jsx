@@ -1,4 +1,3 @@
-import Footer from "../../components/New Footer/Footer";
 import "./shop_style.css"
 export const Shop = () => {
     // Homepage consists of different smaller components I made so we can reuse them later when needed and sending different components necessary props to use them in there
@@ -12,10 +11,7 @@ export const Shop = () => {
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem, culpa. Tempora molestiae alias hic quam enim laboriosam quisquam harum nesciunt. Quod a fuga consequuntur excepturi consequatur sapiente iure impedit natus. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum vel debitis aliquam architecto eaque deleniti numquam optio saepe nesciunt voluptatem incidunt veritatis esse reprehenderit eum modi nulla ab, laborum nemo. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vitae eaque, alias veniam ut iusto temporibus nam fugit. Dolore, necessitatibus laborum delectus ut ipsa debitis ex provident repudiandae sit. Earum, veritatis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus ratione iure quasi debitis, nobis odit ipsa delectus? Quae voluptates magnam vero quasi nostrum, cupiditate quis animi alias aliquam corrupti at?</p>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem, culpa. Tempora molestiae alias hic quam enim laboriosam quisquam harum nesciunt. Quod a fuga consequuntur excepturi consequatur sapiente iure impedit natus. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum vel debitis aliquam architecto eaque deleniti numquam optio saepe nesciunt voluptatem incidunt veritatis esse reprehenderit eum modi nulla ab, laborum nemo. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vitae eaque, alias veniam ut iusto temporibus nam fugit. Dolore, necessitatibus laborum delectus ut ipsa debitis ex provident repudiandae sit. Earum, veritatis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus ratione iure quasi debitis, nobis odit ipsa delectus? Quae voluptates magnam vero quasi nostrum, cupiditate quis animi alias aliquam corrupti at?</p>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem, culpa. Tempora molestiae alias hic quam enim laboriosam quisquam harum nesciunt. Quod a fuga consequuntur excepturi consequatur sapiente iure impedit natus. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum vel debitis aliquam architecto eaque deleniti numquam optio saepe nesciunt voluptatem incidunt veritatis esse reprehenderit eum modi nulla ab, laborum nemo. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vitae eaque, alias veniam ut iusto temporibus nam fugit. Dolore, necessitatibus laborum delectus ut ipsa debitis ex provident repudiandae sit. Earum, veritatis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus ratione iure quasi debitis, nobis odit ipsa delectus? Quae voluptates magnam vero quasi nostrum, cupiditate quis animi alias aliquam corrupti at?</p>
-            <Footer/>
-         </>
-    
-        
+        </>
     );
 };
 export default  Shop;
