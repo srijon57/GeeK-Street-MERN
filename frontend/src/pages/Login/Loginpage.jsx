@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from 'axios';
 import "./style.css";
 import { FaFacebookF, FaGoogle } from "react-icons/fa";
 
@@ -40,12 +41,24 @@ function Loginpage() {
 
     const handleSignUpSubmit = (e) => {
         e.preventDefault();
-        console.log("Sign Up Data:", signUpData);
+        axios.post('http://localhost:5175/register', signUpData)
+            .then(response => {
+                console.log(response.data);
+            })
+            .catch(error => {
+                console.error('There was an error registering!', error);
+            });
     };
 
     const handleSignInSubmit = (e) => {
         e.preventDefault();
-        console.log("Sign In Data:", signInData);
+        axios.post('http://localhost:5175/login', signInData)
+            .then(response => {
+                console.log(response.data);
+            })
+            .catch(error => {
+                console.error('There was an error logging in!', error);
+            });
     };
 
     return (
