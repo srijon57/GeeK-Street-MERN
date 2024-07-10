@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from 'axios';
 import "./style.css";
 import { FaFacebookF, FaGoogle } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 function Loginpage() {
     const [isActive, setIsActive] = useState(false);
@@ -14,6 +15,9 @@ function Loginpage() {
         email: "",
         password: ""
     });
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
+    const navigate = useNavigate();
 
     const handleRegisterClick = () => {
         setIsActive(true);
@@ -39,30 +43,41 @@ function Loginpage() {
         }));
     };
 
-    const handleSignUpSubmit = (e) => {
+    const handleSignUpSubmit = async (e) => {
         e.preventDefault();
-        axios.post('http://localhost:5175/register', signUpData)
-            .then(response => {
-                console.log(response.data);
-            })
-            .catch(error => {
-                console.error('There was an error registering!', error);
-            });
+        setLoading(true);
+        setError(null);
+        try {
+            const response = await axios.post(`http://localhost:5175/register`, signUpData);
+            console.log(response.data);
+            setLoading(false);
+        } catch (error) {
+            setLoading(false);
+            setError('There was an error registering!');
+            console.error('There was an error registering!', error);
+        }
     };
 
-    const handleSignInSubmit = (e) => {
+    const handleSignInSubmit = async (e) => {
         e.preventDefault();
-        axios.post('http://localhost:5175/login', signInData)
-            .then(response => {
-                console.log(response.data);
-            })
-            .catch(error => {
-                console.error('There was an error logging in!', error);
-            });
+        setLoading(true);
+        setError(null);
+        try {
+            const response = await axios.post(`http://localhost:5175/login`, signInData);
+            console.log(response.data);
+            setLoading(false);
+            navigate('/'); // Redirect to homepage
+        } catch (error) {
+            setLoading(false);
+            setError('There was an error logging in!');
+            console.error('There was an error logging in!', error);
+        }
     };
 
     return (
         <div className="login-page">
+            {loading && <div className="loading">Loading...</div>}
+            {error && <div className="error">{error}</div>}
             <div className={`container ${isActive ? "active" : ""}`} id="container">
                 <div className="form-container sign-up">
                     <form onSubmit={handleSignUpSubmit}>
