@@ -48,7 +48,7 @@ function Loginpage() {
         setLoading(true);
         setError(null);
         try {
-            const response = await axios.post(`http://localhost:5175/register`, signUpData);
+            const response = await axios.post(`http://localhost:8080/signup`, signUpData);
             console.log(response.data);
             setLoading(false);
         } catch (error) {
@@ -63,7 +63,7 @@ function Loginpage() {
         setLoading(true);
         setError(null);
         try {
-            const response = await axios.post(`http://localhost:5175/login`, signInData);
+            const response = await axios.post(`http://localhost:8080/signin`, signInData);
             console.log(response.data);
             setLoading(false);
             navigate('/'); // Redirect to homepage
