@@ -4,3 +4,43 @@
     box-sizing: border-box;
     /* align-items: center; */
 }
+/* shop.css */
+
+.shop-container {
+    padding: 1rem;
+    max-width: 1300px;
+    margin: 4rem auto 0 auto;
+}
+
+.filters {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+}
+
+.form-control {
+    display: flex;
+    flex-direction: column;
+}
+
+.label {
+    margin-bottom: 0.5rem;
+}
+
+.label-text {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.select {
+    width: 100%;
+    max-width: 20rem;
+    padding: 0.5rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.375rem;
+    background-color: #ffffff;
+}
+
+.select-bordered {
+    border: 1px solid #d1d5db;
+}

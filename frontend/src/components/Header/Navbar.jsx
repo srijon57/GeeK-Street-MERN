@@ -1,27 +1,26 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { MdOutlineShoppingCart, MdMenu, MdClose } from "react-icons/md";
-//import { GiCharacter } from "react-icons/gi";
-import Search from "../search/search";
+import { GiCharacter } from "react-icons/gi";
 import "./Navbar_style.css";
+import CartIcon from '../Cart/CartIcon';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
-
     const navItems = [
         { name: "Home", href: "/" },
         { name: "Shop", href: "/Shop" },
         { name: "About", href: "/About" },
-        { name: "Login/Signup", href: "/Login" },
     ];
 
     const toggleMenu = () => {
         setIsOpen(!isOpen);
     };
 
+
     return (
         <nav className="nav">
-            <div className="nav-logo">GEEK STREED BD</div>
+            <div className="nav-logo">GEEK STREET BD</div>
             <ul className={`nav-ul ${isOpen ? "active" : ""}`}>
                 {navItems.map((item, idx) => (
                     <li key={idx} className="nav-item">
@@ -32,13 +31,10 @@ const Navbar = () => {
             <div className="Right">
                 <ul className="Righter">
                     <div>
-                        <Search />
+
                     </div>
-                    {/* <div>
-                        <GiCharacter />
-                    </div> */}
                     <div>
-                        <MdOutlineShoppingCart />
+                    <Link to="/cart"><CartIcon/></Link>
                     </div>
                     <div id="ham" className="hamburger" onClick={toggleMenu}>
                         {isOpen ? <MdClose /> : <MdMenu />}

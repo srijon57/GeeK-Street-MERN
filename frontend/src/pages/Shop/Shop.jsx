@@ -1,17 +1,82 @@
-import "./shop_style.css"
-export const Shop = () => {
-    // Homepage consists of different smaller components I made so we can reuse them later when needed and sending different components necessary props to use them in there
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import ProductCard from "../../components/Product/ProductCard";
+import Search from "../../components/search/search";
+import "./shop_style.css";
+
+const Shop = () => {
+    const [filteredProducts, setFilteredProducts] = useState([]);
+    const [category, setCategory] = useState("");
+    const [product, setProduct] = useState([]);
+    const [searchTerm, setSearchTerm] = useState("");
+
+    useEffect(() => {
+        axios
+            .get(`http://localhost:5000/product`)
+            .then((response) => {
+                setProduct(response.data.data);
+                setFilteredProducts(response.data.data);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }, []);
+
+    const filterProducts = () => {
+        if (!Array.isArray(product)) {
+            console.error("Products is not an array:", product);
+            return;
+        }
+
+        let filtered = [...product];
+
+        // Filter by category
+        if (category !== "") {
+            filtered = filtered.filter((item) => item.category === category);
+        }
+
+        // Filter by search term (product name)
+        if (searchTerm !== "") {
+            filtered = filtered.filter((item) =>
+                item.name.toLowerCase().includes(searchTerm.toLowerCase())
+            );
+        }
+
+        setFilteredProducts(filtered);
+    };
+
+    useEffect(() => {
+        filterProducts();
+    }, [product, category, searchTerm]);
+
     return (
-        <>
-            <h1>Hello Shop Page</h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem, culpa. Tempora molestiae alias hic quam enim laboriosam quisquam harum nesciunt. Quod a fuga consequuntur excepturi consequatur sapiente iure impedit natus. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum vel debitis aliquam architecto eaque deleniti numquam optio saepe nesciunt voluptatem incidunt veritatis esse reprehenderit eum modi nulla ab, laborum nemo. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vitae eaque, alias veniam ut iusto temporibus nam fugit. Dolore, necessitatibus laborum delectus ut ipsa debitis ex provident repudiandae sit. Earum, veritatis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus ratione iure quasi debitis, nobis odit ipsa delectus? Quae voluptates magnam vero quasi nostrum, cupiditate quis animi alias aliquam corrupti at?</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem, culpa. Tempora molestiae alias hic quam enim laboriosam quisquam harum nesciunt. Quod a fuga consequuntur excepturi consequatur sapiente iure impedit natus. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum vel debitis aliquam architecto eaque deleniti numquam optio saepe nesciunt voluptatem incidunt veritatis esse reprehenderit eum modi nulla ab, laborum nemo. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vitae eaque, alias veniam ut iusto temporibus nam fugit. Dolore, necessitatibus laborum delectus ut ipsa debitis ex provident repudiandae sit. Earum, veritatis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus ratione iure quasi debitis, nobis odit ipsa delectus? Quae voluptates magnam vero quasi nostrum, cupiditate quis animi alias aliquam corrupti at?</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem, culpa. Tempora molestiae alias hic quam enim laboriosam quisquam harum nesciunt. Quod a fuga consequuntur excepturi consequatur sapiente iure impedit natus. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum vel debitis aliquam architecto eaque deleniti numquam optio saepe nesciunt voluptatem incidunt veritatis esse reprehenderit eum modi nulla ab, laborum nemo. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vitae eaque, alias veniam ut iusto temporibus nam fugit. Dolore, necessitatibus laborum delectus ut ipsa debitis ex provident repudiandae sit. Earum, veritatis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus ratione iure quasi debitis, nobis odit ipsa delectus? Quae voluptates magnam vero quasi nostrum, cupiditate quis animi alias aliquam corrupti at?</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem, culpa. Tempora molestiae alias hic quam enim laboriosam quisquam harum nesciunt. Quod a fuga consequuntur excepturi consequatur sapiente iure impedit natus. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum vel debitis aliquam architecto eaque deleniti numquam optio saepe nesciunt voluptatem incidunt veritatis esse reprehenderit eum modi nulla ab, laborum nemo. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vitae eaque, alias veniam ut iusto temporibus nam fugit. Dolore, necessitatibus laborum delectus ut ipsa debitis ex provident repudiandae sit. Earum, veritatis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus ratione iure quasi debitis, nobis odit ipsa delectus? Quae voluptates magnam vero quasi nostrum, cupiditate quis animi alias aliquam corrupti at?</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem, culpa. Tempora molestiae alias hic quam enim laboriosam quisquam harum nesciunt. Quod a fuga consequuntur excepturi consequatur sapiente iure impedit natus. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum vel debitis aliquam architecto eaque deleniti numquam optio saepe nesciunt voluptatem incidunt veritatis esse reprehenderit eum modi nulla ab, laborum nemo. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vitae eaque, alias veniam ut iusto temporibus nam fugit. Dolore, necessitatibus laborum delectus ut ipsa debitis ex provident repudiandae sit. Earum, veritatis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus ratione iure quasi debitis, nobis odit ipsa delectus? Quae voluptates magnam vero quasi nostrum, cupiditate quis animi alias aliquam corrupti at?</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem, culpa. Tempora molestiae alias hic quam enim laboriosam quisquam harum nesciunt. Quod a fuga consequuntur excepturi consequatur sapiente iure impedit natus. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum vel debitis aliquam architecto eaque deleniti numquam optio saepe nesciunt voluptatem incidunt veritatis esse reprehenderit eum modi nulla ab, laborum nemo. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vitae eaque, alias veniam ut iusto temporibus nam fugit. Dolore, necessitatibus laborum delectus ut ipsa debitis ex provident repudiandae sit. Earum, veritatis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus ratione iure quasi debitis, nobis odit ipsa delectus? Quae voluptates magnam vero quasi nostrum, cupiditate quis animi alias aliquam corrupti at?</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem, culpa. Tempora molestiae alias hic quam enim laboriosam quisquam harum nesciunt. Quod a fuga consequuntur excepturi consequatur sapiente iure impedit natus. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum vel debitis aliquam architecto eaque deleniti numquam optio saepe nesciunt voluptatem incidunt veritatis esse reprehenderit eum modi nulla ab, laborum nemo. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vitae eaque, alias veniam ut iusto temporibus nam fugit. Dolore, necessitatibus laborum delectus ut ipsa debitis ex provident repudiandae sit. Earum, veritatis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus ratione iure quasi debitis, nobis odit ipsa delectus? Quae voluptates magnam vero quasi nostrum, cupiditate quis animi alias aliquam corrupti at?</p>
-        </>
+        <div className="shop-container">
+            <div className="filters">
+                <div className="form-control">
+                    <label className="label">
+                        <span className="label-text">Category</span>
+                    </label>
+                    <select
+                        value={category}
+                        onChange={(e) => setCategory(e.target.value)}
+                        className="select select-bordered"
+                    >
+                        <option value="">All</option>
+                        <option value="Phones">Phones</option>
+                        <option value="Laptops">Laptops</option>
+                        <option value="Components">Components</option>
+                        <option value="Gadgets">Gadgets</option>
+                    </select>
+                </div>
+
+                <div className="form-control">
+                    <Search onSearch={setSearchTerm} />
+                </div>
+            </div>
+
+            <ProductCard product={filteredProducts} />
+        </div>
     );
 };
-export default  Shop;
+
+export default Shop;
