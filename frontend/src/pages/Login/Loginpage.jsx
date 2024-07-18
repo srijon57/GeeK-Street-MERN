@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import axios from 'axios';
 import "./style.css";
 import { FaFacebookF, FaGoogle } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from '../../context/AuthContext';
 
 function Loginpage() {
+    const { login } = useContext(AuthContext);
     const [isActive, setIsActive] = useState(false);
     const [signUpData, setSignUpData] = useState({
         name: "",
@@ -13,7 +15,7 @@ function Loginpage() {
     });
     const [signInData, setSignInData] = useState({
         email: "",
-        password: ""
+        password: "",
     });
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
@@ -48,7 +50,7 @@ function Loginpage() {
         setLoading(true);
         setError(null);
         try {
-            const response = await axios.post(`http://localhost:5175/register`, signUpData);
+            const response = await axios.post(`http://localhost:8080/signup`, signUpData);
             console.log(response.data);
             setLoading(false);
         } catch (error) {
@@ -63,10 +65,19 @@ function Loginpage() {
         setLoading(true);
         setError(null);
         try {
-            const response = await axios.post(`http://localhost:5175/login`, signInData);
+            const response = await axios.post(`http://localhost:8080/signin`, signInData);
             console.log(response.data);
             setLoading(false);
-            navigate('/'); // Redirect to homepage
+            // Assuming response.data contains the token
+            const { data } = response.data;
+            // Set token in cookie here
+            document.cookie = `token=${data}; path=/;`;
+
+            // Call login function to update auth context
+            login(signInData.email);
+            
+            // Redirect to home page
+            navigate('/');
         } catch (error) {
             setLoading(false);
             setError('There was an error logging in!');

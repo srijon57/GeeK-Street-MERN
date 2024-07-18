@@ -1,0 +1,46 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* align-items: center; */
+}
+.delete-product-container {
+    max-width: 32rem; 
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-lg */
+    padding: 1.25rem; 
+}
+
+.back-button {
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+    margin-bottom: 1rem; 
+    width: 3rem;
+    padding: 0.5rem 1rem; 
+    background-color: #efefef;
+    border-radius: 0.75rem;
+    text-decoration: none; 
+    color: inherit; 
+}
+
+.confirmation-text {
+    font-size: 1.5rem; 
+    margin-bottom: 1rem; 
+    font-weight: 600;
+}
+
+.delete-button {
+    background-color: #e3342f; 
+    padding: 0.5rem 1rem; 
+    border-radius: 0.5rem; 
+    width: 100%; 
+    color: white;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s; 
+}
+
+.delete-button:hover {
+    background-color: #cc1f1a; 
+}

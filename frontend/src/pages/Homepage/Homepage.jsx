@@ -1,52 +1,48 @@
 import React, { useEffect, useState } from "react";
-import a from "./a.jfif";
-import b from "./b.jfif";
-import c from "./c.jfif";
-import d from "./a.jfif";
 import "./Home.css";
 import Hero from "../../components/Hero/Hero";
+import axios from "axios";
+import ProductCard from "../../components/Product/ProductCard";
 
 export const Homepage = () => {
-    const [src, setSrc] = useState(a);
-    const [index, setIndex] = useState(0);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    const photo = [a, b, c, d];
+    const [product, setProduct] = useState([]);
 
     useEffect(() => {
-        const interval = setInterval(() => {
-            setIndex((index + 1) % photo.length);
-            setSrc(photo[index]);
-        }, 5000); // Change the interval time (in milliseconds) as needed
+        axios
+            .get(`http://localhost:5000/product`)
+            .then((response) => {
+                setProduct(response.data.data);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }, []);
 
-        return () => clearInterval(interval);
-    }, [index, photo]);
+    const latestProducts = product.slice(0, 3);
 
     return (
         <div>
             <div>
                 <Hero />
             </div>
-            
-            <div className="shop-by-catagory">
-                <div className="title-line">
-                    <div className="line"></div>
-                    <div className="title">SHOP BY CATAGORY</div>
-                    <div className="line"></div>
-                </div>
-                <div className="shop-row">
-                    <div className="desktop">
-                        <img src={a} alt="" />
-                        <button>Desktop</button>
-                    </div>
-                    <div className="laptop">
-                        <img src={b} alt="" />
-                        <button>Laptop</button>
-                    </div>
-                    <div className="components">
-                        <img src={c} alt="" />
-                        <button>Components</button>
+            <div className="home-container">
+                <div className="hero-content">
+                    <div className="max-w-md">
+                        <h1 className="text-5xl">
+                            Welcome to{" "}
+                            <span className="text-teal-700">GEEK STREET</span>
+                        </h1>
+                        <p className="py-6">
+                        We offer high-quality tech, including mobile devices,
+                        gadgets, components, and laptops for purchase.
+                        </p>
+                        <a href="/shop" className="btn">
+                            Shop
+                        </a>
                     </div>
                 </div>
+
+                <ProductCard product={latestProducts} />
             </div>
         </div>
     );

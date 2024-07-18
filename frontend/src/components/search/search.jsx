@@ -1,27 +1,30 @@
 import React, { useState } from "react";
 import { MdSearch, MdClose } from "react-icons/md";
+import "./search_style.css";
 
-const Search = () => {
+const Search = ({ onSearch }) => {
     const [searchOpen, setSearchOpen] = useState(false);
+    const [searchTerm, setSearchTerm] = useState("");
 
-    // window.addEventListener("scroll", function () {
-    //     const navbar = document.querySelector(".nav");
-    //     if (window.scrollY > 0) {
-    //         navbar.classList.add("sticky");
-    //     } else {
-    //         navbar.classList.remove("sticky");
-    //     }
-    // });
     const toggleSearch = () => {
         setSearchOpen(!searchOpen);
     };
 
+    const handleSearchChange = (e) => {
+        setSearchTerm(e.target.value);
+        onSearch(e.target.value); 
+    };
+
     return (
         <>
-            {" "}
             {searchOpen ? (
                 <div className="search-bar active">
-                    <input type="text" placeholder="Search..." />
+                    <input
+                        type="text"
+                        placeholder="Search..."
+                        value={searchTerm}
+                        onChange={handleSearchChange}
+                    />
                     <MdClose className="close-icon" onClick={toggleSearch} />
                 </div>
             ) : (
