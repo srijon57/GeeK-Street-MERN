@@ -1,27 +1,62 @@
-const express = require('express')
-const cors = require('cors')
-const cookieParser = require('cookie-parser')
-require('dotenv').config()
-const connectDB = require('./config/db')
-const router = require('./routes')
+import express from "express";
+import { config } from "dotenv";
+import mongoose from "mongoose";
+import cors from "cors";
+import { v2 as cloudinary } from "cloudinary";
+import multer from "multer";
+import { CloudinaryStorage } from "multer-storage-cloudinary";
+import productRoute from "./routes/productRoute.js";  // Ensure .js extension
 
+config();
+const app = express();
 
-const app = express()
-app.use(cors({
-    origin : process.env.FRONTEND_URL,
-    credentials : true
-}))
-app.use(express.json())
-app.use(cookieParser())
+app.use(cors());
+app.listen(process.env.PORT, () => console.log(`Server running on ${process.env.PORT} PORT`));
 
-app.use("/",router)
+mongoose
+    .connect(process.env.mongoDb)
+    .then(() => console.log('Database is connected'))
+    .catch((error) => console.log(error));
 
-const PORT = 8080 || process.env.PORT
+app.use(express.json());
 
+app.use('/product', productRoute);
 
-connectDB().then(()=>{
-    app.listen(PORT,()=>{
-        console.log("connnect to DB")
-        console.log("Server is running "+PORT)
-    })
-})
+cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET
+});
+
+app.use((req, res, next) => {
+    req.cloudinary = cloudinary;
+    next();
+});
+
+const storage = new CloudinaryStorage({
+    cloudinary: cloudinary,
+    params: {
+        folder: 'images',
+        allowedFormats: ['jpeg', 'png', 'jpg'],
+    }
+});
+
+const parser = multer({ storage: storage });
+
+//ROUTE FOR UPLOADING THE FILE TO CLOUDINARY
+app.post('/upload-image', parser.single('file'), (req, res) => {
+    if (!req.file) {
+        return res.status(400).send('No file uploaded.');
+    }
+
+    try {
+        if (!req.file.path) {
+            throw new Error('File uploaded, but no path available');
+        }
+
+        res.json({ secure_url: req.file.path });
+    } catch (error) {
+        console.error('Error during file upload: ', error);
+        res.status(500).send('Internal server error');
+    }
+});

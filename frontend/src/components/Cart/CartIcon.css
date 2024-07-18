@@ -1,0 +1,127 @@
+/* Assuming you have a CSS file named CartIcon.css */
+
+.flex-none {
+    flex: none;
+}
+
+.dropdown {
+    position: relative;
+}
+
+.dropdown-end {
+    right: 0;
+}
+
+.btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 9999px; /* Use a large enough value for the circle effect */
+    cursor: pointer;
+    outline: none;
+    transition: background-color 0.3s ease;
+}
+
+.btn-ghost {
+    background-color: transparent;
+    color: inherit;
+}
+
+.btn-circle {
+    width: 2.5rem; /* Adjust size as needed */
+    height: 2.5rem; /* Adjust size as needed */
+}
+
+.indicator {
+    position: relative;
+}
+
+.indicator-item {
+    position: absolute;
+    top: 0.1rem;
+    right: 0.1rem;
+    background-color: #fff;
+    color: #000;
+    border-radius: 9999px; /* Ensures the badge is round */
+    padding: 0.25rem 0.5rem;
+}
+
+.badge-sm {
+    font-size: 0.75rem;
+}
+
+.dropdown-content {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    z-index: 1;
+}
+
+.w-52 {
+    width: 13rem; /* Adjust width as needed */
+}
+
+.bg-base-100 {
+    background-color: #f3f4f6; /* Adjust background color */
+}
+
+.shadow {
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1); /* Adjust shadow properties */
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+
+.card-body {
+    padding: 1rem;
+}
+
+.font-bold {
+    font-weight: bold;
+}
+
+.text-lg {
+    font-size: 1.125rem; /* Adjust font size */
+}
+
+.card-actions {
+    margin-top: 1rem;
+}
+
+.btn-primary {
+    display: block;
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #3182ce; /* Adjust button color */
+    color: #fff;
+    border: none;
+    border-radius: 0.375rem; /* Adjust border radius */
+    font-size: 1rem;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #2c5282; /* Adjust hover color */
+}
+
+.btn-block {
+    width: 100%;
+}
+
+.mt-3 {
+    margin-top: 0.75rem; /* Adjust top margin */
+}
+
+.z-[1] {
+    z-index: 1;
+}
