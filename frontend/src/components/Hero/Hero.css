@@ -10,6 +10,7 @@
 .hero-content {
     position: relative;
     z-index: 1;
+    background-color: rgba(81, 201, 249, 0.471);
     overflow: hidden;
     align-items: center;
     padding-left: 8%;
