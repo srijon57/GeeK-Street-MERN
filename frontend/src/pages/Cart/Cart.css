@@ -89,6 +89,7 @@
 .cart-remove-button {
     font-weight: bold;
     cursor: pointer;
+    background-color: #3b94be;
     text-decoration: underline;
 }
 

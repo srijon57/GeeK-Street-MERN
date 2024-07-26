@@ -24,9 +24,9 @@ const Cart = () => {
                         <p className='cart-item-price'>Price: BDT {(item.priceInCents).toFixed(2)}</p>
                         <div className='cart-item-quantity'>
                             <p>Quantity: {item.quantity}</p>
-                            <div className='cart-item-remove'>
-                                <button onClick={() => decreaseCartItemQuantity(item._id)} className='cart-remove-button'>Remove</button>
-                            </div>
+                            <p className='cart-item-remove'>
+                            <button onClick={() => decreaseCartItemQuantity(item._id)} className='cart-remove-button'>Remove</button>
+                            </p>
                         </div>
                     </div>
                 ))}

@@ -16,7 +16,7 @@ const Search = ({ onSearch }) => {
     };
 
     return (
-        <>
+        <div className="search-container">
             {searchOpen ? (
                 <div className="search-bar active">
                     <input
@@ -28,9 +28,9 @@ const Search = ({ onSearch }) => {
                     <MdClose className="close-icon" onClick={toggleSearch} />
                 </div>
             ) : (
-                <MdSearch onClick={toggleSearch} />
+                <MdSearch className="search-icon" onClick={toggleSearch} />
             )}
-        </>
+        </div>
     );
 };
 

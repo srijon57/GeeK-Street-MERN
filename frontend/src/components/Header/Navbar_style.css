@@ -28,7 +28,7 @@ nav {
     font-weight: 400;
     font-style: normal;
     font-size: 25px;
-    color:white;
+    color: white;
 }
 
 .nav-ul {
@@ -82,6 +82,7 @@ nav {
     padding: 0;
     margin: 0;
     display: flex;
+    align-items: center;
 }
 
 .Righter div {
@@ -91,22 +92,47 @@ nav {
 .hamburger {
     display: none;
 }
-.search-bar {
+
+.search-bar-container {
+    position: relative;
+}
+
+.search-icon {
     display: flex;
     align-items: center;
+    cursor: pointer;
+    color: white;
+    margin-left: 10px;
+}
+
+.search-bar {
+    position: absolute;
+    right: 0;
+    top: 100%;
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    padding: 5px;
+    transition: width 0.3s ease;
+    width: 0; /* Start with 0 width */
+    opacity: 0; /* Start with hidden */
+    overflow: hidden;
+    z-index: 1000;
+}
+
+.search-bar.active {
+    width: 300px; /* Expanded width */
+    opacity: 1; /* Show the search bar */
 }
 
 .search-bar input {
     border: none;
     outline: none;
-    width: 150px;
-    transition: width 0.3s ease-in-out;
-    border-radius: 7px;
     padding: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    transition: width 0.3s ease-in-out;
-    overflow: hidden;
-    width: 500px;
+    border-radius: 4px;
+    width: 100%;
 }
 
 .search-bar .close-icon {
@@ -115,88 +141,6 @@ nav {
     color: red;
 }
 
-.search-bar.active {
-    width: 500px;
-}
-
-.profile-container {
-    position: relative;
-    display: inline-block;
-    cursor: pointer;
-}
-
-.profile-dropdown {
-    position: absolute;
-    top: 40px;
-    right: 0;
-    background-color: white;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 4px;
-    padding: 10px;
-    z-index: 1000;
-}
-
-.profile-dropdown p {
-    margin: 0;
-    padding: 5px 0;
-}
-
-.profile-dropdown a,
-.profile-dropdown button {
-    display: block;
-    padding: 5px 10px;
-    text-decoration: none;
-    color: black;
-    border: none;
-    background: none;
-    cursor: pointer;
-    width: 100%;
-    text-align: left;
-}
-
-.profile-dropdown a:hover,
-.profile-dropdown button:hover {
-    background-color: #f0f0f0;
-}
-.profile-menu {
-    position: relative;
-}
-
-.dropdown {
-    position: absolute;
-    top: 2rem;
-    right: 0;
-    background-color: #fff;
-    color: #333;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
-}
-
-.dropdown p {
-    margin: 0;
-    padding: 1rem;
-    border-bottom: 1px solid #ddd;
-}
-
-.dropdown a,
-.dropdown button {
-    display: block;
-    width: 100%;
-    padding: 0.75rem 1rem;
-    background: none;
-    border: none;
-    color: #333;
-    text-align: left;
-    cursor: pointer;
-    text-decoration: none;
-}
-
-.dropdown a:hover,
-.dropdown button:hover {
-    background-color: #f1f1f1;
-}
 @media (max-width: 768px) {
     nav {
         grid-template-columns: 1fr;
@@ -206,6 +150,7 @@ nav {
         /* align-items: center; */
         /* justify-content: center; */
     }
+
     .nav-logo {
         margin-right: 0%;
         align-items: center;
@@ -239,6 +184,7 @@ nav {
         padding: 1px;
         border-radius: 5px;
     }
+
     .search-bar input {
         width: 200px;
     }
