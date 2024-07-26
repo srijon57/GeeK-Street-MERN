@@ -1,12 +1,14 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { MdOutlineShoppingCart, MdMenu, MdClose } from "react-icons/md";
+import { MdOutlineShoppingCart, MdMenu, MdClose, MdSearch } from "react-icons/md";
 import { GiCharacter } from "react-icons/gi";
 import "./Navbar_style.css";
 import CartIcon from '../Cart/CartIcon';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const [searchActive, setSearchActive] = useState(false); // State for search bar
+
     const navItems = [
         { name: "Home", href: "/" },
         { name: "Shop", href: "/Shop" },
@@ -17,6 +19,9 @@ const Navbar = () => {
         setIsOpen(!isOpen);
     };
 
+    const toggleSearch = () => {
+        setSearchActive(!searchActive);
+    };
 
     return (
         <nav className="nav">
@@ -30,11 +35,9 @@ const Navbar = () => {
             </ul>
             <div className="Right">
                 <ul className="Righter">
+                    
                     <div>
-
-                    </div>
-                    <div>
-                    <Link to="/cart"><CartIcon/></Link>
+                        <Link to="/cart"><CartIcon/></Link>
                     </div>
                     <div id="ham" className="hamburger" onClick={toggleMenu}>
                         {isOpen ? <MdClose /> : <MdMenu />}

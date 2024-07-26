@@ -1,17 +1,17 @@
 /* ProductSingleCard.css */
 
 .card {
-    width: 24rem; /* 96 in Tailwind is 24rem */
+    width: 20rem; /* 96 in Tailwind is 24rem */
     background-color: #ffffff; /* bg-base-100 */
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
         0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-xl */
-    border-radius: 0.5rem;
+    border-radius: 10px;
     overflow: hidden;
 }
 
 .card img {
     width: 100%;
-    height: 200px;
+    height: 400px;
     object-fit: cover;
     object-position: top;
 }
@@ -41,18 +41,18 @@
 
 .btn {
     padding: 0.5rem 1rem;
-    border-radius: 0.25rem;
+    border-radius: 0.75rem;
     cursor: pointer;
     transition: background-color 0.2s;
 }
 
 .btn-primary {
-    background-color: #3b82f6; /* blue-500 */
+    background-color: #2563eb; /* blue-500 */
     color: #ffffff;
 }
 
 .btn-primary:hover {
-    background-color: #2563eb; /* blue-600 */
+    background-color: #1b6650; /* blue-600 */
 }
 
 .btn-error {

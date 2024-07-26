@@ -119,9 +119,9 @@
 }
 
 .mt-3 {
-    margin-top: 0.75rem; /* Adjust top margin */
+    margin-top: 0.5rem; /* Adjust top margin */
 }
 
-.z-[1] {
+.z-1 {
     z-index: 1;
 }
