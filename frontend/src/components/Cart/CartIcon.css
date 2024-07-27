@@ -1,5 +1,8 @@
-/* Assuming you have a CSS file named CartIcon.css */
-
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 .flex-none {
     flex: none;
 }
@@ -19,7 +22,7 @@
     padding: 0.5rem;
     font-size: 1rem;
     line-height: 1.5;
-    border-radius: 9999px; /* Use a large enough value for the circle effect */
+    border-radius: 9999px;
     cursor: pointer;
     outline: none;
     transition: background-color 0.3s ease;
@@ -31,8 +34,8 @@
 }
 
 .btn-circle {
-    width: 2.5rem; /* Adjust size as needed */
-    height: 2.5rem; /* Adjust size as needed */
+    width: 2.5rem;
+    height: 2.5rem;
 }
 
 .indicator {
@@ -45,7 +48,7 @@
     right: 0.1rem;
     background-color: #fff;
     color: #000;
-    border-radius: 9999px; /* Ensures the badge is round */
+    border-radius: 9999px;
     padding: 0.25rem 0.5rem;
 }
 
@@ -53,23 +56,16 @@
     font-size: 0.75rem;
 }
 
-.dropdown-content {
-    position: absolute;
-    top: 100%;
-    right: 0;
-    z-index: 1;
-}
-
 .w-52 {
-    width: 13rem; /* Adjust width as needed */
+    width: 13rem;
 }
 
 .bg-base-100 {
-    background-color: #f3f4f6; /* Adjust background color */
+    background-color: #f3f4f6;
 }
 
 .shadow {
-    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1); /* Adjust shadow properties */
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
 }
 
 .card {
@@ -89,7 +85,7 @@
 }
 
 .text-lg {
-    font-size: 1.125rem; /* Adjust font size */
+    font-size: 1.125rem;
 }
 
 .card-actions {
@@ -100,10 +96,10 @@
     display: block;
     width: 100%;
     padding: 0.75rem;
-    background-color: #3182ce; /* Adjust button color */
+    background-color: #3182ce;
     color: #fff;
     border: none;
-    border-radius: 0.375rem; /* Adjust border radius */
+    border-radius: 0.375rem;
     font-size: 1rem;
     text-align: center;
     cursor: pointer;
@@ -111,7 +107,7 @@
 }
 
 .btn-primary:hover {
-    background-color: #2c5282; /* Adjust hover color */
+    background-color: #2c5282;
 }
 
 .btn-block {
@@ -119,9 +115,43 @@
 }
 
 .mt-3 {
-    margin-top: 0.5rem; /* Adjust top margin */
+    margin-top: 0.5rem;
 }
 
 .z-1 {
     z-index: 1;
+}
+.cart-icon {
+    position: relative;
+}
+
+.indicator svg {
+    width: 24px;
+    height: 24px;
+}
+
+.badge {
+    position: absolute;
+    top: -5px;
+    right: -10px;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    padding: 0.2rem 0.4rem;
+    font-size: 0.8rem;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    z-index: 1000;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
 }

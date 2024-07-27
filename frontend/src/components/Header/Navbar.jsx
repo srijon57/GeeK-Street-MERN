@@ -7,7 +7,6 @@ import CartIcon from '../Cart/CartIcon';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
-    const [searchActive, setSearchActive] = useState(false); // State for search bar
 
     const navItems = [
         { name: "Home", href: "/" },
@@ -17,10 +16,6 @@ const Navbar = () => {
 
     const toggleMenu = () => {
         setIsOpen(!isOpen);
-    };
-
-    const toggleSearch = () => {
-        setSearchActive(!searchActive);
     };
 
     return (
