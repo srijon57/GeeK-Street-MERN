@@ -2,10 +2,8 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    /* align-items: center; */
+    
 }
-/* shop.css */
-
 .shop-container {
     padding: 1rem;
     max-width: 1250px;

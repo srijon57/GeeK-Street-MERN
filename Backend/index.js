@@ -5,7 +5,8 @@ import cors from "cors";
 import { v2 as cloudinary } from "cloudinary";
 import multer from "multer";
 import { CloudinaryStorage } from "multer-storage-cloudinary";
-import productRoute from "./routes/productRoute.js";  // Ensure .js extension
+import productRoute from "./routes/productRoute.js";
+import { authRouter } from "./controllers/authController.js";
 
 config();
 const app = express();
@@ -60,3 +61,5 @@ app.post('/upload-image', parser.single('file'), (req, res) => {
         res.status(500).send('Internal server error');
     }
 });
+
+app.use('/auth', authRouter);

@@ -1,25 +1,13 @@
 import React, { useState, useContext } from "react";
-import axios from 'axios';
-import "./style.css";
 import { FaFacebookF, FaGoogle } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
-import { AuthContext } from '../../context/AuthContext';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from "axios";
+import { useSnackbar } from 'notistack';
+import { AuthContext } from '../../context/AuthContext'; // Import AuthContext
+import "./style.css";
 
 function Loginpage() {
-    const { login } = useContext(AuthContext);
     const [isActive, setIsActive] = useState(false);
-    const [signUpData, setSignUpData] = useState({
-        name: "",
-        email: "",
-        password: ""
-    });
-    const [signInData, setSignInData] = useState({
-        email: "",
-        password: "",
-    });
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null);
-    const navigate = useNavigate();
 
     const handleRegisterClick = () => {
         setIsActive(true);
@@ -29,69 +17,83 @@ function Loginpage() {
         setIsActive(false);
     };
 
-    const handleSignUpChange = (e) => {
-        const { name, value } = e.target;
-        setSignUpData(prevState => ({
-            ...prevState,
-            [name]: value
-        }));
+    const navigate = useNavigate();
+
+    const [userData, setUserData] = useState({
+        name: "",
+        email: "",
+        password: "",
+        password2: "",
+    });
+
+    const { enqueueSnackbar } = useSnackbar();
+    const { login } = useContext(AuthContext); // Destructure login from AuthContext
+
+    const changeInputHandler = (e) => {
+        setUserData({ ...userData, [e.target.name]: e.target.value });
     };
 
-    const handleSignInChange = (e) => {
-        const { name, value } = e.target;
-        setSignInData(prevState => ({
-            ...prevState,
-            [name]: value
-        }));
-    };
-
-    const handleSignUpSubmit = async (e) => {
+    const submitHandler = async (e) => {
         e.preventDefault();
-        setLoading(true);
-        setError(null);
+
+        if (userData.password !== userData.password2) {
+            enqueueSnackbar("Passwords do not match", { variant: 'error' });
+            return;
+        }
+
         try {
-            const response = await axios.post(`http://localhost:8080/signup`, signUpData);
-            console.log(response.data);
-            setLoading(false);
+            const config = {
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            };
+
+            await axios.post(
+                `http://localhost:5000/auth/register`,
+                {
+                    name: userData.name,
+                    email: userData.email,
+                    password: userData.password,
+                },
+                config
+            );
+
+            enqueueSnackbar("Registration successful", { variant: 'success' });
+            navigate("/Login");
         } catch (error) {
-            setLoading(false);
-            setError('There was an error registering!');
-            console.error('There was an error registering!', error);
+            enqueueSnackbar(error.response?.data?.msg || "An error occurred", { variant: 'error' });
         }
     };
 
-    const handleSignInSubmit = async (e) => {
-        e.preventDefault();
-        setLoading(true);
-        setError(null);
-        try {
-            const response = await axios.post(`http://localhost:8080/signin`, signInData);
-            console.log(response.data);
-            setLoading(false);
-            // Assuming response.data contains the token
-            const { data } = response.data;
-            // Set token in cookie here
-            document.cookie = `token=${data}; path=/;`;
+    const [loginData, setLoginData] = useState({
+        email: '',
+        password: ''
+    });
 
-            // Call login function to update auth context
-            login(signInData.email);
-            
-            // Redirect to home page
-            navigate('/');
+    const changeInputHandler2 = (e) => {
+        setLoginData({ ...loginData, [e.target.name]: e.target.value });
+    };
+
+    const submitHandler2 = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await axios.post(`http://localhost:5000/auth/login`, loginData);
+            const { token, user } = response.data;
+
+            localStorage.setItem('token', token);
+            login({ username: user.email, role: user.role });
+
+            navigate(user.role === 'admin' ? '/admin' : '/');
         } catch (error) {
-            setLoading(false);
-            setError('There was an error logging in!');
-            console.error('There was an error logging in!', error);
+            enqueueSnackbar(error.response?.data?.msg || "An error occurred", { variant: 'error' });
         }
     };
 
     return (
         <div className="login-page">
-            {loading && <div className="loading">Loading...</div>}
-            {error && <div className="error">{error}</div>}
             <div className={`container ${isActive ? "active" : ""}`} id="container">
                 <div className="form-container sign-up">
-                    <form onSubmit={handleSignUpSubmit}>
+                    <form className="register-form" onSubmit={submitHandler}>
                         <h1>Create Account</h1>
                         <div className="social-icons">
                             <a href="#" className="icon">
@@ -104,30 +106,44 @@ function Loginpage() {
                         <span>or use your email for registration</span>
                         <input
                             type="text"
+                            placeholder="Username"
                             name="name"
-                            placeholder="Name"
-                            value={signUpData.name}
-                            onChange={handleSignUpChange}
+                            value={userData.name}
+                            onChange={changeInputHandler}
+                            className="register-input"
                         />
                         <input
                             type="email"
-                            name="email"
                             placeholder="Email"
-                            value={signUpData.email}
-                            onChange={handleSignUpChange}
+                            name="email"
+                            value={userData.email}
+                            onChange={changeInputHandler}
+                            className="register-input"
                         />
                         <input
                             type="password"
-                            name="password"
                             placeholder="Password"
-                            value={signUpData.password}
-                            onChange={handleSignUpChange}
+                            name="password"
+                            value={userData.password}
+                            onChange={changeInputHandler}
+                            className="register-input"
                         />
-                        <button type="submit">Sign Up</button>
+                        <input
+                            type="password"
+                            placeholder="Confirm password"
+                            name="password2"
+                            value={userData.password2}
+                            onChange={changeInputHandler}
+                            className="register-input"
+                        />
+                        <button type="submit" className="register-button">
+                            Register
+                        </button>
                     </form>
                 </div>
+
                 <div className="form-container sign-in">
-                    <form onSubmit={handleSignInSubmit}>
+                    <form className='form' onSubmit={submitHandler2}>
                         <h1>Sign In</h1>
                         <div className="social-icons">
                             <a href="#" className="icon">
@@ -140,20 +156,22 @@ function Loginpage() {
                         <span>or use your email for password</span>
                         <input
                             type="email"
+                            placeholder='Email'
                             name="email"
-                            placeholder="Email"
-                            value={signInData.email}
-                            onChange={handleSignInChange}
+                            value={loginData.email}
+                            onChange={changeInputHandler2}
+                            className='input'
                         />
                         <input
                             type="password"
+                            placeholder='Password'
                             name="password"
-                            placeholder="Password"
-                            value={signInData.password}
-                            onChange={handleSignInChange}
+                            value={loginData.password}
+                            onChange={changeInputHandler2}
+                            className='input'
                         />
                         <a href="#">Forget Your Password?</a>
-                        <button type="submit">Sign In</button>
+                        <button type='submit' className='button'>Sign In</button>
                     </form>
                 </div>
                 <div className="toggle-container">
@@ -164,7 +182,11 @@ function Loginpage() {
                                 Enter your personal details to use all of the
                                 site features
                             </p>
-                            <button className="hidden" id="login" onClick={handleLoginClick}>
+                            <button
+                                className="hidden"
+                                id="login"
+                                onClick={handleLoginClick}
+                            >
                                 Sign In
                             </button>
                         </div>
@@ -174,7 +196,11 @@ function Loginpage() {
                                 Register with your personal details to use all
                                 of the site features
                             </p>
-                            <button className="hidden" id="register" onClick={handleRegisterClick}>
+                            <button
+                                className="hidden"
+                                id="register"
+                                onClick={handleRegisterClick}
+                            >
                                 Sign Up
                             </button>
                         </div>

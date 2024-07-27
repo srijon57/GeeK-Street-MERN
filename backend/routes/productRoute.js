@@ -1,10 +1,11 @@
 import express from "express";
 import { Product } from "../models/productModel.js";
+import { auth } from "../middleware/authMiddleware.js";
 
 const router = express.Router();
 
 //CREATE NEW PRODUCT ROUTE
-router.post('/', async (request, response) => {
+router.post('/', auth, async (request, response) => {
     try {
         if (
             !request.body.name ||
@@ -33,6 +34,7 @@ router.post('/', async (request, response) => {
         response.status(500).send({ message: error.message });
     }
 });
+
 //GET ALL PRODUCTS ROUTE
 router.get('/', async (request, response) => {
     try {
@@ -62,7 +64,7 @@ router.get('/:id', async (request, response) => {
 });
 
 //DELETE PRODUCT ROUTE
-router.delete('/:id',  async (request, response) => {
+router.delete('/:id', auth, async (request, response) => {
     try {
         const { id } = request.params;
         
@@ -80,7 +82,7 @@ router.delete('/:id',  async (request, response) => {
 });
 
 //UPDATE PRODUCT ROUTE
-router.put('/:id', async (request, response) => {
+router.put('/:id', auth, async (request, response) => {
     try {
         if (
             !request.body.name ||
