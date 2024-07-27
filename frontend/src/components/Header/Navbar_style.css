@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Jaro:opsz@6..72&display=swap");
+
 * {
     margin: 0;
     padding: 0;
@@ -111,20 +112,20 @@ nav {
     top: 100%;
     display: flex;
     align-items: center;
-    background-color: #fff;
+    background-color: teal;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     border-radius: 4px;
     padding: 5px;
     transition: width 0.3s ease;
-    width: 0; /* Start with 0 width */
-    opacity: 0; /* Start with hidden */
+    width: 0; 
+    opacity: 0; 
     overflow: hidden;
     z-index: 1000;
 }
 
 .search-bar.active {
-    width: 300px; /* Expanded width */
-    opacity: 1; /* Show the search bar */
+    width: 300px; 
+    opacity: 1; 
 }
 
 .search-bar input {
@@ -141,14 +142,42 @@ nav {
     color: red;
 }
 
+.cart-icon {
+    position: relative;
+}
+
+.cart-icon .badge {
+    position: absolute;
+    top: -5px;
+    right: -10px;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    padding: 0.2rem 0.4rem;
+    font-size: 0.8rem;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    z-index: 1000;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
 @media (max-width: 768px) {
     nav {
         grid-template-columns: 1fr;
         padding: 10px;
         display: flex;
         flex-direction: column;
-        /* align-items: center; */
-        /* justify-content: center; */
     }
 
     .nav-logo {
@@ -180,7 +209,7 @@ nav {
     .hamburger {
         display: block;
         cursor: pointer;
-        border: .5px solid white;
+        border: 0.5px solid white;
         padding: 1px;
         border-radius: 5px;
     }
