@@ -29,13 +29,11 @@ const Shop = () => {
         }
 
         let filtered = [...product];
-
-        // Filter by category
+        
         if (category !== "") {
             filtered = filtered.filter((item) => item.category === category);
         }
 
-        // Filter by search term (product name)
         if (searchTerm !== "") {
             filtered = filtered.filter((item) =>
                 item.name.toLowerCase().includes(searchTerm.toLowerCase())

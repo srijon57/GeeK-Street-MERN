@@ -1,0 +1,238 @@
+@import url("https://fonts.googleapis.com/css2?family=Jaro:opsz@6..72&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.logout-button {
+    background-color: #17cf97;
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 15px;
+    margin-left: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.logout-button:hover {
+    background-color: #139e78;
+}
+nav {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    background: #1b2430;
+    padding: 10px 20px;
+}
+
+.nav.sticky {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.nav-logo {
+    margin-right: auto;
+    font-family: "Jaro", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 25px;
+    color: white;
+}
+
+.nav-ul {
+    list-style-type: none;
+    color: white;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-items: center;
+    justify-content: center;
+}
+
+.nav-item {
+    list-style: none;
+    padding: 0 20px;
+    position: relative;
+}
+
+.nav-item a {
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 600;
+    color: #fff;
+    transition: 0.3s ease-in-out;
+}
+
+.nav-item a:hover,
+.nav-item a.active {
+    color: #17cf97;
+}
+
+.nav-item a:hover::after,
+.nav-item a.active::after {
+    content: "";
+    width: 30%;
+    height: 2px;
+    background: #17cf97;
+    position: absolute;
+    bottom: -4px;
+    left: 20px;
+}
+
+.Right {
+    display: flex;
+    justify-content: flex-end;
+    color: #fff;
+}
+
+.Righter {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
+
+.Righter div {
+    margin-left: 10px;
+}
+
+.hamburger {
+    display: none;
+}
+
+.search-bar-container {
+    position: relative;
+}
+
+.search-icon {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    color: white;
+    margin-left: 10px;
+}
+
+.search-bar {
+    position: absolute;
+    right: 0;
+    top: 100%;
+    display: flex;
+    align-items: center;
+    background-color: teal;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    padding: 5px;
+    transition: width 0.3s ease;
+    width: 0; 
+    opacity: 0; 
+    overflow: hidden;
+    z-index: 1000;
+}
+
+.search-bar.active {
+    width: 300px; 
+    opacity: 1; 
+}
+
+.search-bar input {
+    border: none;
+    outline: none;
+    padding: 5px;
+    border-radius: 4px;
+    width: 100%;
+}
+
+.search-bar .close-icon {
+    cursor: pointer;
+    margin-left: 5px;
+    color: red;
+}
+
+.cart-icon {
+    position: relative;
+}
+
+.cart-icon .badge {
+    position: absolute;
+    top: -5px;
+    right: -10px;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    padding: 0.2rem 0.4rem;
+    font-size: 0.8rem;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    z-index: 1000;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+@media (max-width: 768px) {
+    nav {
+        grid-template-columns: 1fr;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .nav-logo {
+        margin-right: 0%;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .nav-ul {
+        flex-direction: column;
+        display: none;
+        width: 100%;
+        background: #1b2430;
+    }
+
+    .nav-ul.active {
+        display: flex;
+    }
+
+    .nav-item {
+        padding: 10px 0;
+    }
+
+    .Right {
+        justify-content: center;
+        margin-top: 10px;
+    }
+
+    .hamburger {
+        display: block;
+        cursor: pointer;
+        border: 0.5px solid white;
+        padding: 1px;
+        border-radius: 5px;
+    }
+
+    .search-bar input {
+        width: 200px;
+    }
+
+    .search-bar.active {
+        width: 200px;
+    }
+}

@@ -1,14 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Navigate } from "react-router-dom";
+import { AuthContext } from '../context/AuthContext.jsx';
 
-const isAuthenticated = () => {
-    // return !!localStorage.getItem('token');
-    return true;
-};
+const ProtectedRoute = ({ children, role }) => {
+    const { user } = useContext(AuthContext);
 
-const ProtectedRoute = ({ children }) => {
-    if (!isAuthenticated()) {
-        return <Navigate to="/login" replace />;
+    if (!user.isLoggedIn) {
+        return <Navigate to="/Login" />;
+    }
+
+    if (role && user.role !== role) {
+        return <Navigate to="/" />; 
     }
 
     return children;

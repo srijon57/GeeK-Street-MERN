@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { FaFacebookF, FaGoogle } from "react-icons/fa";
 import { Link, useNavigate } from 'react-router-dom';
 import axios from "axios";
 import { useSnackbar } from 'notistack';
+import { AuthContext } from '../../context/AuthContext'; // Import AuthContext
 import "./style.css";
 
 function Loginpage() {
@@ -26,6 +27,7 @@ function Loginpage() {
     });
 
     const { enqueueSnackbar } = useSnackbar();
+    const { login } = useContext(AuthContext); // Destructure login from AuthContext
 
     const changeInputHandler = (e) => {
         setUserData({ ...userData, [e.target.name]: e.target.value });
@@ -63,8 +65,6 @@ function Loginpage() {
         }
     };
 
-    const navigate2 = useNavigate();
-
     const [loginData, setLoginData] = useState({
         email: '',
         password: ''
@@ -78,11 +78,12 @@ function Loginpage() {
         e.preventDefault();
         try {
             const response = await axios.post(`http://localhost:5000/auth/login`, loginData);
-            console.log(response.data);
+            const { token, user } = response.data;
 
-            localStorage.setItem('token', response.data.token);
+            localStorage.setItem('token', token);
+            login({ username: user.email, role: user.role });
 
-            navigate2('/admin');
+            navigate(user.role === 'admin' ? '/admin' : '/');
         } catch (error) {
             enqueueSnackbar(error.response?.data?.msg || "An error occurred", { variant: 'error' });
         }
