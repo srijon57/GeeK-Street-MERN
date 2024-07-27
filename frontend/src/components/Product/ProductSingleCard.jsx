@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './ProductSingleCard.css';
 import { useCart } from '../../context/CartContext';
+import { AuthContext } from '../../context/AuthContext';
 
 const ProductSingleCard = ({ product }) => {
   const { addToCart, removeFromCart, cartItems } = useCart();
+  const { user } = useContext(AuthContext);
 
   const itemInCart = cartItems.find(item => item._id === product._id);
-
   const quantity = itemInCart ? itemInCart.quantity : 0;
 
   const handleAddToCart = () => {
@@ -27,14 +28,18 @@ const ProductSingleCard = ({ product }) => {
         <p>{product.description || 'No description available.'}</p>
         <div className="price">BDT {(product.priceInCents).toFixed(2)}</div>
         <div className="card-actions">
-          {quantity > 0 ? (
-            <button className="btn btn-error" onClick={handleRemoveFromCart}>
-              Remove from Cart
-            </button>
-          ) : (
-            <button className="btn btn-primary" onClick={handleAddToCart}>
-              Add to Cart
-            </button>
+          {user.isLoggedIn && (
+            <>
+              {quantity > 0 ? (
+                <button className="btn btn-error" onClick={handleRemoveFromCart}>
+                  Remove from Cart
+                </button>
+              ) : (
+                <button className="btn btn-primary" onClick={handleAddToCart}>
+                  Add to Cart
+                </button>
+              )}
+            </>
           )}
         </div>
       </div>
