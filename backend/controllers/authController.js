@@ -24,7 +24,7 @@ router.post('/register', async (req, res) => {
 
         const savedUser = await newUser.save();
 
-        const token = jwt.sign({ id: savedUser._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+        const token = jwt.sign({ id: savedUser._id }, process.env.JWT_SECRET, { expiresIn: '24h' });
 
         res.status(201).json({ token, msg: 'User registered successfully' });
     } catch (error) {
@@ -47,7 +47,8 @@ router.post('/login', async (req, res) => {
         if (isMatch) {
             const payload = {
                 id: user._id,
-                email: user.email
+                email: user.email,
+                role: user.role
             };
 
             jwt.sign(
@@ -59,7 +60,7 @@ router.post('/login', async (req, res) => {
 
                     res.json({
                         token,
-                        user: { id: user._id, email: user.email }
+                        user: { id: user._id, email: user.email, role: user.role }
                     });
                 }
             );
@@ -71,5 +72,6 @@ router.post('/login', async (req, res) => {
         res.status(500).send('Server error');
     }
 });
+
 
 export { router as authRouter };
