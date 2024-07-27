@@ -1,24 +1,17 @@
-import express from "express"
-import { config } from "dotenv"
-import mongoose from "mongoose"
-import cors from "cors"
-import { v2 as cloudinary } from "cloudinary"
-import multer from "multer"
-import { CloudinaryStorage } from "multer-storage-cloudinary"
-import productRoute from "./routes/productRoute.js"
-import stripeRoute from "./routes/stripeRoute.js"
-import subscriberRoute from "./routes/subscriberRoute.js"
+import express from "express";
+import { config } from "dotenv";
+import mongoose from "mongoose";
+import cors from "cors";
+import { v2 as cloudinary } from "cloudinary";
+import multer from "multer";
+import { CloudinaryStorage } from "multer-storage-cloudinary";
+import productRoute from "./routes/productRoute.js";
 import { authRouter } from "./controllers/authController.js";
 
-
 config();
-
 const app = express();
 
-
 app.use(cors());
-
-
 app.listen(process.env.PORT, () => console.log(`Server running on ${process.env.PORT} PORT`));
 
 mongoose
@@ -69,6 +62,4 @@ app.post('/upload-image', parser.single('file'), (req, res) => {
     }
 });
 
-app.use('/stripe', stripeRoute)
-app.use('/subscriber', subscriberRoute)
 app.use('/auth', authRouter);
