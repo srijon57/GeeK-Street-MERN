@@ -49,7 +49,7 @@ function Loginpage() {
             };
 
             await axios.post(
-                `http://localhost:5000/auth/register`,
+                `${import.meta.env.VITE_BASEURL}/auth/register`,
                 {
                     name: userData.name,
                     email: userData.email,
@@ -77,7 +77,7 @@ function Loginpage() {
     const submitHandler2 = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post(`http://localhost:5000/auth/login`, loginData);
+            const response = await axios.post(`${import.meta.env.VITE_BASEURL}/auth/login`, loginData);
             const { token, user } = response.data;
 
             localStorage.setItem('token', token);

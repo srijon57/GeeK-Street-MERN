@@ -25,7 +25,7 @@ const DeleteProduct = () => {
 
         axios
             .delete(
-                `http://localhost:5000/product/${id}`,
+                `${import.meta.env.VITE_BASEURL}/product/${id}`,
                 // config
             )
             .then(() => {

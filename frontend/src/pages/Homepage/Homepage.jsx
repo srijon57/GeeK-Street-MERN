@@ -9,7 +9,7 @@ export const Homepage = () => {
 
     useEffect(() => {
         axios
-            .get(`http://localhost:5000/product`)
+            .get(`${import.meta.env.VITE_BASEURL}/product`)
             .then((response) => {
                 setProduct(response.data.data);
             })
