@@ -52,7 +52,7 @@ const CreateProduct = () => {
         data.append("file", img);
 
         try {
-            const uploadUrl = `http://localhost:5000/upload-image`;
+            const uploadUrl = `${import.meta.env.VITE_BASEURL}/upload-image`;
             const res = await axios.post(uploadUrl, data);
 
             const { secure_url } = res.data;
@@ -99,7 +99,7 @@ const CreateProduct = () => {
                 category,
             };
 
-            await axios.post(`http://localhost:5000/product`, formData);
+            await axios.post(`${import.meta.env.VITE_BASEURL}/product`, formData);
 
             enqueueSnackbar("Product saved successfully", {
                 variant: "success",
