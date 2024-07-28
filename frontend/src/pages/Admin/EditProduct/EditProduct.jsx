@@ -16,6 +16,15 @@ const EditProduct = () => {
     const { id } = useParams();
     const { enqueueSnackbar } = useSnackbar();
 
+    const token = localStorage.getItem('token');
+
+    const config = {
+        headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+        }
+    };
+
     useEffect(() => {
         setLoading(true);
         axios
@@ -38,7 +47,7 @@ const EditProduct = () => {
         const data = { name, priceInCents, description, category };
         setLoading(true);
         axios
-            .put(`${import.meta.env.VITE_BASEURL}/product/${id}`, data)
+            .put(`${import.meta.env.VITE_BASEURL}/product/${id}`, data,config)
             .then(() => {
                 setLoading(false);
                 enqueueSnackbar("Product edited successfully", {

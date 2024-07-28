@@ -8,14 +8,13 @@
 }
 
 .login-page {
-    /* background-color: #c9d6ff;
-    background: linear-gradient(to right, #e2e2e2, #c9d6ff); */
     background-image: url(4.jpg);
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     height: 100vh;
+    padding: 20px;
 }
 
 .container {
@@ -28,6 +27,7 @@
     max-width: 100%;
     min-height: 480px;
     opacity: .8;
+    display: flex;
 }
 
 .container p {
@@ -47,7 +47,6 @@
     font-size: 13px;
     text-decoration: none;
     margin: 15px 0 10px;
-    
 }
 
 .container button {
@@ -62,6 +61,7 @@
     text-transform: uppercase;
     margin-top: 10px;
     cursor: pointer;
+    width: 100%;
 }
 
 .container button.hidden {
@@ -77,7 +77,7 @@
     flex-direction: column;
     padding: 0 40px;
     height: 100%;
-    
+    width: 100%;
 }
 
 .container input {
@@ -92,17 +92,22 @@
     color: black;
 }
 
+/* Placeholder color */
+.container input::placeholder {
+    color: black;
+}
+
 .form-container {
     position: absolute;
     top: 0;
     height: 100%;
     transition: all 0.6s ease-in-out;
+    width: 50%;
+    z-index: 2;
 }
 
 .sign-in {
     left: 0;
-    width: 50%;
-    z-index: 2;
 }
 
 .container.active .sign-in {
@@ -213,4 +218,40 @@
 
 .container.active .toggle-right {
     transform: translateX(200%);
+}
+
+/* Media Queries for Mobile Responsiveness */
+@media (max-width: 768px) {
+    .toggle-container {
+        display: none;
+    }
+    .form-container {
+        width: 100%;
+    }
+    .sign-in, .sign-up {
+        width: 100%;
+        position: relative;
+        transform: translateX(0) !important;
+        opacity: 1 !important;
+        z-index: 1 !important;
+    }
+    .container {
+        width: 100%;
+        min-height: auto;
+        padding: 20px;
+        flex-direction: column;
+    }
+    .social-icons a {
+        width: 30px;
+        height: 30px;
+    }
+    .container button {
+        width: 100%;
+    }
+    .container form {
+        padding: 0 20px;
+    }
+    .sign-in {
+        margin-bottom: 20px;
+    }
 }

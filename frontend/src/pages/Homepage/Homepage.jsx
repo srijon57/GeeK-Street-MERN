@@ -18,7 +18,7 @@ export const Homepage = () => {
             });
     }, []);
 
-    const latestProducts = product.slice(0, 3);
+    const latestProducts = product.slice(0, 6);
 
     return (
         <div>
@@ -33,15 +33,18 @@ export const Homepage = () => {
                             <span className="text-teal-700">GEEK STREET</span>
                         </h1>
                         <p className="py-6">
-                        We offer high-quality tech, including mobile devices,
-                        gadgets, components, and laptops for purchase.
+                            We offer high-quality tech, including mobile devices,
+                            gadgets, components, and laptops for purchase.
                         </p>
+                        <h3>Please Sign Up to buy products</h3>
+                        <br></br>
                         <a href="/shop" className="btn">
                             Shop
                         </a>
                     </div>
                 </div>
 
+                <h2 className="featured-products-title">____________________Featured Products____________________</h2>
                 <ProductCard product={latestProducts} />
             </div>
         </div>

@@ -1,7 +1,7 @@
 import React from "react";
-import Image1 from "./sale.png";
-import Image2 from "./shopping.png";
-import Image3 from "./women.png";
+import Image1 from "./one.png";
+import Image2 from "./three.png";
+import Image3 from "./two.png";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -11,21 +11,21 @@ const ImageList = [
     {
         id: 1,
         img: Image1,
-        title: "Upto 50% off on all Men's Wear",
+        title: "Upto 5% off on all Gadgets",
         description:
             "Lorem ipsum, dolor sit amet consectetur adipisicing elit.Quidem explicabo consequatur voluptas, quas vitae amet! Praesentium cumque tempore natus.",
     },
     {
         id: 2,
         img: Image2,
-        title: "Upto 30% off on all Women's Wear",
+        title: "Upto 3% off on all Laptops",
         description:
             "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repellat provident necessitatibus consectetur, quia repudiandae molestias laborum fuga.",
     },
     {
         id: 3,
         img: Image3,
-        title: "70% off on all Products Sale",
+        title: "7% off on all Products Sale",
         description:
             "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequuntur magnam dolorum cupiditate ipsa fugit sequi, dicta placeat perferendis numquam quasi pariatur totam.",
     },

@@ -1,63 +1,75 @@
-/* Home.css */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    /* align-items: center; */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /* align-items: center; */
 }
 .home-container {
-  padding: 1rem;
-  max-width: 1300px;
-  margin: 4rem auto;
+padding: 1rem;
+max-width: 1300px;
+margin: 4rem auto;
 }
 
-
 .hero-content {
-  text-align: center;
-  margin-bottom: 6rem;
+text-align: center;
+margin-bottom: 6rem;
 }
 
 .hero-content .max-w-md {
-  max-width: 28rem;
-  margin: 0 auto;
+max-width: 28rem;
+margin: 0 auto;
 }
 
 .hero-content .text-5xl {
-  font-size: 3rem;
-  font-weight: bold;
+font-size: 3rem;
+font-weight: bold;
 }
 
 .hero-content .text-teal-700 {
-  color: #38b2ac;
+color: #38b2ac;
 }
 
 .hero-content .py-6 {
-  padding-top: 1.5rem;
-  padding-bottom: 1.5rem;
+padding-top: 1.5rem;
+padding-bottom: 1.5rem;
 }
 
 .hero-content .btn {
-  display: inline-block;
-  padding: 0.5rem 1rem;
-  border-radius: 0.375rem;
-  text-align: center;
-  background-color: #38b2ac;
-  color: #ffffff;
-  text-decoration: none;
+display: inline-block;
+padding: 0.5rem 1rem;
+border-radius: 0.375rem;
+text-align: center;
+background-color: #38b2ac;
+color: #ffffff;
+text-decoration: none;
 }
 
 .hero-content .btn:hover {
-  background-color: #319795;
+background-color: #319795;
+}
+
+.featured-products-title {
+font-size: 2rem;
+font-weight: bold;
+text-align: center;
+margin-bottom: 2rem;
+color: #38b2ac;
 }
 
 @media (max-width: 768px) {
-  .hero-content .text-5xl {
-      font-size: 2.25rem;
+.hero-content .text-5xl {
+    font-size: 2.25rem;
+}
+.featured-products-title {
+  font-size: 1.2rem;
   }
 }
 
 @media (max-width: 480px) {
-  .hero-content .text-5xl {
-      font-size: 1.875rem;
+.hero-content .text-5xl {
+    font-size: 1.875rem;
+}
+.featured-products-title {
+  font-size: .8rem;
   }
 }

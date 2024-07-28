@@ -6,19 +6,16 @@
     /* align-items: center; */
 }
 
-  /* Hero content */
 .hero-content {
     position: relative;
     z-index: 1;
     background-color: rgba(81, 201, 249, 0.471);
     overflow: hidden;
     align-items: center;
-    padding-left: 8%;
+    padding-left: 4%;
     
-    /* background-color:burlywood; */
 }
 
-/* Grid container */
 .grid-container {
     display: grid;
     /* grid-template-columns: 1fr 1fr; */
@@ -28,7 +25,6 @@
     display: flex;
 }
 
-/* Title and Description */
 .title {
     font-size: 24px;
     font-weight: bold;
@@ -41,7 +37,6 @@
     color: white;
 }
 
-/* Hero image */
 .hero-image {
     width: 100%;
     max-width: 400px;
@@ -50,7 +45,6 @@
     margin: 0 auto;
 }
 
-/* Responsive styles */
 @media screen and (min-width: 768px) {
     .hero-container {
         min-height: 650px;

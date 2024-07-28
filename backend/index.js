@@ -29,11 +29,6 @@ cloudinary.config({
     api_secret: process.env.CLOUDINARY_API_SECRET
 });
 
-app.use((req, res, next) => {
-    req.cloudinary = cloudinary;
-    next();
-});
-
 const storage = new CloudinaryStorage({
     cloudinary: cloudinary,
     params: {
@@ -44,7 +39,7 @@ const storage = new CloudinaryStorage({
 
 const parser = multer({ storage: storage });
 
-//ROUTE FOR UPLOADING THE FILE TO CLOUDINARY
+// ROUTE FOR UPLOADING THE FILE TO CLOUDINARY
 app.post('/upload-image', parser.single('file'), (req, res) => {
     if (!req.file) {
         return res.status(400).send('No file uploaded.');

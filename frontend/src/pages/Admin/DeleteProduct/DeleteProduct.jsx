@@ -11,14 +11,14 @@ const DeleteProduct = () => {
     const { id } = useParams();
     const { enqueueSnackbar } = useSnackbar();
 
-    // const token = localStorage.getItem("token");
+    const token = localStorage.getItem("token");
 
-    // const config = {
-    //     headers: {
-    //         Authorization: `Bearer ${token}`,
-    //         "Content-Type": "application/json",
-    //     },
-    // };
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+        },
+    };
 
     const handleDeleteProduct = () => {
         setLoading(true);
@@ -26,7 +26,7 @@ const DeleteProduct = () => {
         axios
             .delete(
                 `${import.meta.env.VITE_BASEURL}/product/${id}`,
-                // config
+                config
             )
             .then(() => {
                 setLoading(false);

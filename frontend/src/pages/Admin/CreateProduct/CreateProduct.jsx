@@ -19,14 +19,14 @@ const CreateProduct = () => {
     const navigate = useNavigate();
     const { enqueueSnackbar } = useSnackbar();
 
-    // const token = localStorage.getItem('token');
+    const token = localStorage.getItem('token');
 
-    // const config = {
-    //     headers: {
-    //         'Authorization': `Bearer ${token}`,
-    //         'Content-Type': 'application/json'
-    //     }
-    // };
+    const config = {
+        headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+        }
+    };
 
     const handleFileChange = (e) => {
         const selectedFile = e.target.files[0];
@@ -99,7 +99,7 @@ const CreateProduct = () => {
                 category,
             };
 
-            await axios.post(`${import.meta.env.VITE_BASEURL}/product`, formData);
+            await axios.post(`${import.meta.env.VITE_BASEURL}/product`, formData,config);
 
             enqueueSnackbar("Product saved successfully", {
                 variant: "success",
