@@ -72,7 +72,7 @@
     color: #4a5568;
   }
   
-  /* Media queries */
+  
   @media (max-width: 768px) {
     .product-card-grid {
       grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
