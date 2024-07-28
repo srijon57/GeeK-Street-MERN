@@ -4,10 +4,10 @@
     box-sizing: border-box;
 }
 .card {
-    width: 20rem; /* 96 in Tailwind is 24rem */
-    background-color: #ffffff; /* bg-base-100 */
+    width: 20rem; 
+    background-color: #ffffff; 
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
-        0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-xl */
+        0 4px 6px -2px rgba(0, 0, 0, 0.05); 
     border-radius: 10px;
     overflow: hidden;
 }
@@ -20,20 +20,20 @@
 }
 
 .card-body {
-    padding: 1rem; /* Default padding for card-body */
-    background-color: #f7fafc; /* bg-base-200 */
+    padding: 1rem; 
+    background-color: #f7fafc; 
 }
 
 .card-title {
-    font-size: 1.5rem; /* Adjust as needed */
-    font-weight: 700; /* Default font-bold */
+    font-size: 1.5rem; 
+    font-weight: 700; 
 }
 
 .price {
     font-size: 1.25rem;
     font-weight: 600;
     margin-top: 0.5rem;
-    color: #4a5568; /* text-gray-700 */
+    color: #0ea956; 
 }
 
 .card-actions {
@@ -50,19 +50,44 @@
 }
 
 .btn-primary {
-    background-color: #2563eb; /* blue-500 */
+    background-color: #2563eb; 
     color: #ffffff;
 }
 
 .btn-primary:hover {
-    background-color: #1b6650; /* blue-600 */
+    background-color: #1b6650; 
 }
 
 .btn-error {
-    background-color: #ef4444; /* red-500 */
+    background-color: #ef4444;
     color: #ffffff;
 }
 
 .btn-error:hover {
-    background-color: #dc2626; /* red-600 */
+    background-color: #dc2626; 
+}
+@media (max-width: 768px) {
+    .product-card-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+
+    .card img {
+        height: 100px;
+    }
+
+    .card-title {
+        font-size: 1rem;
+    }
+
+    .card-description {
+        font-size: 0.5rem;
+    }
+
+    .card-price {
+        font-size: 1rem;
+    }
+
+    .card-detail span {
+        font-size: 0.75rem;
+    }
 }
