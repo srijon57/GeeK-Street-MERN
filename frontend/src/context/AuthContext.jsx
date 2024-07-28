@@ -1,14 +1,17 @@
-import React, { createContext, useState, useEffect } from 'react';
-import Cookies from 'js-cookie'; // Import js-cookie
+import React, { createContext, useState, useEffect, useContext } from 'react';
+import Cookies from 'js-cookie';
+import { useCart } from '../context/CartContext'; 
 
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState({
         isLoggedIn: false,
-        role: "", 
+        role: "",
         username: ""
     });
+
+    const { clearCart } = useCart(); 
 
     useEffect(() => {
         const storedUser = Cookies.get('user');
@@ -25,6 +28,9 @@ const AuthProvider = ({ children }) => {
     const logout = () => {
         setUser({ isLoggedIn: false, role: "", username: "" });
         Cookies.remove('user');
+        localStorage.removeItem("token");
+        clearCart(); // Clear the cart items
+        window.location.href = "/";
     };
 
     return (

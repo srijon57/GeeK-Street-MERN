@@ -18,8 +18,8 @@ export const CartProvider = ({ children }) => {
         setCartItems((prevItems) => {
             const itemInCart = prevItems.find((i) => i._id === item._id);
             if (itemInCart) {
-                return prevItems.map((i) => 
-                    i._id === item._id ? { ...i, quantity: i.quantity + 1 } : i    
+                return prevItems.map((i) =>
+                    i._id === item._id ? { ...i, quantity: i.quantity + 1 } : i
                 );
             } else {
                 return [...prevItems, { ...item, quantity: 1 }];

@@ -1,5 +1,8 @@
-/* ProductSingleCard.css */
-
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 .card {
     width: 20rem; /* 96 in Tailwind is 24rem */
     background-color: #ffffff; /* bg-base-100 */

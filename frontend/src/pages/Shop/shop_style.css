@@ -8,12 +8,14 @@
     padding: 1rem;
     max-width: 1250px;
     margin: 4rem auto 0 auto;
+    
 }
 
 .filters {
     display: flex;
     justify-content: space-between;
     margin-bottom: 1.5rem;
+    color: white;
 }
 
 .form-control {

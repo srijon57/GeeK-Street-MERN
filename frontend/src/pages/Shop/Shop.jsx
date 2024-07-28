@@ -29,7 +29,7 @@ const Shop = () => {
         }
 
         let filtered = [...product];
-        
+
         if (category !== "") {
             filtered = filtered.filter((item) => item.category === category);
         }
@@ -49,6 +49,12 @@ const Shop = () => {
 
     return (
         <div className="shop-container">
+            <h3 style={{ textAlign: "center", margin: "0 auto", color: "white" }}>
+                Please{" "}
+                <span style={{ color: "rgb(80, 255, 198)" }}>Sign-In</span> to
+                buy products
+            </h3>
+
             <div className="filters">
                 <div className="form-control">
                     <label className="label">

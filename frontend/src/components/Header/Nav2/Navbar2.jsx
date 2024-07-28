@@ -7,10 +7,10 @@ import { AuthContext } from '../../../context/AuthContext.jsx'; // Import AuthCo
 
 const Navbar2 = () => {
     const [isOpen, setIsOpen] = useState(false);
-    const { logout } = useContext(AuthContext); // Use AuthContext
+    const { logout } = useContext(AuthContext);
 
     const navItems = [
-        { name: "Home", href: "/" }, 
+        { name: "Home", href: "/" },
         { name: "Shop", href: "/Shop" },
         { name: "About", href: "/About" },
     ];

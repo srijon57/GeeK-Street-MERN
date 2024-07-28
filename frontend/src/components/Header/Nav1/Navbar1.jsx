@@ -7,7 +7,7 @@ import { AuthContext } from '../../../context/AuthContext.jsx'; // Import AuthCo
 
 const Navbar1 = () => {
     const [isOpen, setIsOpen] = useState(false);
-    const { logout } = useContext(AuthContext); // Use AuthContext
+    const { logout } = useContext(AuthContext);
 
     const navItems = [
         { name: "Home", href: "/" },

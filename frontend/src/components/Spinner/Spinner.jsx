@@ -1,7 +1,7 @@
 
 import React from "react";
 import ClipLoader from "react-spinners/ClipLoader";
-import "./spinner.css"; // Import the CSS file for styling
+import "./spinner.css"; 
 
 const Spinner = ({ loading }) => {
     return (

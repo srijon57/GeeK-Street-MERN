@@ -5,17 +5,17 @@ import './index.css'
 import { BrowserRouter } from 'react-router-dom'
 import { SnackbarProvider } from 'notistack'
 import { CartProvider } from './context/CartContext.jsx'
-import { AuthProvider } from './context/AuthContext.jsx' // Import AuthProvider
+import { AuthProvider } from './context/AuthContext.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter>
       <SnackbarProvider>
-        <AuthProvider> {/* Wrap the AuthProvider here */}
-          <CartProvider>
+      <CartProvider>
+        <AuthProvider>     
             <App />
-          </CartProvider>
         </AuthProvider>
+        </CartProvider>
       </SnackbarProvider>
     </BrowserRouter>
   </React.StrictMode>,

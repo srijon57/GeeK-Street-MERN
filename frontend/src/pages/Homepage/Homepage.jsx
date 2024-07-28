@@ -36,7 +36,7 @@ export const Homepage = () => {
                             We offer high-quality tech, including mobile devices,
                             gadgets, components, and laptops for purchase.
                         </p>
-                        <h3>Please Sign Up to buy products</h3>
+                        <h3>Please <span style={{ color: 'rgb(80, 255, 198)' }}>Sign-In</span> to buy products</h3>
                         <br></br>
                         <a href="/shop" className="btn">
                             Shop
@@ -44,7 +44,7 @@ export const Homepage = () => {
                     </div>
                 </div>
 
-                <h2 className="featured-products-title">____________________Featured Products____________________</h2>
+                <h2 className="featured-products-title">_____Featured Products_____</h2>
                 <ProductCard product={latestProducts} />
             </div>
         </div>
