@@ -4,11 +4,19 @@ import jwt from "jsonwebtoken";
 import User from "../models/userModel.js";
 
 const router = express.Router();
+const validatePassword = (password) => {
+    const passwordRegex = /^(?=.*\d)(?=.*[a-zA-Z]).{6,}$/;
+    return passwordRegex.test(password);
+};
 
 //ROUTE FOR REGISTER
 router.post('/register', async (req, res) => {
     try {
         const { email, password } = req.body;
+
+        if (!validatePassword(password)) {
+            return res.status(400).json({ msg: 'Password must be at least 6 characters long and include numbers.' });
+        }
 
         const userExists = await User.findOne({ email });
         if (userExists) {
@@ -32,6 +40,7 @@ router.post('/register', async (req, res) => {
         res.status(500).send('Server error');
     }
 });
+
 
 //ROUTE FOR LOGIN
 router.post('/login', async (req, res) => {

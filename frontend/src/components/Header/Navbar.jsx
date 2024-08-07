@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { MdOutlineShoppingCart, MdMenu, MdClose, MdSearch } from "react-icons/md";
-import { GiCharacter } from "react-icons/gi";
+import {  MdMenu, MdClose } from "react-icons/md";
 import "./Navbar_style.css";
-import CartIcon from '../Cart/CartIcon';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -32,9 +30,6 @@ const Navbar = () => {
             <div className="Right">
                 <ul className="Righter">
                     
-                    <div>
-                        <Link to="/cart"><CartIcon/></Link>
-                    </div>
                     <div id="ham" className="hamburger" onClick={toggleMenu}>
                         {isOpen ? <MdClose /> : <MdMenu />}
                     </div>
