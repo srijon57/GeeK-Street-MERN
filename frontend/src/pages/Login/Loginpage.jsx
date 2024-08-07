@@ -1,13 +1,16 @@
-import React, { useState, useContext } from "react";
-import { FaFacebookF, FaGoogle } from "react-icons/fa";
-import { Link, useNavigate } from 'react-router-dom';
+import  { useState, useContext } from "react";
+import { FaFacebookF, FaGoogle, FaEye, FaEyeSlash } from "react-icons/fa";
+import {  useNavigate } from 'react-router-dom';
 import axios from "axios";
 import { useSnackbar } from 'notistack';
-import { AuthContext } from '../../context/AuthContext'; // Import AuthContext
+import { AuthContext } from '../../context/AuthContext'; 
 import "./style.css";
 
 function Loginpage() {
     const [isActive, setIsActive] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+    const [showLoginPassword, setShowLoginPassword] = useState(false);
 
     const handleRegisterClick = () => {
         setIsActive(true);
@@ -123,22 +126,32 @@ function Loginpage() {
                             onChange={changeInputHandler}
                             className="register-input"
                         />
-                        <input
-                            type="password"
-                            placeholder="Password"
-                            name="password"
-                            value={userData.password}
-                            onChange={changeInputHandler}
-                            className="register-input"
-                        />
-                        <input
-                            type="password"
-                            placeholder="Confirm password"
-                            name="password2"
-                            value={userData.password2}
-                            onChange={changeInputHandler}
-                            className="register-input"
-                        />
+                        <div className="password-container">
+                            <input
+                                type={showPassword ? "text" : "password"}
+                                placeholder="Password"
+                                name="password"
+                                value={userData.password}
+                                onChange={changeInputHandler}
+                                className="register-input"
+                            />
+                            <span className="eye-icon" onClick={() => setShowPassword(!showPassword)}>
+                                {showPassword ? <FaEyeSlash /> : <FaEye />}
+                            </span>
+                        </div>
+                        <div className="password-container">
+                            <input
+                                type={showConfirmPassword ? "text" : "password"}
+                                placeholder="Confirm password"
+                                name="password2"
+                                value={userData.password2}
+                                onChange={changeInputHandler}
+                                className="register-input"
+                            />
+                            <span className="eye-icon" onClick={() => setShowConfirmPassword(!showConfirmPassword)}>
+                                {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
+                            </span>
+                        </div>
                         <button type="submit" className="register-button">
                             Register
                         </button>
@@ -165,14 +178,19 @@ function Loginpage() {
                             onChange={changeInputHandler2}
                             className='input'
                         />
-                        <input
-                            type="password"
-                            placeholder='Password'
-                            name="password"
-                            value={loginData.password}
-                            onChange={changeInputHandler2}
-                            className='input'
-                        />
+                        <div className="password-container">
+                            <input
+                                type={showLoginPassword ? "text" : "password"}
+                                placeholder='Password'
+                                name="password"
+                                value={loginData.password}
+                                onChange={changeInputHandler2}
+                                className='input'
+                            />
+                            <span className="eye-icon" onClick={() => setShowLoginPassword(!showLoginPassword)}>
+                                {showLoginPassword ? <FaEyeSlash /> : <FaEye />}
+                            </span>
+                        </div>
                         <a href="#">Forget Your Password?</a>
                         <button type='submit' className='button'>Sign In</button>
                     </form>

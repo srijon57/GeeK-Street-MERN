@@ -219,6 +219,19 @@
 .container.active .toggle-right {
     transform: translateX(200%);
 }
+.password-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.eye-icon {
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+    color: #888;
+    font-size: 18px;
+}
 
 @media (max-width: 768px) {
     .login-page {
