@@ -1,10 +1,9 @@
 import React from 'react';
 import { useCart } from "../../context/CartContext";
-import axios from "axios";
-import './Cart.css'; // Import your CSS file for styles
+import './Cart.css'; 
 
 const Cart = () => {
-    const { cartItems, decreaseCartItemQuantity, addToCart, clearCart } = useCart();
+    const { cartItems, decreaseCartItemQuantity } = useCart();
 
     if (cartItems.length === 0) {
         return <div className='cart-empty-message'>Your cart is empty.</div>;
@@ -24,9 +23,7 @@ const Cart = () => {
                         <p className='cart-item-price'>Price: BDT {(item.priceInCents).toFixed(2)}</p>
                         <div className='cart-item-quantity'>
                             <p>Quantity: {item.quantity}</p>
-                            <p className='cart-item-remove'>
                             <button onClick={() => decreaseCartItemQuantity(item._id)} className='cart-remove-button'>Remove</button>
-                            </p>
                         </div>
                     </div>
                 ))}
