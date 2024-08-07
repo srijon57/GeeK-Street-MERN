@@ -23,6 +23,8 @@ nav {
 }
 
 .nav-logo {
+    display: flex;
+    align-items: center;
     margin-right: auto;
     font-family: "Jaro", sans-serif;
     font-optical-sizing: auto;
@@ -30,6 +32,12 @@ nav {
     font-style: normal;
     font-size: 25px;
     color: white;
+}
+
+.nav-logo-image {
+    width: 25px;
+    height: 25px;
+    margin-right: 5px;
 }
 
 .nav-ul {
