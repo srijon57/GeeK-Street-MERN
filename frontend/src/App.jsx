@@ -15,6 +15,7 @@ import EditProduct from "./pages/Admin/EditProduct/EditProduct";
 import DeleteProduct from "./pages/Admin/DeleteProduct/DeleteProduct";
 import CreateProduct from "./pages/Admin/CreateProduct/CreateProduct";
 import Cart from "./pages/Cart/Cart";
+import PaymentPage from "./pages/PaymentPage/PaymentPage.jsx";
 import { AuthContext } from './context/AuthContext.jsx';
 
 function App() {
@@ -39,6 +40,7 @@ function App() {
                 <Route path="/About" element={<About />} />
                 <Route path="/cart" element={<Cart />} />
                 <Route path="/Login" element={<Loginpage />} />
+                <Route path="/payment" element={<PaymentPage />} />
                 <Route path="/admin/*" element={
                     <ProtectedRoute role="admin">
                         <AdminRoutes />
