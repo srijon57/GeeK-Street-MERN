@@ -5,6 +5,7 @@ import Navbar from "./components/Header/Navbar";
 import Navbar1 from "./components/Header/Nav1/Navbar1"; 
 import Navbar2 from "./components/Header/Nav2/Navbar2"; 
 import Loginpage from "./pages/Login/Loginpage";
+import ResetPasswordPage from "./pages/Login/ResetPasswordPage.jsx";
 import About from "./pages/About/About";
 import Footer from "./components/Footer/footer";
 import Shop from "./pages/Shop/Shop";
@@ -40,6 +41,7 @@ function App() {
                 <Route path="/About" element={<About />} />
                 <Route path="/cart" element={<Cart />} />
                 <Route path="/Login" element={<Loginpage />} />
+                <Route path="/reset-password" element={<ResetPasswordPage />} />
                 <Route path="/payment" element={<PaymentPage />} />
                 <Route path="/admin/*" element={
                     <ProtectedRoute role="admin">
