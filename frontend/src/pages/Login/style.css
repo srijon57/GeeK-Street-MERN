@@ -232,7 +232,83 @@
     color: #888;
     font-size: 18px;
 }
+/* reset password */
+.reset-password-page {
+    background-color: #f7f7f7;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
 
+.reset-password-page h2 {
+    color: #2d73a8;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.reset-password-page input {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    margin: 10px 0;
+    padding: 12px 20px;
+    font-size: 14px;
+    border-radius: 8px;
+    width: 100%;
+    outline: none;
+    color: #333;
+}
+
+.reset-password-page button {
+    background-color: #2d73a8;
+    color: #fff;
+    font-size: 14px;
+    padding: 12px 0;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-top: 15px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.reset-password-page button:hover {
+    background-color: #255a8b;
+}
+
+.reset-password-page div {
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+}
+
+.reset-password-page input::placeholder {
+    color: #888;
+}
+
+.reset-password-page input:focus {
+    border-color: #2d73a8;
+}
+
+.reset-password-page .password-container {
+    position: relative;
+}
+
+.reset-password-page .eye-icon {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #888;
+    font-size: 18px;
+}
 @media (max-width: 768px) {
     .login-page {
         background-image:none;
