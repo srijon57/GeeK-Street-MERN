@@ -191,7 +191,7 @@ function Loginpage() {
                                 {showLoginPassword ? <FaEyeSlash /> : <FaEye />}
                             </span>
                         </div>
-                        <a href="#">Forget Your Password?</a>
+                        <a href="#" onClick={() => navigate('/reset-password')}>Forget Your Password?</a>
                         <button type='submit' className='button'>Sign In</button>
                     </form>
                 </div>

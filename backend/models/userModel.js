@@ -15,6 +15,8 @@ const userSchema = mongoose.Schema({
         enum: ["customer", "admin"],
         default: "customer",
     },
+    resetPasswordOtp: String,
+    resetPasswordOtpExpiration: Date,
 });
 
 export default mongoose.model('User', userSchema);

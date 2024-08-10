@@ -12,7 +12,6 @@ import nodemailer from "nodemailer";
 config();
 const app = express();
 
-// Configure CORS
 app.use(cors());
 app.use(express.json()); // Parse JSON bodies
 
@@ -88,6 +87,4 @@ app.post('/send-email', async (req, res) => {
 // API routes
 app.use('/product', productRoute);
 app.use('/auth', authRouter);
-
-// Start the server
 app.listen(process.env.PORT, () => console.log(`Server running on port ${process.env.PORT}`));
