@@ -3,18 +3,22 @@ import "./Home.css";
 import Hero from "../../components/Hero/Hero";
 import axios from "axios";
 import ProductCard from "../../components/Product/ProductCard";
+import Spinner from "../../components/Spinner/Spinner";
 
 export const Homepage = () => {
     const [product, setProduct] = useState([]);
+    const [loading, setLoading] = useState(true); 
 
     useEffect(() => {
         axios
             .get(`${import.meta.env.VITE_BASEURL}/product`)
             .then((response) => {
                 setProduct(response.data.data);
+                setLoading(false); 
             })
             .catch((error) => {
                 console.log(error);
+                setLoading(false);
             });
     }, []);
 
@@ -45,7 +49,11 @@ export const Homepage = () => {
                 </div>
 
                 <h2 className="featured-products-title">_____Featured Products_____</h2>
-                <ProductCard product={latestProducts} />
+                {loading ? (
+                    <Spinner />
+                ) : (
+                    <ProductCard product={latestProducts} />
+                )}
             </div>
         </div>
     );

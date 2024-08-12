@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import ProductCard from "../../components/Product/ProductCard";
 import Search from "../../components/search/search";
+import Spinner from "../../components/Spinner/Spinner";
 import "./shop_style.css";
 
 const Shop = () => {
@@ -9,17 +10,22 @@ const Shop = () => {
     const [category, setCategory] = useState("");
     const [product, setProduct] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
+    const [loading, setLoading] = useState(true); // Add loading state
 
     useEffect(() => {
-        axios
-            .get(`${import.meta.env.VITE_BASEURL}/product`)
-            .then((response) => {
+        const fetchProducts = async () => {
+            try {
+                const response = await axios.get(`${import.meta.env.VITE_BASEURL}/product`);
                 setProduct(response.data.data);
                 setFilteredProducts(response.data.data);
-            })
-            .catch((error) => {
+            } catch (error) {
                 console.log(error);
-            });
+            } finally {
+                setLoading(false); // Set loading to false after data is fetched
+            }
+        };
+
+        fetchProducts();
     }, []);
 
     const filterProducts = () => {
@@ -49,11 +55,14 @@ const Shop = () => {
 
     return (
         <div className="shop-container">
-            <h3 style={{ textAlign: "center", margin: "0 auto", color: "white" }}>
-                Please{" "}
-                <span style={{ color: "rgb(80, 255, 198)" }}>Sign-In</span> to
-                buy products
-            </h3>
+            {loading && <Spinner />} {/* Show spinner while loading */}
+
+            {!loading && filteredProducts.length === 0 && (
+                <h3 style={{ textAlign: "center", margin: "0 auto", color: "white" }}>
+                    No products available. Please{" "}
+                    <span style={{ color: "rgb(80, 255, 198)" }}>check back later</span>.
+                </h3>
+            )}
 
             <div className="filters">
                 <div className="form-control">
@@ -78,7 +87,9 @@ const Shop = () => {
                 </div>
             </div>
 
-            <ProductCard product={filteredProducts} />
+            {!loading && filteredProducts.length > 0 && (
+                <ProductCard product={filteredProducts} />
+            )}
         </div>
     );
 };
