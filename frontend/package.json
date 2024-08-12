@@ -10,8 +10,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@iconify/iconify": "^3.1.1",
+    "@iconify/icons-mdi": "^1.2.48",
+    "@iconify/react": "^5.0.2",
     "axios": "^1.7.2",
     "daisyui": "^4.12.10",
+    "iconify-icon": "^2.1.0",
     "js-cookie": "^3.0.5",
     "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.8.0",
