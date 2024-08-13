@@ -1,9 +1,10 @@
-import  { useState, useContext } from "react";
+import { useState, useContext } from "react";
 import { FaFacebookF, FaGoogle, FaEye, FaEyeSlash } from "react-icons/fa";
-import {  useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import { useSnackbar } from 'notistack';
-import { AuthContext } from '../../context/AuthContext'; 
+import { AuthContext } from '../../context/AuthContext';
+import Spinner from "../../components/Spinner/Spinner";
 import "./style.css";
 
 function Loginpage() {
@@ -11,16 +12,22 @@ function Loginpage() {
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const [showLoginPassword, setShowLoginPassword] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [isRegistered, setIsRegistered] = useState(false);
 
     const handleRegisterClick = () => {
         setIsActive(true);
+        setIsRegistered(false);
     };
 
     const handleLoginClick = () => {
         setIsActive(false);
+        setIsRegistered(false);
     };
 
     const navigate = useNavigate();
+    const { enqueueSnackbar } = useSnackbar();
+    const { login } = useContext(AuthContext);
 
     const [userData, setUserData] = useState({
         name: "",
@@ -28,9 +35,6 @@ function Loginpage() {
         password: "",
         password2: "",
     });
-
-    const { enqueueSnackbar } = useSnackbar();
-    const { login } = useContext(AuthContext); 
 
     const changeInputHandler = (e) => {
         setUserData({ ...userData, [e.target.name]: e.target.value });
@@ -43,6 +47,8 @@ function Loginpage() {
             enqueueSnackbar("Passwords do not match", { variant: 'error' });
             return;
         }
+
+        setLoading(true);
 
         try {
             const config = {
@@ -61,10 +67,13 @@ function Loginpage() {
                 config
             );
 
-            enqueueSnackbar("Registration successful", { variant: 'success' });
-            navigate("/Login");
+            setIsRegistered(true);
+            enqueueSnackbar("Registration successful. Please check your email for verification.", { variant: 'success' });
+            navigate("/login");
         } catch (error) {
             enqueueSnackbar(error.response?.data?.msg || "An error occurred", { variant: 'error' });
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -79,21 +88,24 @@ function Loginpage() {
 
     const submitHandler2 = async (e) => {
         e.preventDefault();
+        setLoading(true);
+
         try {
             const response = await axios.post(`${import.meta.env.VITE_BASEURL}/auth/login`, loginData);
             const { token, user } = response.data;
-    
+
             localStorage.setItem('token', token);
             login({ username: user.email, role: user.role });
-    
-            enqueueSnackbar("Sign in successful", { variant: 'success' }); 
-    
+
+            enqueueSnackbar("Sign in successful", { variant: 'success' });
+
             navigate(user.role === 'admin' ? '/admin' : '/');
         } catch (error) {
             enqueueSnackbar(error.response?.data?.msg || "An error occurred", { variant: 'error' });
+        } finally {
+            setLoading(false);
         }
     };
-    
 
     return (
         <div className="login-page">
@@ -153,8 +165,9 @@ function Loginpage() {
                             </span>
                         </div>
                         <button type="submit" className="register-button">
-                            Register
+                            {loading ? <Spinner /> : "Register"}
                         </button>
+                        {isRegistered && <p>Please check your email for verification.</p>}
                     </form>
                 </div>
 
@@ -191,8 +204,10 @@ function Loginpage() {
                                 {showLoginPassword ? <FaEyeSlash /> : <FaEye />}
                             </span>
                         </div>
-                        <a href="/reset-password" >Forget Your Password?</a>
-                        <button type='submit' className='button'>Sign In</button>
+                        <a href="/reset-password">Forget Your Password?</a>
+                        <button type='submit' className='button'>
+                            {loading ? <Spinner /> : "Sign In"}
+                        </button>
                     </form>
                 </div>
                 <div className="toggle-container">

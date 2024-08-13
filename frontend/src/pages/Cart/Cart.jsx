@@ -1,11 +1,11 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom'; // Updated import
+import { useNavigate } from 'react-router-dom'; 
 import { useCart } from "../../context/CartContext";
 import './Cart.css'; 
 
 const Cart = () => {
     const { cartItems, decreaseCartItemQuantity } = useCart();
-    const navigate = useNavigate(); // Updated hook
+    const navigate = useNavigate(); 
 
     if (cartItems.length === 0) {
         return <div className='cart-empty-message'>Your cart is empty.</div>;
@@ -14,7 +14,7 @@ const Cart = () => {
     const totalPrice = cartItems.reduce((acc, item) => acc + item.priceInCents * item.quantity, 0);
 
     const handleCheckout = () => {
-        navigate('/payment'); // Updated method
+        navigate('/payment'); 
     };
 
     return (
