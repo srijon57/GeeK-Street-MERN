@@ -17,6 +17,12 @@ const userSchema = mongoose.Schema({
     },
     resetPasswordOtp: String,
     resetPasswordOtpExpiration: Date,
+    verificationToken: String,
+    verificationTokenExpiration: Date,
+    isVerified: {
+        type: Boolean,
+        default: false
+    }
 });
 
 export default mongoose.model('User', userSchema);

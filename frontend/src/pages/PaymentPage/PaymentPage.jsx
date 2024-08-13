@@ -1,21 +1,35 @@
 import React, { useState } from 'react';
-import './PaymentPage.css';
 import axios from 'axios';
+import { useSnackbar } from 'notistack';
+import Spinner from "../../components/Spinner/Spinner";
+import { useNavigate } from 'react-router-dom';
+import { useCart } from '../../context/CartContext';
+import './PaymentPage.css';
 
 const PaymentPage = () => {
     const [address, setAddress] = useState('');
     const [phone, setPhone] = useState('');
+    const [loading, setLoading] = useState(false);
+    const { enqueueSnackbar } = useSnackbar();
+    const navigate = useNavigate();
+    const { clearCart } = useCart();
 
     const handleSubmit = async () => {
+        setLoading(true);
         try {
             await axios.post(`${import.meta.env.VITE_BASEURL}/send-email`, {
                 to: 'crisiscreed12@gmail.com',
                 subject: 'New Order Received',
                 text: `Address: ${address}\nPhone: ${phone}`,
             });
-            alert('Order completed. An email has been sent.');
+            enqueueSnackbar('Order completed. An email has been sent.', { variant: 'success' });
+            clearCart(); 
+            navigate('/'); 
         } catch (error) {
             console.error('Error sending email:', error);
+            enqueueSnackbar('Failed to send email. Please try again later.', { variant: 'error' });
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -41,8 +55,13 @@ const PaymentPage = () => {
                         required
                     />
                 </label>
-                <button type='button' onClick={handleSubmit} className='payment-button'>
-                    DONE
+                <button 
+                    type='button' 
+                    onClick={handleSubmit} 
+                    className='payment-button' 
+                    disabled={loading}
+                >
+                    {loading ? <Spinner /> : 'DONE'}
                 </button>
             </form>
         </div>
