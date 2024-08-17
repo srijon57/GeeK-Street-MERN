@@ -74,15 +74,7 @@ const Footer = () => {
                         </div>
                     </h3>
                     <form>
-                        <FaRegEnvelope className="fa-regular" />
-                        <input
-                            type="email"
-                            placeholder="Enter your email id"
-                            required
-                        />
-                        <button type="submit">
-                            <FaArrowRight className="fa-solid" />
-                        </button>
+                        <a href="/news">News</a>
                     </form>
                     <h3>
                         Connect with us{" "}

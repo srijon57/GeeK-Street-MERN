@@ -75,7 +75,7 @@
     gap: 0.5rem;
 }
 
-.form-group label {
+.payment-form.form-group label {
     font-weight: 600;
     color: #f5f5f5;
 }
