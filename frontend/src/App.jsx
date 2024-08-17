@@ -19,6 +19,7 @@ import CreateProduct from "./pages/Admin/CreateProduct/CreateProduct";
 import Cart from "./pages/Cart/Cart";
 import PaymentPage from "./pages/PaymentPage/PaymentPage.jsx";
 import { AuthContext } from "./context/AuthContext.jsx";
+import News from "./pages/News/News.jsx";
 
 function App() {
     const { user } = useContext(AuthContext);
@@ -45,6 +46,7 @@ function App() {
                 <Route path="/verify-email" element={<VerifyEmailPage />} />
                 <Route path="/reset-password" element={<ResetPasswordPage />} />
                 <Route path="/payment" element={<PaymentPage />} />
+                <Route path="/news" element={<News/>} />
                 <Route
                     path="/admin/*"
                     element={

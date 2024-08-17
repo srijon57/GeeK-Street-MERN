@@ -17,7 +17,7 @@
     padding: 20px;
 }
 
-.container {
+.login-page .container {
     background-color: #fff;
     border-radius: 30px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
@@ -30,7 +30,7 @@
     display: flex;
 }
 
-.container p {
+.login-page .container p {
     color: black;
     font-size: 14px;
     line-height: 20px;
@@ -38,18 +38,18 @@
     margin: 20px 0;
 }
 
-.container span {
+.login-page .container span {
     font-size: 12px;
 }
 
-.container a {
+.login-page .container a {
     color: #333;
     font-size: 13px;
     text-decoration: none;
     margin: 15px 0 10px;
 }
 
-.container button {
+.login-page .container button {
     background-color: #2d73a8;
     color: black;
     font-size: 12px;
@@ -64,12 +64,12 @@
     width: 100%;
 }
 
-.container button.hidden {
+.login-page .container button.hidden {
     background-color: transparent;
     border-color: black;
 }
 
-.container form {
+.login-page .container form {
     background-color: #fff;
     display: flex;
     align-items: center;
@@ -80,7 +80,7 @@
     width: 100%;
 }
 
-.container input {
+.login-page .container input {
     background-color: #eee;
     border: none;
     margin: 8px 0;
@@ -92,8 +92,7 @@
     color: black;
 }
 
-/* Placeholder color */
-.container input::placeholder {
+.login-page .container input::placeholder {
     color: black;
 }
 
@@ -168,7 +167,7 @@
     z-index: 1000;
 }
 
-.container.active .toggle-container {
+.login-page .container.active .toggle-container {
     transform: translateX(-100%);
     border-radius: 0 150px 100px 0;
 }
@@ -186,7 +185,7 @@
     transition: all 0.6s ease-in-out;
 }
 
-.container.active .toggle {
+.login-page .container.active .toggle {
     transform: translateX(50%);
 }
 

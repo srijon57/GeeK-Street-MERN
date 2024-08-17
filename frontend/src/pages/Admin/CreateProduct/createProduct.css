@@ -43,19 +43,16 @@
 .form-group {
     width: 100%;
     max-width: 500px;
+    
 }
 
-.form-label {
-    font-size: 1rem;
-    margin-bottom: 0.5rem;
-    font-weight: 500;
-}
 
-.form-input,
-.form-select,
-.form-file {
+
+.form-group.form-input,
+.form-group.form-select,
+.form-group.form-file {
     width: 100%;
-    border: 1px solid #ddd;
+    border: 1px solid #010101;
     padding: 0.75rem;
     border-radius: 0.375rem;
     margin-bottom: 1rem;
@@ -106,7 +103,13 @@
     color: #007bff; 
 }
 
-
+.form-label {
+    color: black;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    
+}
 @media (max-width: 768px) {
     .container {
         padding: 1rem;

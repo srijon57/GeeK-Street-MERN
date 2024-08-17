@@ -90,7 +90,6 @@ footer a:hover {
 
 .email-id {
     width: fit-content;
-    border-bottom: 1px solid #080808;
     margin: 20px 0;
 }
 
@@ -109,37 +108,8 @@ form {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid #17cf97;
     margin-bottom: 50px;
-}
-
-form .fa-regular {
-    font-size: 18px;
-    margin-right: 10px;
-}
-
-form input {
-    width: 100%;
-    background: transparent;
-    color: #ccc;
-    border: 0;
-    outline: none;
-}
-
-form button {
-    background: transparent;
-    border: 0;
-    outline: none;
-    cursor: pointer;
-}
-
-form button .fa-solid {
-    font-size: 16px;
-    color: #ccc;
-}
-
-form input::placeholder {
-    color: whitesmoke;
 }
 
 hr {
