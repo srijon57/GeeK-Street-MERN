@@ -9,22 +9,37 @@ const News = () => {
 
     useEffect(() => {
         const fetchArticles = async () => {
+            const cachedArticles = localStorage.getItem('newsArticles');
+            const cacheTime = localStorage.getItem('newsCacheTime');
+    
+            if (cachedArticles && cacheTime && Date.now() - cacheTime < 3600000) { // 1 hour cache
+                setArticles(JSON.parse(cachedArticles));
+                setLoading(false);
+                return;
+            }
+    
             try {
                 const response = await axios.get('https://newsdata.io/api/1/latest', {
                     params: {
-                        country: 'us',
+                        country: 'bd',
                         category: 'technology',
                         apikey: import.meta.env.VITE_NEWS2_API_KEY,
                     },
                 });
+                localStorage.setItem('newsArticles', JSON.stringify(response.data.results));
+                localStorage.setItem('newsCacheTime', Date.now());
                 setArticles(response.data.results);
             } catch (error) {
-                setError('An error occurred while fetching the news');
+                if (error.response && error.response.status === 429) {
+                    setError('Rate limit exceeded. Please try again later.');
+                } else {
+                    setError('An error occurred while fetching the news');
+                }
             } finally {
                 setLoading(false);
             }
         };
-
+    
         fetchArticles();
     }, []);
 
@@ -36,8 +51,8 @@ const News = () => {
             <h1>Latest Technology News</h1>
             {articles.length > 0 ? (
                 <ul className="news-list">
-                    {articles.map((article, index) => (
-                        <li key={index} className="news-item">
+                    {articles.map((article) => (
+                        <li key={article.article_id} className="news-item">
                             {article.image_url && (
                                 <img
                                     src={article.image_url}
@@ -47,7 +62,7 @@ const News = () => {
                             )}
                             <div className="news-content">
                                 <h2 className="news-title">{article.title}</h2>
-                                <p className="news-author">By {article.creator.join(', ') || 'Unknown'}</p>
+                                <p className="news-description">{article.description}</p>
                                 <a href={article.link} target="_blank" rel="noopener noreferrer" className="news-link">
                                     Read more
                                 </a>
