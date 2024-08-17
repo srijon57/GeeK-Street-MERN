@@ -12,17 +12,20 @@ const PaymentPage = () => {
     const [loading, setLoading] = useState(false);
     const { enqueueSnackbar } = useSnackbar();
     const navigate = useNavigate();
-    const { clearCart } = useCart();
+    const { cartItems, clearCart } = useCart();
+
+    const totalPrice = cartItems.reduce((acc, item) => acc + item.priceInCents * item.quantity, 0);
+    const cartDetails = cartItems.map(item => `${item.name} (x${item.quantity})`).join(', ');
 
     const handleSubmit = async () => {
         setLoading(true);
         try {
             await axios.post(`${import.meta.env.VITE_BASEURL}/send-email`, {
-                to: 'crisiscreed12@gmail.com',
+                to: 'zawadalmahi@gmail.com',
                 subject: 'New Order Received',
-                text: `Address: ${address}\nPhone: ${phone}`,
+                text: `Address: ${address}\nPhone: ${phone}\nItems: ${cartDetails}\nTotal Price: BDT ${(totalPrice / 100).toFixed(2)}`,
             });
-            enqueueSnackbar('Order completed. An email has been sent.', { variant: 'success' });
+            enqueueSnackbar('Order completed. A confirmation email will be sent shortly.', { variant: 'success' });
             clearCart(); 
             navigate('/'); 
         } catch (error) {
@@ -55,6 +58,10 @@ const PaymentPage = () => {
                         required
                     />
                 </label>
+                <div className='cart-summary'>
+                    <p><strong>Items:</strong> {cartDetails}</p>
+                    <p><strong>Total Price:</strong> BDT {(totalPrice / 100).toFixed(2)}</p>
+                </div>
                 <button 
                     type='button' 
                     onClick={handleSubmit} 
