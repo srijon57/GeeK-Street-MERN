@@ -50,15 +50,11 @@
 .news-title {
     font-size: 24px;
     margin-bottom: 10px;
-    color: white;
-}
-
-.news-author {
-    font-size: 14px;
     color:springgreen;
-    margin-bottom: 10px;
 }
-
+.news-description{
+    color:whitesmoke;
+}
 .news-link {
     font-size: 16px;
     color:tomato;
