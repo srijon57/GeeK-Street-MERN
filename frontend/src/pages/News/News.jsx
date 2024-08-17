@@ -14,7 +14,7 @@ const News = () => {
                     params: {
                         country: 'us',
                         category: 'technology',
-                        apiKey: import.meta.env.VITE_NEWS_API_KEY,
+                        apiKey: 'ae58ab1383894f93826e4522885475ad',
                     },
                 });
                 setArticles(response.data.articles);
