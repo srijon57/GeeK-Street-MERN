@@ -5,7 +5,7 @@ import Image3 from "./two.png";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import "./Hero.css"; // Add your custom CSS for the slider styles
+import "./Hero.css"; 
 
 const ImageList = [
     {

@@ -10,7 +10,7 @@ const Shop = () => {
     const [category, setCategory] = useState("");
     const [product, setProduct] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
-    const [loading, setLoading] = useState(true); // Add loading state
+    const [loading, setLoading] = useState(true); 
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -21,7 +21,7 @@ const Shop = () => {
             } catch (error) {
                 console.log(error);
             } finally {
-                setLoading(false); // Set loading to false after data is fetched
+                setLoading(false); 
             }
         };
 
@@ -55,7 +55,7 @@ const Shop = () => {
 
     return (
         <div className="shop-container">
-            {loading && <Spinner />} {/* Show spinner while loading */}
+            {loading && <Spinner />} 
 
             {!loading && filteredProducts.length === 0 && (
                 <h3 style={{ textAlign: "center", margin: "0 auto", color: "white" }}>
