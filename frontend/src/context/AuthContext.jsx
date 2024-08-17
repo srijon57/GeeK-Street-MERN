@@ -29,7 +29,7 @@ const AuthProvider = ({ children }) => {
         setUser({ isLoggedIn: false, role: "", username: "" });
         Cookies.remove('user');
         localStorage.removeItem("token");
-        clearCart(); // Clear the cart items
+        clearCart();
         window.location.href = "/";
     };
 
