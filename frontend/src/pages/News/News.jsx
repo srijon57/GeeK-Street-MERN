@@ -10,14 +10,14 @@ const News = () => {
     useEffect(() => {
         const fetchArticles = async () => {
             try {
-                const response = await axios.get('https://newsapi.org/v2/top-headlines', {
+                const response = await axios.get('https://newsdata.io/api/1/latest', {
                     params: {
                         country: 'us',
                         category: 'technology',
-                        apiKey: import.meta.env.VITE_NEWS_API_KEY,
+                        apikey: import.meta.env.VITE_NEWS2_API_KEY,
                     },
                 });
-                setArticles(response.data.articles);
+                setArticles(response.data.results);
             } catch (error) {
                 setError('An error occurred while fetching the news');
             } finally {
@@ -38,17 +38,17 @@ const News = () => {
                 <ul className="news-list">
                     {articles.map((article, index) => (
                         <li key={index} className="news-item">
-                            {article.urlToImage && (
+                            {article.image_url && (
                                 <img
-                                    src={article.urlToImage}
+                                    src={article.image_url}
                                     alt={article.title}
                                     className="news-image"
                                 />
                             )}
                             <div className="news-content">
                                 <h2 className="news-title">{article.title}</h2>
-                                <p className="news-author">By {article.author || 'Unknown'}</p>
-                                <a href={article.url} target="_blank" rel="noopener noreferrer" className="news-link">
+                                <p className="news-author">By {article.creator.join(', ') || 'Unknown'}</p>
+                                <a href={article.link} target="_blank" rel="noopener noreferrer" className="news-link">
                                     Read more
                                 </a>
                             </div>
