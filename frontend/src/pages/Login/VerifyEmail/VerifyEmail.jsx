@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import axios from "axios";
 import { useSnackbar } from "notistack";
-
+import "./VerifyEmail.css";
 function VerifyEmailPage() {
     const navigate = useNavigate();
     const { enqueueSnackbar } = useSnackbar();

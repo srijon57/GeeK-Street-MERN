@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { MdMenu, MdClose } from "react-icons/md";
 import "./Navbar_style.css";
 import CartIcon from '../../Cart/CartIcon';
-import { AuthContext } from '../../../context/AuthContext.jsx'; // Import AuthContext
+import { AuthContext } from '../../../context/AuthContext.jsx'; 
 
 const Navbar2 = () => {
     const [isOpen, setIsOpen] = useState(false);

@@ -4,13 +4,9 @@
     box-sizing: border-box;
 }
 
-body {
-    font-family: 'Poppins', sans-serif;
-    background-color: #1a1a2e;
-    color: #e3e3e3;
-}
-
 .payment-container {
+    font-family: 'Poppins', sans-serif;
+    color: #e3e3e3;
     padding: 2rem;
     max-width: 600px;
     margin: 3rem auto;
@@ -19,7 +15,12 @@ body {
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
     animation: fadeInUp 0.8s ease-in-out;
 }
-
+.payment-container h2{
+    text-align: center;
+}
+.payment-container h4{
+    color:powderblue
+}
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -82,10 +83,10 @@ body {
 .input-field {
     width: 100%;
     padding: 0.75rem;
-    border: 2px solid #4b6584;
+    border: 2px solid #edeff1;
     border-radius: 10px;
     font-size: 1rem;
-    background-color: #2b2e4a; /* Dark background for inputs */
+    background-color: #2b2e4a; 
     color: #e3e3e3;
     transition: border-color 0.3s, box-shadow 0.3s;
 }
@@ -147,4 +148,93 @@ body {
 .payment-button:disabled {
     background-color: #4b6584;
     cursor: not-allowed;
+}
+.payment-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.payment-form label {
+    margin-bottom: 1rem;
+}
+
+.payment-form input {
+    width: 100%;
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 0.25rem;
+}
+.confirmation-card {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    color: #000;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    text-align: center;
+}
+
+.confirmation-buttons {
+    margin-top: 1rem;
+}
+
+.confirmation-buttons button {
+    background: #2d98da;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin: 0 0.5rem;
+    transition: background-color 0.3s ease;
+}
+
+.confirmation-buttons .confirm-button {
+    background: #2d98da;
+}
+
+.confirmation-buttons .confirm-button:hover {
+    background: #1a74b8;
+}
+
+.confirmation-buttons .cancel-button {
+    background: #e74c3c;
+}
+
+.confirmation-buttons .cancel-button:hover {
+    background: #c0392b;
+}
+@media (max-width: 768px) {
+    .payment-container {
+        padding: 1rem;
+        margin: 2rem auto;
+    }
+
+    .payment-title {
+        font-size: 1.5rem;
+    }
+
+    .payment-form {
+        gap: 1rem;
+    }
+
+    .input-field {
+        font-size: 0.9rem;
+    }
+
+    .cart-summary {
+        font-size: 1rem;
+        padding: 0.75rem;
+    }
+
+    .payment-button {
+        font-size: 1rem;
+        padding: 0.5rem;
+    }
 }

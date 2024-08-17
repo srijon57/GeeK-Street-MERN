@@ -1,6 +1,6 @@
 import React from "react";
 import { useCart } from "../../context/CartContext";
-import "./CartIcon.css"; // Ensure this imports your new CSS
+import "./CartIcon.css"; 
 
 const CartIcon = () => {
     const { cartItems } = useCart() || { cartItems: [] };
