@@ -22,7 +22,7 @@ const CartIcon = () => {
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             className="h-6 w-6"
-                            fill="none"
+                            fill=""
                             viewBox="0 0 24 24"
                             stroke="currentColor"
                         >
@@ -43,7 +43,7 @@ const CartIcon = () => {
                         tabIndex={0}
                         className="dropdown-content card card-compact bg-base-100 shadow"
                     >
-                        <div className="card-body">
+                        <div className="card-body2">
                             <span className="font-bold text-lg">
                                 {totalQuantity} item(s)
                             </span>
