@@ -4,7 +4,7 @@ import { useCart } from "../../context/CartContext";
 import './Cart.css'; 
 
 const Cart = () => {
-    const { cartItems, decreaseCartItemQuantity } = useCart();
+    const { cartItems, decreaseCartItemQuantity, increaseCartItemQuantity, removeFromCart } = useCart();
     const navigate = useNavigate(); 
 
     if (cartItems.length === 0) {
@@ -28,15 +28,32 @@ const Cart = () => {
                         <h2 className='cart-item-title'>{item.name}</h2>
                         <p className='cart-item-price'>Price: BDT {(item.priceInCents).toFixed(2)}</p>
                         <div className='cart-item-quantity'>
+                            <button 
+                                onClick={() => increaseCartItemQuantity(item._id)} 
+                                className='quantity-button'
+                            >
+                                +
+                            </button>
                             <p>Quantity: {item.quantity}</p>
-                            <button onClick={() => decreaseCartItemQuantity(item._id)} className='cart-remove-button'>Remove</button>
+                            <button 
+                                onClick={() => decreaseCartItemQuantity(item._id)} 
+                                className='quantity-button'
+                            >
+                                -
+                            </button>
+                            <button 
+                                onClick={() => removeFromCart(item._id)} 
+                                className='cart-remove-button'
+                            >
+                                Remove
+                            </button>
                         </div>
                     </div>
                 ))}
             </div>
 
             <div className='cart-total'>
-                <p className='cart-total-price'>Total Price: BDT {(totalPrice).toFixed(2)}</p>
+                <p className='cart-total-price'>Total Price: BDT {(totalPrice ).toFixed(2)}</p>
             </div>
 
             <button className='cart-checkout-button' onClick={handleCheckout}>Proceed to Checkout</button>

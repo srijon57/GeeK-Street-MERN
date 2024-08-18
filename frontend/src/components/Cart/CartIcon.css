@@ -16,7 +16,12 @@
     display: flex;
     align-items: center;
 }
-
+.top-cart-item {
+    color: #17cf97;
+    font-weight: bold; 
+    text-align: center; 
+    display: block; 
+}
 .cart-icon .indicator svg {
     width: 24px;
     height: 24px;

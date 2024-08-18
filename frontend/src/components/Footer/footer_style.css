@@ -7,7 +7,7 @@
     font-family: 'Poppins', sans-serif;
 }
 
-footer {
+.footer-container {
     position: relative;
     clear: both;
     margin-top: 100px;
@@ -18,20 +18,21 @@ footer {
     flex-direction: column;
 }
 
-footer .social_icon {
+.footer-social-icon {
     position: relative;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start; 
     margin: 10px 0;
     flex-wrap: wrap;
+    padding-left: 10px; 
 }
 
-footer .social_icon li,
-footer .menu li {
+.footer-social-icon li,
+.footer-menu li {
     list-style: none;
 }
 
-footer .social_icon li a {
+.footer-social-icon li a {
     font-size: 1em;
     color: #17cf97;
     margin: 0 20px;
@@ -39,21 +40,22 @@ footer .social_icon li a {
     transition: 0.5s;
 }
 
-footer .social_icon li a:hover {
-    transform: translateY(-12px);
+.footer-social-icon li a:hover {
+    transform: translateY(-10px);
+    
 }
 
-footer p, a {
+.footer p, .footer a {
     color: #17cf97;
     text-align: center;
     font-size: 1.1em;
 }
 
-footer a:hover {
+.footer a:hover {
     color: #000000;
 }
 
-.row {
+.footer-row {
     width: 100%;
     margin: auto;
     display: flex;
@@ -62,18 +64,18 @@ footer a:hover {
     justify-content: space-between;
 }
 
-.col {
+.footer-col {
     flex-basis: 25%;
     padding: 25px;
     color: #17cf97;
 }
 
-.col:nth-child(2),
-.col:nth-child(3) {
+.footer-col:nth-child(2),
+.footer-col:nth-child(3) {
     flex-basis: 15%;
 }
 
-.Fot-logo {
+.footer-logo {
     font-family: "Jaro", sans-serif;
     font-weight: 300;
     font-style: normal;
@@ -82,44 +84,68 @@ footer a:hover {
     margin-bottom: 30px;
 }
 
-.col h3 {
+.footer-col h3 {
     width: fit-content;
     margin-bottom: 40px;
     position: relative;
 }
 
-.email-id {
+.footer-email-id {
     width: fit-content;
     margin: 20px 0;
 }
 
-ul li {
+.footer-container ul li {
     list-style: none;
     margin-bottom: 12px;
 }
 
-ul li a {
+.footer-container ul li a {
     text-decoration: none;
     color: #17cf97;
 }
-
-form {
-    padding-bottom: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-bottom: 1px solid #17cf97;
-    margin-bottom: 50px;
+.footer-container ul li a:hover{
+    color: cyan; 
+    text-shadow: 0 0 8px cyan; 
 }
 
-hr {
+.news-link a {
+    text-decoration: none;
+    color: #17cf97;
+    font-size: 1.1em;
+    display: block;
+    margin: 20px 0;
+    position: relative; 
+}
+
+.news-link a::after {
+    content: "";
+    position: absolute;
+    bottom: -5px; 
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: cyan; 
+    transition: width 0.3s ease;
+}
+
+.news-link a:hover {
+    color: cyan; 
+    text-shadow: 0 0 8px cyan; 
+}
+
+.news-link a:hover::after {
+    width: 100%;
+}
+
+.footer-container hr {
     width: 90%;
     border: 0;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 3px solid aquamarine;
     margin: 20px auto;
 }
 
-.underline {
+.footer-underline {
     width: 100%;
     height: 5px;
     background: #000000;
@@ -130,7 +156,7 @@ hr {
     overflow: hidden;
 }
 
-.underline span {
+.footer-underline span {
     width: 15px;
     height: 100%;
     background: #17cf97;
@@ -140,8 +166,12 @@ hr {
     left: 10px;
     animation: moving 2s linear infinite;
 }
+.footer-copyright{
+    color: #17cf97;
+    text-align: center;
+}
 
-footer .wave-container {
+.footer-wave-container {
     position: absolute;
     top: -50px;
     left: 0;
@@ -150,7 +180,7 @@ footer .wave-container {
     overflow: hidden;
 }
 
-footer .wave {
+.footer-wave {
     position: absolute;
     bottom: 0;
     width: 100%;
@@ -159,26 +189,26 @@ footer .wave {
     background-size: 1000px 100px;
 }
 
-footer .wave#wave1 {
+.footer-wave#wave1 {
     z-index: 1000;
     opacity: 1;
     animation: animateWave 4s linear infinite;
 }
 
-footer .wave#wave2 {
+.footer-wave#wave2 {
     z-index: 999;
     opacity: 0.5;
     bottom: 10px;
     animation: animateWave_02 4s linear infinite;
 }
 
-footer .wave#wave3 {
+.footer-wave#wave3 {
     z-index: 1000;
     opacity: 0.2;
     animation: animateWave 3s linear infinite;
 }
 
-footer .wave#wave4 {
+.footer-wave#wave4 {
     z-index: 999;
     opacity: 0.7;
     bottom: 10px;
@@ -216,22 +246,22 @@ footer .wave#wave4 {
 }
 
 @media (max-width: 768px) {
-    .row {
+    .footer-row {
         flex-direction: column;
         align-items: center;
     }
 
-    .col {
+    .footer-col {
         flex-basis: 100%;
         padding: 30px;
     }
 
-    .social_icon {
+    .footer-social-icon {
         justify-content: center;
         padding-right: 0;
     }
 
-    .social_icon li a {
+    .footer-social-icon li a {
         margin: 0 10px;
     }
 
@@ -248,21 +278,21 @@ footer .wave#wave4 {
         align-self: flex-end;
     }
 
-    .underline {
+    .footer-underline {
         width: 50%;
     }
 }
 
 @media (max-width: 480px) {
-    .Fot-logo {
+    .footer-logo {
         font-size: 18px;
     }
 
-    .col h3 {
+    .footer-col h3 {
         margin-bottom: 20px;
     }
 
-    .email-id {
+    .footer-email-id {
         margin: 10px 0;
     }
 
@@ -274,7 +304,7 @@ footer .wave#wave4 {
         font-size: 0.9em;
     }
 
-    .underline {
+    .footer-underline {
         width: 40%;
     }
 }
