@@ -45,7 +45,7 @@ const DeleteProduct = () => {
             {loading && <Spinner/>}
             <Link
                 to="/admin"
-                className="back-button"
+                className="delete-back-button"
             >
                 Back
             </Link>

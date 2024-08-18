@@ -3,12 +3,11 @@
     padding: 0;
     box-sizing: border-box;
 }
-.container {
+.container2 {
     width: 100%;
     padding: 1rem;
     box-sizing: border-box;
     margin: auto;
-    
 }
 
 .table-container {

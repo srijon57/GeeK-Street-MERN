@@ -99,7 +99,7 @@ const CreateProduct = () => {
                 category,
             };
 
-            await axios.post(`${import.meta.env.VITE_BASEURL}/product`, formData,config);
+            await axios.post(`${import.meta.env.VITE_BASEURL}/product`, formData, config);
 
             enqueueSnackbar("Product saved successfully", {
                 variant: "success",
@@ -118,15 +118,15 @@ const CreateProduct = () => {
     };
 
     return (
-        <div className="p-6 bg-base-100 flex justify-center items-center">
+        <div className="create-product-container">
             {loading && <Spinner />}
-            <div className="container">
-                <Link to="/admin" className="back-button">
+            <div className="create-product-form">
+                <Link to="/admin" className="create-product-back-button">
                     Back
                 </Link>
-                <h1 className="form-title">Create Product</h1>
-                <div className="form-group">
-                    <label htmlFor="name" className="form-label">
+                <h1 className="create-product-title">Create Product</h1>
+                <div className="create-product-fields">
+                    <label htmlFor="name" className="create-product-label">
                         Name
                     </label>
                     <input
@@ -134,10 +134,10 @@ const CreateProduct = () => {
                         type="text"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
-                        className="form-input"
+                        className="create-product-input"
                     />
 
-                    <label htmlFor="priceInCents" className="form-label">
+                    <label htmlFor="priceInCents" className="create-product-label">
                         Price in cents
                     </label>
                     <input
@@ -145,10 +145,10 @@ const CreateProduct = () => {
                         type="number"
                         value={priceInCents}
                         onChange={(e) => setPriceInCents(e.target.value)}
-                        className="form-input"
+                        className="create-product-input"
                     />
 
-                    <label htmlFor="description" className="form-label">
+                    <label htmlFor="description" className="create-product-label">
                         Description
                     </label>
                     <input
@@ -156,17 +156,17 @@ const CreateProduct = () => {
                         type="text"
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}
-                        className="form-input"
+                        className="create-product-input"
                     />
 
-                    <label htmlFor="category" className="form-label">
+                    <label htmlFor="category" className="create-product-label">
                         Category
                     </label>
                     <select
                         id="category"
                         value={category}
                         onChange={(e) => setCategory(e.target.value)}
-                        className="form-select"
+                        className="create-product-select"
                         required
                     >
                         <option value="" disabled>
@@ -178,7 +178,7 @@ const CreateProduct = () => {
                         <option value="Gadgets">Gadgets</option>
                     </select>
 
-                    <label htmlFor="img" className="form-label">
+                    <label htmlFor="img" className="create-product-label">
                         Upload Image
                     </label>
                     <input
@@ -186,17 +186,17 @@ const CreateProduct = () => {
                         type="file"
                         accept="image/*"
                         onChange={handleFileChange}
-                        className="form-file"
+                        className="create-product-file"
                         required
                     />
 
                     {imgPreview && (
-                        <div className="img-preview">
+                        <div className="create-product-img-preview">
                             <img src={imgPreview} alt="Preview" />
                         </div>
                     )}
 
-                    <button onClick={handleSaveProduct} className="save-button">
+                    <button onClick={handleSaveProduct} className="create-product-save-button">
                         Save
                     </button>
                 </div>

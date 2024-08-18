@@ -4,7 +4,7 @@
     box-sizing: border-box;
 }
 
-.container {
+.create-product-container {
     padding: 1.5rem;
     background-color: #f7f7f7;
     display: flex;
@@ -17,8 +17,8 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.back-button {
-    background-color: #c5ccd2;
+.create-product-back-button {
+    background-color: #1480de;
     color: #fff;
     padding: 0.75rem 1.5rem;
     text-decoration: none;
@@ -27,30 +27,35 @@
     margin-bottom: 1.5rem;
     text-align: center;
     transition: background-color 0.2s ease-in-out;
+    display: block; 
 }
 
-.back-button:hover {
-    background-color: #6e7276;
+.create-product-back-button:hover {
+    background-color: #072039;
 }
 
-.form-title {
+.create-product-title {
     font-size: 1.875rem;
     font-weight: 600;
     text-align: center;
     margin-bottom: 1.5rem;
 }
 
-.form-group {
+.create-product-fields {
     width: 100%;
     max-width: 500px;
-    
 }
 
+.create-product-label {
+    color: black;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
 
-
-.form-group.form-input,
-.form-group.form-select,
-.form-group.form-file {
+.create-product-input,
+.create-product-select,
+.create-product-file {
     width: 100%;
     border: 1px solid #010101;
     padding: 0.75rem;
@@ -59,19 +64,25 @@
     background-color: #fff;
 }
 
-.img-preview {
+.create-product-img-preview {
     margin: 1rem 0;
     text-align: center;
 }
 
-.img-preview img {
+.create-product-img-preview img {
     max-width: 100%;
     height: auto;
     border-radius: 0.375rem;
     border: 1px solid #ddd;
 }
 
-.save-button {
+.create-product-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem; 
+}
+
+.create-product-save-button {
     background-color: #38a169;
     color: #ffffff;
     padding: 0.75rem;
@@ -81,12 +92,14 @@
     cursor: pointer;
     transition: background-color 0.2s ease-in-out;
     border: none;
+    align-items: center;
+    justify-content: center;
+    margin:0 43%;
 }
 
-.save-button:hover {
+.create-product-save-button:hover {
     background-color: #2f855a;
 }
-
 
 .spinner-container {
     width: 100%;
@@ -103,32 +116,24 @@
     color: #007bff; 
 }
 
-.form-label {
-    color: black;
-    font-size: 1rem;
-    margin-bottom: 0.5rem;
-    font-weight: 500;
-    
-}
 @media (max-width: 768px) {
-    .container {
+    .create-product-container {
         padding: 1rem;
     }
 
-    .form-title {
+    .create-product-title {
         font-size: 1.5rem;
     }
 
-    .form-input,
-    .form-select,
-    .form-file {
+    .create-product-input,
+    .create-product-select,
+    .create-product-file {
         padding: 0.5rem;
         font-size: 0.875rem;
     }
 
-    .save-button {
+    .create-product-save-button {
         padding: 0.5rem;
         font-size: 0.875rem;
     }
 }
-

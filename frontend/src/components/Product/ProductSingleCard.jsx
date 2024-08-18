@@ -29,26 +29,25 @@ const ProductSingleCard = ({ product }) => {
 
   return (
     <>
-      <div className="card">
-        <figure className="image-container">
-          <img src={product.image} alt={product.name} className="w-full h-[200px] object-cover object-top" />
-          <div className="overlay" onClick={handleModalOpen}>
-            <span className="overlay-text">View Details</span>
+      <div className="product-card">
+        <figure className="product-image-container">
+          <img src={product.image} alt={product.name} className="product-image" />
+          <div className="product-overlay" onClick={handleModalOpen}>
+            <span className="product-overlay-text">View Details</span>
           </div>
         </figure>
-        <div className="card-body">
-          <h2 className="card-title">{product.name}</h2>
-          
-          <div className="price">BDT {(product.priceInCents).toFixed(2)}</div>
-          <div className="card-actions">
+        <div className="product-card-body">
+          <h2 className="product-card-title">{product.name}</h2>
+          <div className="product-price">BDT {(product.priceInCents ).toFixed(2)}</div>
+          <div className="product-card-actions">
             {user.isLoggedIn && (
               <>
                 {quantity > 0 ? (
-                  <button className="btn btn-error" onClick={handleRemoveFromCart}>
+                  <button className="product-btn product-btn-error" onClick={handleRemoveFromCart}>
                     Remove from Cart
                   </button>
                 ) : (
-                  <button className="btn btn-primary" onClick={handleAddToCart}>
+                  <button className="product-btn product-btn-primary" onClick={handleAddToCart}>
                     Add to Cart
                   </button>
                 )}
@@ -59,22 +58,22 @@ const ProductSingleCard = ({ product }) => {
       </div>
 
       {isModalOpen && (
-        <div className="modal-overlay" onClick={handleModalClose}>
-          <div className="modal-content">
-            <span className="modal-close" onClick={handleModalClose}>&times;</span>
-            <img src={product.image} alt={product.name} className="modal-image" />
+        <div className="product-modal-overlay" onClick={handleModalClose}>
+          <div className="product-modal-content">
+            <span className="product-modal-close" onClick={handleModalClose}>&times;</span>
+            <img src={product.image} alt={product.name} className="product-modal-image" />
             <h2>{product.name}</h2>
             <p>{product.description || 'No description available.'}</p>
-            <div className="price">BDT {(product.priceInCents).toFixed(2)}</div>
-            <div className="card-actions">
+            <div className="product-price">BDT {(product.priceInCents).toFixed(2)}</div>
+            <div className="product-modal-actions">
               {user.isLoggedIn && (
                 <>
                   {quantity > 0 ? (
-                    <button className="btn btn-error" onClick={handleRemoveFromCart}>
+                    <button className="product-btn product-btn-error" onClick={handleRemoveFromCart}>
                       Remove from Cart
                     </button>
                   ) : (
-                    <button className="btn btn-primary" onClick={handleAddToCart}>
+                    <button className="product-btn product-btn-primary" onClick={handleAddToCart}>
                       Add to Cart
                     </button>
                   )}

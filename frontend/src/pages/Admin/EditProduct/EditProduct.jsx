@@ -5,7 +5,7 @@ import axios from "axios";
 import "./editProduct.css";
 import Spinner from "../../../components/Spinner/Spinner";
 
-const EditProduct = () => {
+const EditProductPage = () => {
     const [name, setName] = useState("");
     const [priceInCents, setPriceInCents] = useState("");
     const [category, setCategory] = useState("");
@@ -47,7 +47,7 @@ const EditProduct = () => {
         const data = { name, priceInCents, description, category };
         setLoading(true);
         axios
-            .put(`${import.meta.env.VITE_BASEURL}/product/${id}`, data,config)
+            .put(`${import.meta.env.VITE_BASEURL}/product/${id}`, data, config)
             .then(() => {
                 setLoading(false);
                 enqueueSnackbar("Product edited successfully", {
@@ -63,73 +63,73 @@ const EditProduct = () => {
     };
 
     return (
-        <div className='edit-product-container'>
-        {loading && <Spinner/>}
-        <div className="edit-product-form">
-            <Link to="/admin" className="back-button">
-                Back
-            </Link>
-            <h1 className="form-title">Edit Product</h1>
-            <div className="form-group">
-                <label htmlFor="name" className="form-label">
-                    Name
-                </label>
-                <input
-                    id="name"
-                    type="text"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    className="form-input"
-                />
+        <div className='edit-product-page-container'>
+            {loading && <Spinner />}
+            <div className="edit-product-page-form">
+                <Link to="/admin" className="edit-product-page-back-button">
+                    Back
+                </Link>
+                <h1 className="edit-product-page-form-title">Edit Product</h1>
+                <div className="edit-product-page-form-group">
+                    <label htmlFor="name" className="edit-product-page-form-label">
+                        Name
+                    </label>
+                    <input
+                        id="name"
+                        type="text"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        className="edit-product-page-form-input"
+                    />
 
-                <label htmlFor="priceInCents" className="form-label">
-                    Price in cents
-                </label>
-                <input
-                    id="priceInCents"
-                    type="number"
-                    value={priceInCents}
-                    onChange={(e) => setPriceInCents(e.target.value)}
-                    className="form-input"
-                />
+                    <label htmlFor="priceInCents" className="edit-product-page-form-label">
+                        Price in cents
+                    </label>
+                    <input
+                        id="priceInCents"
+                        type="number"
+                        value={priceInCents}
+                        onChange={(e) => setPriceInCents(e.target.value)}
+                        className="edit-product-page-form-input"
+                    />
 
-                <label htmlFor="description" className="form-label">
-                    Description
-                </label>
-                <input
-                    id="description"
-                    type="text"
-                    value={description}
-                    onChange={(e) => setDescription(e.target.value)}
-                    className="form-input"
-                />
+                    <label htmlFor="description" className="edit-product-page-form-label">
+                        Description
+                    </label>
+                    <input
+                        id="description"
+                        type="text"
+                        value={description}
+                        onChange={(e) => setDescription(e.target.value)}
+                        className="edit-product-page-form-input"
+                    />
 
-                <label htmlFor="category" className="form-label">
-                    Category
-                </label>
-                <select
-                    id="category"
-                    value={category}
-                    onChange={(e) => setCategory(e.target.value)}
-                    className="form-select"
-                    required
-                >
-                    <option value="" disabled>
-                        Select category
-                    </option>
-                    <option value="Phones">Phones</option>
+                    <label htmlFor="category" className="edit-product-page-form-label">
+                        Category
+                    </label>
+                    <select
+                        id="category"
+                        value={category}
+                        onChange={(e) => setCategory(e.target.value)}
+                        className="edit-product-page-form-select"
+                        required
+                    >
+                        <option value="" disabled>
+                            Select category
+                        </option>
+                        <option value="Phones">Phones</option>
                         <option value="Laptops">Laptops</option>
                         <option value="Components">Components</option>
                         <option value="Gadgets">Gadgets</option>
-                </select>
+                    </select>
 
-                <button onClick={handleEditProduct} className="submit-button">
-                    Save Changes
-                </button>
+                    <button onClick={handleEditProduct} className="edit-product-page-submit-button">
+                        Save Changes
+                    </button>
+                </div>
             </div>
-        </div>
         </div>
     );
 };
 
-export default EditProduct;
+export default EditProductPage;
