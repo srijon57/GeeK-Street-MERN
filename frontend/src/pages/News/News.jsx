@@ -12,7 +12,7 @@ const News = () => {
             const cachedArticles = localStorage.getItem('newsArticles');
             const cacheTime = localStorage.getItem('newsCacheTime');
     
-            if (cachedArticles && cacheTime && Date.now() - cacheTime < 3600000) { // 1 hour cache
+            if (cachedArticles && cacheTime && Date.now() - cacheTime < 3600000) {
                 setArticles(JSON.parse(cachedArticles));
                 setLoading(false);
                 return;

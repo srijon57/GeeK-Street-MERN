@@ -23,7 +23,7 @@ const Admin = () => {
     }, []);
 
     return (
-        <div className="container">
+        <div className="container2">
             <div className="table-container">
                 <table className="product-table">
                     <thead>
@@ -37,6 +37,7 @@ const Admin = () => {
                             <th>Price</th>
                             <th>Description</th>
                             <th>Category</th>
+                            <th>Modify</th>
                         </tr>
                     </thead>
                     <tbody>

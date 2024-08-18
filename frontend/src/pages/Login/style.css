@@ -235,7 +235,11 @@
 }
 /* reset password */
 .reset-password-page {
-    background-color: #f7f7f7;
+    background: linear-gradient(
+        135deg, 
+        #073242, 
+        #2c7d9a 
+    );
     min-height: 100vh;
     display: flex;
     align-items: center;

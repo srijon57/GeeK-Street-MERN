@@ -2,9 +2,9 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    /* align-items: center; */
 }
-.edit-product-container {
+
+.edit-product-page-container {
     padding: 24px;
     background-color: #f7f7f7;
     display: flex;
@@ -12,7 +12,7 @@
     align-items: center;
 }
 
-.edit-product-form {
+.edit-product-page-form {
     max-width: 600px;
     width: 100%;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -21,35 +21,40 @@
     background-color: #fff;
 }
 
-.back-button {
+.edit-product-page-back-button {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #ccc;
+    background-color: #1480de;
     padding: 8px 16px;
     text-decoration: none;
     font-size: 14px;
     border-radius: 8px;
     margin-bottom: 16px;
+    color: white; 
 }
 
-.form-title {
+.edit-product-page-back-button:hover {
+    background-color: #072039;
+}
+
+.edit-product-page-form-title {
     font-size: 24px;
     font-weight: 600;
     margin-bottom: 16px;
 }
 
-.form-group {
+.edit-product-page-form-group {
     margin-bottom: 16px;
 }
 
-.form-label {
+.edit-product-page-form-label {
     display: block;
     font-size: 16px;
     margin-bottom: 8px;
 }
 
-.form-input {
+.edit-product-page-form-input {
     border: 1px solid #ccc;
     padding: 8px;
     width: 100%;
@@ -58,7 +63,7 @@
     margin-bottom: 16px;
 }
 
-.form-select {
+.edit-product-page-form-select {
     width: 100%;
     border: 1px solid #ccc;
     padding: 8px;
@@ -67,7 +72,7 @@
     margin-bottom: 16px;
 }
 
-.submit-button {
+.edit-product-page-submit-button {
     width: 100%;
     background-color: #38a169;
     color: white;
@@ -78,6 +83,6 @@
     transition: background-color 0.3s ease;
 }
 
-.submit-button:hover {
+.edit-product-page-submit-button:hover {
     background-color: #2f855a;
 }
