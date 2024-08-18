@@ -6,12 +6,12 @@ export const useCart = () => useContext(CartContext);
 
 export const CartProvider = ({ children }) => {
     const [cartItems, setCartItems] = useState(() => {
-        const localData = localStorage.getItem('cartItems');
+        const localData = localStorage.getItem("cartItems");
         return localData ? JSON.parse(localData) : [];
     });
 
     useEffect(() => {
-        localStorage.setItem('cartItems', JSON.stringify(cartItems));
+        localStorage.setItem("cartItems", JSON.stringify(cartItems));
     }, [cartItems]);
 
     const addToCart = (item) => {
@@ -31,9 +31,21 @@ export const CartProvider = ({ children }) => {
         setCartItems((prevItems) => {
             return prevItems
                 .map((item) =>
-                    item._id === id ? { ...item, quantity: item.quantity - 1 } : item
+                    item._id === id
+                        ? { ...item, quantity: item.quantity - 1 }
+                        : item
                 )
                 .filter((item) => item.quantity > 0);
+        });
+    };
+
+    const increaseCartItemQuantity = (id) => {
+        setCartItems((prevItems) => {
+            return prevItems.map((item) =>
+                item._id === id
+                    ? { ...item, quantity: item.quantity + 1 }
+                    : item
+            );
         });
     };
 
@@ -51,17 +63,20 @@ export const CartProvider = ({ children }) => {
 
     const clearCart = () => {
         setCartItems([]);
-        localStorage.removeItem('cartItems');
+        localStorage.removeItem("cartItems");
     };
 
     return (
-        <CartContext.Provider value={{
-            cartItems,
-            addToCart,
-            removeFromCart,
-            decreaseCartItemQuantity,
-            clearCart
-        }}>
+        <CartContext.Provider
+            value={{
+                cartItems,
+                addToCart,
+                removeFromCart,
+                decreaseCartItemQuantity,
+                increaseCartItemQuantity,
+                clearCart,
+            }}
+        >
             {children}
         </CartContext.Provider>
     );

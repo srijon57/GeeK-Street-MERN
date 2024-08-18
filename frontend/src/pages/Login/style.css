@@ -189,7 +189,7 @@
     transform: translateX(50%);
 }
 
-.toggle-panel {
+.login-page .toggle-panel {
     position: absolute;
     width: 50%;
     height: 100%;
@@ -208,7 +208,7 @@
     transform: translateX(-200%);
 }
 
-.container.active .toggle-left {
+.login-page .container.active .toggle-left {
     transform: translateX(0);
 }
 
@@ -217,10 +217,10 @@
     transform: translateX(0);
 }
 
-.container.active .toggle-right {
+.login-page .container.active .toggle-right {
     transform: translateX(200%);
 }
-.password-container {
+.login-page .password-container {
     position: relative;
     display: flex;
     align-items: center;
@@ -314,45 +314,118 @@
     color: #888;
     font-size: 18px;
 }
-
 @media (max-width: 768px) {
     .login-page {
         background-image: none;
+        padding: 10px;
     }
-    .toggle-container {
-        display: none;
-    }
-    .form-container {
-        width: 100%;
-        height: 100%;
-    }
-    .sign-in,
-    .sign-up {
-        width: 100%;
-        height: 100%;
-        position: relative;
-        transform: translateX(0) !important;
-        opacity: 1 !important;
-        z-index: 1 !important;
-    }
-    .container {
+
+    .login-page .container {
         width: 100%;
         min-height: auto;
-        padding: 30px;
+        padding: 20px;
         flex-direction: column;
-        overflow: scroll;
+        opacity: 1;
+        box-shadow: none;
+        overflow: auto;
     }
-    .social-icons a {
+
+    .login-page .container p {
+        font-size: 12px;
+        margin: 10px 0;
+    }
+
+    .login-page .container span {
+        font-size: 10px;
+    }
+
+    .login-page .container a {
+        font-size: 12px;
+        margin: 10px 0 5px;
+    }
+
+    .login-page .container button {
+        font-size: 14px;
+        padding: 12px 20px;
+    }
+
+    .login-page .container input {
+        font-size: 14px;
+        padding: 12px 15px;
+    }
+
+    .login-page .container form {
+        padding: 0 15px;
+    }
+
+    .form-container {
+        width: 100%;
+        height: auto;
+        position: relative;
+        transition: none;
+    }
+
+    .sign-in, .sign-up {
+        width: 100%;
+        height: auto;
+        position: relative;
+        opacity: 1 ;
+        z-index: 1 ;
+    }
+
+    .login-page .toggle-container {
+        display: none;
+    }
+
+    .login-page .toggle {
+        width: 100%;
+        left: 0;
+        transform: none;
+        height: auto;
+        background: linear-gradient(to right, #5c9ac0, #5c9ac0);
+    }
+
+    .login-page .toggle-panel {
+        width: 100%;
+        padding: 15px;
+    }
+
+    .toggle-left, .toggle-right {
+        transform: none;
+    }
+
+    .login-page .social-icons a {
         width: 30px;
         height: 30px;
+        font-size: 16px;
+        margin: 0 5px;
     }
-    .container button {
+
+    .password-container {
         width: 100%;
     }
-    .container form {
-        padding: 0 20px;
+
+    .eye-icon {
+        right: 15px;
+        font-size: 20px;
     }
-    .sign-in {
-        margin-bottom: 10px;
+
+    .reset-password-page {
+        padding: 10px;
+    }
+
+    .reset-password-page div {
+        padding: 20px;
+        box-shadow: none;
+    }
+
+    .reset-password-page input {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .reset-password-page button {
+        font-size: 14px;
+        padding: 10px 20px;
     }
 }

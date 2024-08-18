@@ -44,7 +44,7 @@ const CartIcon = () => {
                         className="dropdown-content card card-compact bg-base-100 shadow"
                     >
                         <div className="card-body2">
-                            <span className="font-bold text-lg">
+                            <span className="top-cart-item">
                                 {totalQuantity} item(s)
                             </span>
                             <div className="card-actions">

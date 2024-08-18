@@ -1,28 +1,25 @@
-// import React from "react";
+import React from "react";
 import "./footer_style.css";
 import {
     FaFacebookF,
     FaInstagram,
-    FaRegEnvelope,
-    FaArrowRight,
 } from "react-icons/fa";
 import { HiLocationMarker } from "react-icons/hi";
 
 const Footer = () => {
     return (
-        <footer>
-            <div className="wave-container">
-                <div className="wave" id="wave1"></div>
-                <div className="wave" id="wave2"></div>
-                <div className="wave" id="wave3"></div>
-                <div className="wave" id="wave4"></div>
+        <footer className="footer-container">
+            <div className="footer-wave-container">
+                <div className="footer-wave" id="wave1"></div>
+                <div className="footer-wave" id="wave2"></div>
+                <div className="footer-wave" id="wave3"></div>
+                <div className="footer-wave" id="wave4"></div>
             </div>
-            <div className="row">
-                <div className="col">
-                    {/* <img src="logo.png" className="logo" alt="Logo" /> */}
+            <div className="footer-row">
+                <div className="footer-col">
                     <h3>
-                        <div className="Fot-logo">GEEK STREED BD</div>
-                        <div className="underline">
+                        <div className="footer-logo">GEEK STREED BD</div>
+                        <div className="footer-underline">
                             <span></span>
                         </div>
                     </h3>
@@ -33,24 +30,23 @@ const Footer = () => {
                         Together, we`ll shape the future of technology.
                     </p>
                 </div>
-                <div className="col">
+                <div className="footer-col">
                     <h3>
                         Office{" "}
-                        <div className="underline">
+                        <div className="footer-underline">
                             <span></span>
                         </div>
                     </h3>
                     <p>
-                        Head Office: 28 Kazi Nazrul Islam Ave,Navana Zohura
-                        Square, Dhaka 1000
+                    141 & 142, Love Road, Tejgaon Industrial Area, Dhaka-1208, Bangladesh
                     </p>
-                    <p className="email-id">aust123@gmail.com</p>
-                    <h4>+88-0123456789</h4>
+                    <p className="footer-email-id">aust123@gmail.com</p>
+                    <h4>+880-123456789</h4>
                 </div>
-                <div className="col">
+                <div className="footer-col">
                     <h3>
                         Links{" "}
-                        <div className="underline">
+                        <div className="footer-underline">
                             <span></span>
                         </div>
                     </h3>
@@ -66,23 +62,23 @@ const Footer = () => {
                         </li>
                     </ul>
                 </div>
-                <div className="col">
+                <div className="footer-col">
                     <h3>
                         Latest News{" "}
-                        <div className="underline">
+                        <div className="footer-underline">
                             <span></span>
                         </div>
                     </h3>
-                    <form>
+                    <div className="news-link">
                         <a href="/news">News</a>
-                    </form>
+                    </div>
                     <h3>
                         Connect with us{" "}
-                        <div className="underline">
+                        <div className="footer-underline">
                             <span></span>
                         </div>
                     </h3>
-                    <ul className="social_icon">
+                    <ul className="footer-social-icon">
                         <li>
                             <a href="https://www.facebook.com/zawad.almahi.9?mibextid=ZbWKwL">
                                 <FaFacebookF />
@@ -102,7 +98,7 @@ const Footer = () => {
                 </div>
             </div>
             <hr />
-            <p className="copyright">
+            <p className="footer-copyright">
                 CSE2200 C1 @Team_4 2024 - All Rights Reserved
             </p>
         </footer>
