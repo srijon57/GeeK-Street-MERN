@@ -7,6 +7,7 @@ import multer from "multer";
 import { CloudinaryStorage } from "multer-storage-cloudinary";
 import productRoute from "./routes/productRoute.js";
 import { authRouter } from "./controllers/authController.js";
+import reviewRoute from './routes/reviewRoute.js';
 import nodemailer from "nodemailer";
 
 config();
@@ -87,4 +88,5 @@ app.post('/send-email', async (req, res) => {
 // API routes
 app.use('/product', productRoute);
 app.use('/auth', authRouter);
+app.use('/reviews', reviewRoute);
 app.listen(process.env.PORT, () => console.log(`Server running on port ${process.env.PORT}`));
