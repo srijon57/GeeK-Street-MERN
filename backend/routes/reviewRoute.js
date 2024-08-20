@@ -1,11 +1,13 @@
 import express from 'express';
 import Review from '../models/reviewModel.js';
+import { auth } from '../middleware/authMiddleware.js';
 
 const router = express.Router();
 
-// Submit a review
-router.post('/submit', async (req, res) => {
+// Submit a review (logged-in users only)
+router.post('/', auth, async (req, res) => {
     const { productName, reviewText, starRating } = req.body;
+    const userId = req.user.id;
 
     if (!productName || !reviewText || !starRating) {
         return res.status(400).json({ message: 'All fields are required' });
@@ -16,7 +18,7 @@ router.post('/submit', async (req, res) => {
     }
 
     try {
-        const newReview = new Review({ productName, reviewText, starRating });
+        const newReview = new Review({ productName, reviewText, starRating, user: userId });
         await newReview.save();
         res.status(201).json(newReview);
     } catch (error) {
@@ -25,16 +27,39 @@ router.post('/submit', async (req, res) => {
     }
 });
 
-
-
 // Get all reviews
 router.get('/', async (req, res) => {
     try {
-        const reviews = await Review.find().sort({ createdAt: -1 });
+        const reviews = await Review.find().populate('user').sort({ createdAt: -1 });
         res.status(200).json(reviews);
     } catch (error) {
         console.error('Error fetching reviews:', error);
         res.status(500).json({ message: 'Failed to fetch reviews', error: error.message });
+    }
+});
+
+
+// Delete a review (admin only & the creator)
+router.delete('/:id', auth, async (req, res) => {
+    const { id } = req.params;
+    const userId = req.user.id;
+
+    try {
+        const review = await Review.findById(id).populate('user');
+
+        if (!review) {
+            return res.status(404).json({ message: 'Review not found' });
+        }
+
+        if (req.user.role !== 'admin' && review.user._id.toString() !== userId.toString()) {
+            return res.status(403).json({ message: 'Access denied' });
+        }
+
+        await Review.findByIdAndDelete(id); 
+        res.status(200).json({ message: 'Review deleted' });
+    } catch (error) {
+        console.error('Error deleting review:', error); 
+        res.status(500).json({ message: 'Failed to delete review', error: error.message });
     }
 });
 

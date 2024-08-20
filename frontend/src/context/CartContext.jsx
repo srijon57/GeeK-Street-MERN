@@ -32,7 +32,7 @@ export const CartProvider = ({ children }) => {
             return prevItems
                 .map((item) =>
                     item._id === id
-                        ? { ...item, quantity: item.quantity - 1 }
+                        ? { ...item, quantity: item.quantity = 0 }
                         : item
                 )
                 .filter((item) => item.quantity > 0);
