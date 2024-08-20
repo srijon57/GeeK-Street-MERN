@@ -24,7 +24,7 @@
     margin-bottom: 16px;
     color: white; 
 }
-.delete-back-button:hover{
+.delete-product-container .delete-back-button:hover{
     background-color: #072039;
 }
 
@@ -34,7 +34,7 @@
     font-weight: 600;
 }
 
-.delete-button {
+.delete-product-container .delete-button {
     background-color: #e3342f; 
     padding: 0.5rem 1rem; 
     border-radius: 0.5rem; 
@@ -46,6 +46,6 @@
     transition: background-color 0.2s; 
 }
 
-.delete-button:hover {
+.delete-product-container .delete-button:hover {
     background-color: #cc1f1a; 
 }

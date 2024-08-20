@@ -1,3 +1,9 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* align-items: center; */
+}
 .rating-star-container {
     display: flex;
     flex-direction: column;
@@ -22,25 +28,4 @@
     margin-top: 10px;
     font-size: 16px;
     color: #333;
-}
-.review-page {
-    padding: 20px;
-}
-
-.review-page form {
-    margin-bottom: 20px;
-}
-
-.review-page form div {
-    margin-bottom: 15px;
-}
-
-.review-page .reviews-list {
-    margin-top: 20px;
-}
-
-.review-item {
-    border: 1px solid #ccc;
-    padding: 10px;
-    margin-bottom: 10px;
 }

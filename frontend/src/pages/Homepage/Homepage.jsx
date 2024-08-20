@@ -48,7 +48,9 @@ export const Homepage = () => {
                     </div>
                 </div>
 
-                <h2 className="featured-products-title">_____Featured Products_____</h2>
+                <div className="featured-products-container">
+                    <h2 className="featured-products-title">Featured Products</h2>
+                </div>
                 {loading ? (
                     <Spinner />
                 ) : (
