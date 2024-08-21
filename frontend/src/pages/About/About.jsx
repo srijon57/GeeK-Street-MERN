@@ -1,5 +1,6 @@
 import React from 'react';
 import { FaFacebook, FaInstagram, FaMapMarkerAlt } from 'react-icons/fa';
+import './About.css'; // External CSS file
 
 const About = () => {
     const developers = [
@@ -9,110 +10,67 @@ const About = () => {
     ];
 
     return (
-        <div style={styles.container}>
-            <div style={styles.headerContainer}>
-                <h1 style={styles.header}>About the Developers</h1>
+        <div className="container">
+            <div className="header-container">
+                <h1 className="header">About Us</h1>
             </div>
-            <p style={styles.intro}>
-                Meet the dedicated team behind this application. Each member brings unique skills and expertise to the table, contributing to our success.
-            </p>
-            <div style={styles.developerList}>
+            <div className="content">
+                <div className="image-container">
+                    <img src="https://images.pexels.com/photos/270640/pexels-photo-270640.jpeg?auto=compress&cs=tinysrgb&w=600" alt="About Us" className="image" loading="lazy" />
+                </div>
+                <div className="text-container">
+                    <p>
+                        Forever was born out of a passion for innovation and a desire to revolutionize the way people shop online. Our journey began with a simple idea: to provide a platform where customers can easily discover, explore, and purchase a wide range of products from the comfort of their homes.
+                    </p>
+                    <p>
+                        Since our inception, we've worked tirelessly to curate a diverse selection of high-quality products that cater to every taste and preference. From fashion and beauty to electronics and home essentials, we offer an extensive collection sourced from trusted brands and suppliers.
+                    </p>
+                    <h2>Our Mission</h2>
+                    <p>
+                        Our mission at Forever is to empower customers with choice, convenience, and confidence. We're dedicated to providing a seamless shopping experience that exceeds expectations, from browsing and ordering to delivery and beyond.
+                    </p>
+                </div>
+            </div>
+
+            <h2 className="why-choose-us-header">Why Choose Us</h2>
+            <div className="why-choose-us-container">
+                <div className="why-choose-us-box">
+                    <h3>Quality Assurance</h3>
+                    <p>We meticulously select and vet each product to ensure it meets our stringent quality standards.</p>
+                </div>
+                <div className="why-choose-us-box">
+                    <h3>Convenience</h3>
+                    <p>With our user-friendly interface and hassle-free ordering process, shopping has never been easier.</p>
+                </div>
+                <div className="why-choose-us-box">
+                    <h3>Exceptional Customer Service</h3>
+                    <p>Our team of dedicated professionals is here to assist you, ensuring your satisfaction is our top priority.</p>
+                </div>
+            </div>
+
+            <h2 className="developers-header">Meet the Developers</h2>
+            <div className="developer-list">
                 {developers.map((developer, index) => (
-                    <div key={index} style={styles.developerCard}>
-                        <h2 style={styles.developerName}>{developer.name}</h2>
-                        <p style={styles.developerId}>ID: {developer.id}</p>
+                    <div key={index} className="developer-card">
+                        <h2 className="developer-name">{developer.name}</h2>
+                        <p className="developer-id">ID: {developer.id}</p>
                     </div>
                 ))}
             </div>
-            <div style={styles.socialMedia}>
-                <a href="https://www.facebook.com/zawad.almahi.9?mibextid=ZbWKwL" target="_blank" rel="noopener noreferrer" style={styles.icon}>
+
+            <div className="social-media">
+                <a href="https://www.facebook.com/zawad.almahi.9?mibextid=ZbWKwL" target="_blank" rel="noopener noreferrer" className="icon">
                     <FaFacebook size={40} />
                 </a>
-                <a href="https://www.instagram.com/zawad_al_mahi?igsh=b2x4d2o4OWNkMHA0" target="_blank" rel="noopener noreferrer" style={styles.icon}>
+                <a href="https://www.instagram.com/zawad_al_mahi?igsh=b2x4d2o4OWNkMHA0" target="_blank" rel="noopener noreferrer" className="icon">
                     <FaInstagram size={40} />
                 </a>
-                <a href="https://maps.app.goo.gl/M7RJ5fLAow3uVTtp9" target="_blank" rel="noopener noreferrer" style={styles.icon}>
+                <a href="https://maps.app.goo.gl/M7RJ5fLAow3uVTtp9" target="_blank" rel="noopener noreferrer" className="icon">
                     <FaMapMarkerAlt size={40} />
                 </a>
             </div>
         </div>
     );
-};
-
-const styles = {
-    container: {
-        padding: '40px 20px',
-        textAlign: 'center',
-        maxWidth: '900px',
-        margin: '0 auto',
-        fontFamily: 'Helvetica, Arial, sans-serif',
-        background: 'linear-gradient(135deg, #f8f9fa, #e9ecef)',
-        borderRadius: '8px',
-        boxShadow: '0 4px 10px rgba(0, 0, 0, 0.1)',
-    },
-    headerContainer: {
-        backgroundImage: 'url("https://images.pexels.com/photos/592077/pexels-photo-592077.jpeg?cs=srgb&dl=pexels-katja-79053-592077.jpg&fm=jpg")',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        padding: '40px 20px',
-        borderRadius: '8px',
-        marginBottom: '20px',
-    },
-    header: {
-        fontSize: '3em',
-        marginBottom: '20px',
-        color: '#2c3e50',
-        fontWeight: 'bold',
-        fontFamily: 'Georgia, serif',
-        backgroundColor: 'rgba(255, 255, 255, 0.8)',
-        display: 'inline-block',
-        padding: '10px 20px',
-        borderRadius: '8px',
-    },
-    intro: {
-        fontSize: '1.4em',
-        marginBottom: '40px',
-        color: '#666',
-    },
-    developerList: {
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-    },
-    developerCard: {
-        backgroundColor: '#fff',
-        border: '1px solid #ddd',
-        borderRadius: '10px',
-        padding: '20px',
-        marginBottom: '20px',
-        width: '80%',
-        maxWidth: '500px',
-        boxShadow: '0 6px 12px rgba(0, 0, 0, 0.1)',
-        transition: 'transform 0.2s',
-    },
-    developerName: {
-        fontSize: '1.8em',
-        margin: '0 0 10px 0',
-        color: '#007BFF',
-        fontStyle: 'italic',
-    },
-    developerId: {
-        fontSize: '1.2em',
-        color: '#888',
-    },
-    socialMedia: {
-        marginTop: '40px',
-        display: 'flex',
-        justifyContent: 'center',
-        gap: '20px',
-    },
-    icon: {
-        color: '#2c3e50',
-        transition: 'color 0.3s',
-    },
-    iconHover: {
-        color: '#007BFF',
-    },
 };
 
 export default About;
