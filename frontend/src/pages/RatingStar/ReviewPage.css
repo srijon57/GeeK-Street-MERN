@@ -1,11 +1,10 @@
-/* Global Reset */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Review Page Container */
 .review-page-container {
     max-width: 70%;
     margin: 20px auto;
@@ -15,7 +14,6 @@
     border-radius: 8px;
 }
 
-/* Review Form Container */
 .review-form-container {
     margin-bottom: 40px;
     background: linear-gradient(to right, #2c3e50, #34495e);
@@ -23,15 +21,16 @@
     border-radius: 8px;
 }
 
-/* Form Heading */
 .review-form-heading {
     font-size: 24px;
     margin-bottom: 20px;
     text-align: center;
     color: #1abc9c;
+    border-bottom: 2px solid #1abc9c; 
+    display: center; 
+    padding-bottom: 5px; 
 }
 
-/* Review Form */
 .review-form {
     display: flex;
     flex-direction: column;
@@ -41,14 +40,13 @@
     margin-bottom: 15px;
 }
 
-/* Form Labels */
 .review-form-container .form-label {
     font-size: 16px;
     margin-bottom: 5px;
     color: #ecf0f1;
 }
 
-/* Form Inputs and Textareas */
+
 .review-form-container .form-input, .review-form-container .form-textarea {
     padding: 10px;
     border: 1px solid #bdc3c7;
@@ -78,12 +76,12 @@
     align-content: center;
 }
 
-/* Rating Component */
+
 .review-form-container .rating-star-component {
     margin-top: 10px;
 }
 
-/* Submit Button */
+
 .review-form-container .submit-button {
     padding: 10px 20px;
     background-color: #1abc9c;
@@ -100,22 +98,25 @@
     background-color: #16a085;
 }
 
-/* Reviews Section Heading */
+
 .reviews-heading {
     font-size: 24px;
     margin-bottom: 20px;
     text-align: center;
-    color: #1abc9c;
+    color:whitesmoke;
+    border-bottom: 2px solid whitesmoke; 
+    display: center; 
+    padding-bottom: 5px;
 }
 
-/* Reviews List */
+
 .reviews-list {
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
 
-/* Review Item */
+
 .review-item {
     padding: 20px;
     width: 100%;
@@ -125,41 +126,41 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Review Product Name */
+
 .review-product-name {
     font-size: 18px;
     margin-bottom: 10px;
     color: #1abc9c;
 }
 
-/* Review Text */
+
 .review-text {
     font-size: 16px;
     margin-bottom: 10px;
     color: #ecf0f1;
 }
 
-/* Review Rating */
+
 .review-rating {
     font-size: 16px;
     margin-bottom: 10px;
     color: #f1c40f;
 }
 
-/* Review Date */
+
 .review-date {
     font-size: 14px;
     color: #95a5a6;
 }
 
-/* Review Actions */
+
 .review-actions {
     display: flex;
     justify-content: flex-end;
     gap: 10px;
 }
 
-/* Delete Button */
+
 .review-item .delete-button {
     margin: auto;
     background-color: #e74c3c; 
@@ -177,7 +178,6 @@
     background-color: #e63f2c; 
 }
 
-/* Responsive Styles */
 @media (max-width: 600px) {
     .review-page-container {
         padding: 10px;

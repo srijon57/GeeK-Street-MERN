@@ -52,7 +52,7 @@ router.delete('/:id', auth, async (req, res) => {
         }
 
         if (req.user.role !== 'admin' && review.user._id.toString() !== userId.toString()) {
-            return res.status(403).json({ message: 'Access denied' });
+            return res.status(403).json({ message: 'Only the author of this review can delete it.' });
         }
 
         await Review.findByIdAndDelete(id); 
