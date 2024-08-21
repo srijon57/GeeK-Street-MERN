@@ -49,7 +49,9 @@ text-decoration: none;
 .hero-content .btn:hover {
 background-color: #319795;
 }
-
+.max-w-md{
+  color:black;
+}
 .featured-products-container {
   text-align: center;
   margin-bottom: 2rem;
