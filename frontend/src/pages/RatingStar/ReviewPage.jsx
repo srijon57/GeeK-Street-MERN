@@ -26,7 +26,9 @@ const ReviewPage = () => {
                 },
                 {
                     headers: {
-                        Authorization: `Bearer ${localStorage.getItem("token")}`,
+                        Authorization: `Bearer ${localStorage.getItem(
+                            "token"
+                        )}`,
                     },
                 }
             );
@@ -34,10 +36,14 @@ const ReviewPage = () => {
             setProductName("");
             setReviewText("");
             setStarRating(null);
-            enqueueSnackbar("Review submitted successfully!", { variant: "success" });
+            enqueueSnackbar("Review submitted successfully!", {
+                variant: "success",
+            });
         } catch (error) {
             enqueueSnackbar(
-                error.response ? error.response.data.message : "Error submitting review",
+                error.response
+                    ? error.response.data.message
+                    : "Error submitting review",
                 { variant: "error" }
             );
         }
@@ -45,12 +51,16 @@ const ReviewPage = () => {
 
     const fetchReviews = async () => {
         try {
-            const response = await axios.get(`${import.meta.env.VITE_BASEURL}/reviews`);
+            const response = await axios.get(
+                `${import.meta.env.VITE_BASEURL}/reviews`
+            );
             setReviews(response.data);
             setIsAdmin(true);
         } catch (error) {
             enqueueSnackbar(
-                error.response ? error.response.data.message : "Error fetching reviews",
+                error.response
+                    ? error.response.data.message
+                    : "Error fetching reviews",
                 { variant: "error" }
             );
         }
@@ -58,13 +68,20 @@ const ReviewPage = () => {
 
     const handleDelete = async (reviewId) => {
         try {
-            await axios.delete(`${import.meta.env.VITE_BASEURL}/reviews/${reviewId}`, {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem("token")}`,
-                },
-            });
+            await axios.delete(
+                `${import.meta.env.VITE_BASEURL}/reviews/${reviewId}`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem(
+                            "token"
+                        )}`,
+                    },
+                }
+            );
             fetchReviews();
-            enqueueSnackbar("Review deleted successfully!", { variant: "success" });
+            enqueueSnackbar("Review deleted successfully!", {
+                variant: "success",
+            });
         } catch (error) {
             let errorMessage = "Only author of this review can delete";
             if (error.response) {
@@ -112,7 +129,9 @@ const ReviewPage = () => {
                                 className="rating-star-component"
                             />
                         </div>
-                        <button type="submit" className="submit-button">Submit Review</button>
+                        <button type="submit" className="submit-button">
+                            Submit Review
+                        </button>
                     </form>
                 </div>
             )}
@@ -121,32 +140,44 @@ const ReviewPage = () => {
                 {reviews.map((review) =>
                     review ? (
                         <div key={review._id} className="review-item">
-                            <h3 className="review-product-name">{review.productName}</h3>
+                            <h3 className="review-product-name">
+                                {review.productName}
+                            </h3>
                             <p className="review-text">{review.reviewText}</p>
-                            <p className="review-rating">Rating: {review.starRating} Stars</p>
-                            <p className="review-date">
-                                {new Date(review.createdAt).toLocaleDateString()}
+                            <p className="review-rating">
+                                Rating: {review.starRating} Stars
                             </p>
-                            {(isAdmin || review.user._id === user.id) && (
-                                <div className="review-actions">
-                                    {isAdmin && (
-                                        <button
-                                            onClick={() => handleDelete(review._id)}
-                                            className="delete-button"
-                                        >
-                                            Delete
-                                        </button>
-                                    )}
-                                    {!isAdmin && review.user._id === user.id && (
-                                        <button
-                                            onClick={() => handleDelete(review._id)}
-                                            className="delete-button"
-                                        >
-                                            Delete
-                                        </button>
-                                    )}
-                                </div>
-                            )}
+                            <p className="review-date">
+                                {new Date(
+                                    review.createdAt
+                                ).toLocaleDateString()}
+                            </p>
+                            {user.isLoggedIn &&
+                                (isAdmin || review.user._id === user.id) && (
+                                    <div className="review-actions">
+                                        {isAdmin && (
+                                            <button
+                                                onClick={() =>
+                                                    handleDelete(review._id)
+                                                }
+                                                className="delete-button"
+                                            >
+                                                Delete
+                                            </button>
+                                        )}
+                                        {!isAdmin &&
+                                            review.user._id === user.id && (
+                                                <button
+                                                    onClick={() =>
+                                                        handleDelete(review._id)
+                                                    }
+                                                    className="delete-button"
+                                                >
+                                                    Delete
+                                                </button>
+                                            )}
+                                    </div>
+                                )}
                         </div>
                     ) : null
                 )}
