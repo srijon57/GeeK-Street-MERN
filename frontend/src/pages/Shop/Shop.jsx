@@ -10,7 +10,8 @@ const Shop = () => {
     const [category, setCategory] = useState("");
     const [product, setProduct] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
-    const [loading, setLoading] = useState(true); 
+    const [sortOrder, setSortOrder] = useState("");
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -21,7 +22,7 @@ const Shop = () => {
             } catch (error) {
                 console.log(error);
             } finally {
-                setLoading(false); 
+                setLoading(false);
             }
         };
 
@@ -46,16 +47,27 @@ const Shop = () => {
             );
         }
 
+        // Sorting logic
+        if (sortOrder === "priceHighToLow") {
+            filtered.sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
+        } else if (sortOrder === "priceLowToHigh") {
+            filtered.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
+        } else if (sortOrder === "alphabeticAsc") {
+            filtered.sort((a, b) => a.name.localeCompare(b.name));
+        } else if (sortOrder === "alphabeticDesc") {
+            filtered.sort((a, b) => b.name.localeCompare(a.name));
+        }
+
         setFilteredProducts(filtered);
     };
 
     useEffect(() => {
         filterProducts();
-    }, [product, category, searchTerm]);
+    }, [product, category, searchTerm, sortOrder]);
 
     return (
         <div className="shop-container">
-            {loading && <Spinner />} 
+            {loading && <Spinner />}
 
             {!loading && filteredProducts.length === 0 && (
                 <h3 style={{ textAlign: "center", margin: "0 auto", color: "white" }}>
@@ -84,6 +96,23 @@ const Shop = () => {
 
                 <div className="form-control">
                     <Search onSearch={setSearchTerm} />
+                </div>
+
+                <div className="form-control">
+                    <label className="label">
+                        <span className="label-text">Sort By</span>
+                    </label>
+                    <select
+                        value={sortOrder}
+                        onChange={(e) => setSortOrder(e.target.value)}
+                        className="select select-bordered"
+                    >
+                        <option value="">Select</option>
+                        <option value="priceHighToLow">Price High to Low</option>
+                        <option value="priceLowToHigh">Price Low to High</option>
+                        <option value="alphabeticAsc">Alphabetic A-Z</option>
+                        <option value="alphabeticDesc">Alphabetic Z-A</option>
+                    </select>
                 </div>
             </div>
 

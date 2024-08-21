@@ -2,18 +2,18 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    
 }
+
 .shop-container {
     padding: 1rem;
     max-width: 1250px;
     margin: 4rem auto 0 auto;
-    
 }
 
 .filters {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
     margin-bottom: 1.5rem;
     color: white;
 }
@@ -21,6 +21,7 @@
 .form-control {
     display: flex;
     flex-direction: column;
+    margin-right: 1rem; /* Adds space between form controls */
 }
 
 .label {
@@ -43,4 +44,16 @@
 
 .select-bordered {
     border: 1px solid #505254;
+}
+
+/* Responsive design adjustments */
+@media (max-width: 768px) {
+    .filters {
+        flex-direction: column;
+    }
+
+    .form-control {
+        margin-right: 0;
+        margin-bottom: 1rem;
+    }
 }
