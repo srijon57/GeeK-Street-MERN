@@ -64,3 +64,10 @@
         font-size: 18px;
     }
 }
+/* Light theme */
+html[data-theme="light"] {
+    .hero-content {
+        background: linear-gradient(to right,#3FA5FF, #A9D7FF); 
+        /* background: radial-gradient(circle,  #213A5B, #3E6DAB);  */
+    }
+}

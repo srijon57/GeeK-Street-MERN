@@ -21,6 +21,7 @@ import PaymentPage from "./pages/PaymentPage/PaymentPage.jsx";
 import { AuthContext } from "./context/AuthContext.jsx";
 import News from "./pages/News/News.jsx";
 import ReviewPage from "./pages/RatingStar/ReviewPage.jsx";
+import ThemeProvider from "./components/Theme/Theme.jsx";
 
 function App() {
     const { user } = useContext(AuthContext);
@@ -37,6 +38,7 @@ function App() {
 
     return (
         <>
+            <ThemeProvider>
             {renderNavbar()}
             <Routes>
                 <Route path="/" element={<Homepage />} />
@@ -59,6 +61,7 @@ function App() {
                 />
             </Routes>
             <Footer />
+            </ThemeProvider>
         </>
     );
 }
