@@ -147,6 +147,9 @@ const ReviewPage = () => {
                             <p className="review-rating">
                                 Rating: {review.starRating} Stars
                             </p>
+                            <p className="review-user-email">
+                                User: {review.user.email} 
+                            </p>
                             <p className="review-date">
                                 {new Date(
                                     review.createdAt

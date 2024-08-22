@@ -1,10 +1,5 @@
 import React from "react";
 import "./footer_style.css";
-import {
-    FaFacebookF,
-    FaInstagram,
-} from "react-icons/fa";
-import { HiLocationMarker } from "react-icons/hi";
 
 const Footer = () => {
     return (
@@ -60,6 +55,12 @@ const Footer = () => {
                         <li>
                             <a href="/about">About Us</a>
                         </li>
+                        <li>
+                            <a href="/review">Review</a>
+                        </li>
+                        <li>
+                            <a href="/report">Send Us a report</a>
+                        </li>
                     </ul>
                 </div>
                 <div className="footer-col">
@@ -81,17 +82,17 @@ const Footer = () => {
                     <ul className="footer-social-icon">
                         <li>
                             <a href="https://www.facebook.com/zawad.almahi.9?mibextid=ZbWKwL">
-                                <FaFacebookF />
+                                Facebook
                             </a>
                         </li>
                         <li>
                             <a href="https://maps.app.goo.gl/M7RJ5fLAow3uVTtp9">
-                                <HiLocationMarker />
+                                Google-Maps
                             </a>
                         </li>
                         <li>
                             <a href="https://www.instagram.com/zawad_al_mahi?igsh=b2x4d2o4OWNkMHA0">
-                                <FaInstagram />
+                                Instagram
                             </a>
                         </li>
                     </ul>

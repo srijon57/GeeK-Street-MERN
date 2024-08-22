@@ -30,7 +30,10 @@ router.post('/', auth, async (req, res) => {
 // Get all reviews
 router.get('/', async (req, res) => {
     try {
-        const reviews = await Review.find().populate('user').sort({ createdAt: -1 });
+        const reviews = await Review.find().populate({
+            path: 'user',
+            select: 'email'  
+        }).sort({ createdAt: -1 });
         res.status(200).json(reviews);
     } catch (error) {
         console.error('Error fetching reviews:', error);

@@ -49,9 +49,9 @@ const Shop = () => {
 
         // Sorting logic
         if (sortOrder === "priceHighToLow") {
-            filtered.sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
+            filtered.sort((a, b) => parseFloat(b.priceInCents) - parseFloat(a.priceInCents));
         } else if (sortOrder === "priceLowToHigh") {
-            filtered.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
+            filtered.sort((a, b) => parseFloat(a.priceInCents) - parseFloat(b.priceInCents));
         } else if (sortOrder === "alphabeticAsc") {
             filtered.sort((a, b) => a.name.localeCompare(b.name));
         } else if (sortOrder === "alphabeticDesc") {
@@ -95,6 +95,9 @@ const Shop = () => {
                 </div>
 
                 <div className="form-control">
+                <label className="label">
+                        <span className="label-text">Search</span>
+                    </label>
                     <Search onSearch={setSearchTerm} />
                 </div>
 
