@@ -1,3 +1,9 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* align-items: center; */
+}
 .about-container {
     padding: 20px 10px;
     text-align: center;
