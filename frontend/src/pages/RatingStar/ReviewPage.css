@@ -38,6 +38,7 @@
 
 .review-form-container .form-group {
     margin-bottom: 15px;
+    width: 100%;
 }
 
 .review-form-container .form-label {
@@ -60,8 +61,8 @@
 }
 
 .review-form-container .form-input {
-    height: 40px;
-    width: 100%;
+    height: 50px;
+    width: 50%;
     align-items: center;
     align-self: center;
     align-content: center;
@@ -69,8 +70,8 @@
 
 .review-form-container .form-textarea {
     height: 100px;
-    width: 100%;
-    resize: vertical;
+    width: 90%;
+    /* resize:vertical; */
     align-items: center;
     align-self: center;
     align-content: center;
@@ -176,6 +177,11 @@
 
 .review-item .delete-button:hover {
     background-color: #e63f2c; 
+}
+.review-user-email {
+    font-style: italic;
+    color:cadetblue;
+    margin-bottom: 0.5rem;
 }
 
 @media (max-width: 600px) {

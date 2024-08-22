@@ -21,8 +21,12 @@
 .footer-social-icon {
     position: relative;
     display: flex;
+    flex-direction: column;
     justify-content: flex-start; 
-    margin: 10px 0;
+    right: 0;
+    left: 0;
+    margin: auto;
+    margin-right: 55%;
     flex-wrap: wrap;
     padding-left: 10px; 
 }

@@ -2,37 +2,38 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    
 }
+
 .shop-container {
     padding: 1rem;
     max-width: 1250px;
     margin: 4rem auto 0 auto;
-    
 }
 
-.filters {
+.shop-container .filters {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
     margin-bottom: 1.5rem;
     color: white;
 }
 
-.form-control {
+.shop-container .form-control {
     display: flex;
     flex-direction: column;
+    margin-right: 1rem; 
 }
 
-.label {
+.shop-container .label {
     margin-bottom: 0.5rem;
 }
 
-.label-text {
+.shop-container .label-text {
     font-size: 1rem;
     font-weight: 600;
 }
 
-.select {
+.shop-container .select {
     width: 100%;
     max-width: 20rem;
     padding: 0.5rem;
@@ -41,6 +42,18 @@
     background-color: #ffffff;
 }
 
-.select-bordered {
+.shop-container .select-bordered {
     border: 1px solid #505254;
+}
+
+
+@media (max-width: 768px) {
+    .filters {
+        flex-direction: column;
+    }
+
+    .form-control {
+        margin-right: 0;
+        margin-bottom: 1rem;
+    }
 }
