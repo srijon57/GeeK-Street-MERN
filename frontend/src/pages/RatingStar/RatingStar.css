@@ -1,13 +1,19 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 .rating-star-container {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
 }
 
 .rating-star-label {
     cursor: pointer;
-    margin: 0 2px;
+    margin: 0 3px; 
+    position: relative;
 }
 
 .rating-star-input {
@@ -15,32 +21,38 @@
 }
 
 .rating-star-icon {
-    transition: color 0.3s ease;
+    transition: color 0.3s ease, transform 0.3s ease;
+    transform: scale(1);
+}
+
+.rating-star-icon:hover {
+    color: #f7c04a;
+    transform: scale(1.2);
 }
 
 .rating-star-text {
-    margin-top: 10px;
-    font-size: 16px;
-    color: #333;
-}
-.review-page {
-    padding: 20px;
+    margin-left: 8px;
+    font-size: 14px; 
+    color: #f7c04a;
+    font-weight: 600;
 }
 
-.review-page form {
-    margin-bottom: 20px;
-}
+@media (max-width: 600px) {
+    .rating-star-container {
+        /* flex-direction: column; */
+        align-items: flex-start;
+    }
 
-.review-page form div {
-    margin-bottom: 15px;
-}
+    .rating-star-label {
+        margin: 0 2px;
+    }
 
-.review-page .reviews-list {
-    margin-top: 20px;
-}
+    .rating-star-icon {
+        font-size: 30px; 
+    }
 
-.review-item {
-    border: 1px solid #ccc;
-    padding: 10px;
-    margin-bottom: 10px;
+    .rating-star-text {
+        font-size: 12px; 
+        margin-left: 5px; 
+    }
 }

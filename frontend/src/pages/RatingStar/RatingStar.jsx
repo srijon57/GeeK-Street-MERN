@@ -10,25 +10,25 @@ const RatingStar = ({ noOfStars, rating, onChange }) => {
     };
 
     return (
-        <div className="rating-star">
+        <div className="rating-star-container">
             {[...Array(noOfStars)].map((star, index) => {
                 const currentRating = index + 1;
                 return (
-                    <label key={index}>
+                    <label key={index} className="rating-star-label">
                         <input
                             type="radio"
                             name="rating"
                             value={currentRating}
                             onClick={() => handleClick(currentRating)}
-                            style={{ display: 'none' }}
+                            className="rating-star-input"
                         />
                         <FaStar
-                            className="star"
-                            size={50}
+                            className="rating-star-icon"
+                            size={40}
                             color={
                                 currentRating <= (hover || rating)
-                                    ? '#ffc107'
-                                    : '#e4e5e9'
+                                    ? '#f7c04a'
+                                    : '#d0d0d0'
                             }
                             onMouseEnter={() => setHover(currentRating)}
                             onMouseLeave={() => setHover(null)}
@@ -36,6 +36,9 @@ const RatingStar = ({ noOfStars, rating, onChange }) => {
                     </label>
                 );
             })}
+            <div className="rating-star-text">
+                {rating ? `Rating: ${rating}` : 'Rate here'}
+            </div>
         </div>
     );
 };

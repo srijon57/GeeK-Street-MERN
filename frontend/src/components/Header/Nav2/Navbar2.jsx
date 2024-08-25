@@ -1,17 +1,18 @@
 import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
-import { MdMenu, MdClose } from "react-icons/md";
+import { MdMenu, MdClose, MdWbSunny, MdNightsStay } from "react-icons/md";
 import "./Navbar_style.css";
-import CartIcon from '../../Cart/CartIcon';
-import { AuthContext } from '../../../context/AuthContext.jsx'; 
-
+import CartIcon from "../../Cart/CartIcon";
+import { AuthContext } from "../../../context/AuthContext.jsx";
+import { ThemeContext } from "../../Theme/Theme";
 const Navbar2 = () => {
     const [isOpen, setIsOpen] = useState(false);
     const { logout } = useContext(AuthContext);
-
+    const { theme, toggleTheme } = useContext(ThemeContext);
     const navItems = [
         { name: "Home", href: "/" },
         { name: "Shop", href: "/Shop" },
+        { name: "Review", href: "/review" },
         { name: "About", href: "/About" },
     ];
 
@@ -35,11 +36,21 @@ const Navbar2 = () => {
             </ul>
             <div className="Right">
                 <ul className="Righter">
+                    <li className="nav-item theme-toggle" onClick={toggleTheme}>
+                        {theme === "dark" ? <MdWbSunny /> : <MdNightsStay />}
+                    </li>
                     <div>
-                        <Link to="/cart"><CartIcon /></Link>
+                        <Link to="/cart">
+                            <CartIcon />
+                        </Link>
                     </div>
                     <div>
-                        <button onClick={handleLogout} className="logout-button">Logout</button>
+                        <button
+                            onClick={handleLogout}
+                            className="logout-button"
+                        >
+                            Logout
+                        </button>
                     </div>
                     <div id="ham" className="hamburger" onClick={toggleMenu}>
                         {isOpen ? <MdClose /> : <MdMenu />}

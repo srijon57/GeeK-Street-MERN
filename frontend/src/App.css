@@ -4,7 +4,14 @@
     box-sizing: border-box;
     /* align-items: center; */
   }
-  
-  body {
-    background-color: #213a5b;
-  }
+
+/* Dark theme (default) */
+body {
+  background-color: #213a5b;
+}
+
+/* Light theme */
+html[data-theme="light"] body {
+  background-color:#F0F8FF;
+
+}

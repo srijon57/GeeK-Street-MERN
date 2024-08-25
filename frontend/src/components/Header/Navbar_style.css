@@ -179,6 +179,17 @@ nav {
 .dropdown:hover .dropdown-content {
     display: block;
 }
+.theme-toggle {
+    cursor: pointer;
+    font-size: 1.5rem;
+    padding: 0.5rem;
+    margin-right: 1rem;
+}
+
+.theme-toggle:hover {
+    color: cyan; 
+}
+
 
 @media (max-width: 768px) {
     nav {
@@ -228,5 +239,12 @@ nav {
 
     .search-bar.active {
         width: 200px;
+    }
+}
+
+/* Light theme */
+html[data-theme="light"] {
+    .nav {
+        background: #005EB1;
     }
 }
