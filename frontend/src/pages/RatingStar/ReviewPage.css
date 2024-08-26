@@ -221,3 +221,106 @@
         width: 100%;
     }
 }
+/* Light theme */
+html[data-theme="light"]{
+
+    .review-page-container {
+        
+        background: linear-gradient(to bottom, #1e9ec9, #125d9a);
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+       
+    }
+    
+    .review-form-container {
+       
+        background: linear-gradient(to right, #2c3e50, #34495e);
+       
+   
+    }
+    .review-form-heading {
+       
+        color: #1abc9c;
+        border-bottom: 2px solid #1abc9c; 
+        
+    }
+    .review-form-container .form-label {
+
+        color: #ecf0f1;
+    }
+    .review-form-container .form-input, .review-form-container .form-textarea {
+        
+        border: 1px solid #bdc3c7;
+        background-color: #34495e;
+        color: #ecf0f1;
+        
+    }
+    .review-form-container .submit-button {
+       
+        background-color: #1abc9c;
+        color: #fff;
+        
+    }
+    
+    .review-form-container .submit-button:hover {
+        background-color: #16a085;
+    }
+    
+    
+    .reviews-heading {
+        
+        color:whitesmoke;
+        border-bottom: 2px solid whitesmoke; 
+        
+    }
+    .review-item {
+        
+        background: linear-gradient(to bottom, #0871ae, #253c43);
+        border: 1px solid #7f8c8d;
+        
+        box-shadow: 0 2px 4px rgba(67, 69, 70, 0.1);
+    }
+    
+    
+    .review-product-name {
+        
+        color: #1abc9c;
+    }
+    
+    
+    .review-text {
+        
+        color: #ecf0f1;
+    }
+    
+    
+    .review-rating {
+        
+        color: #f1c40f;
+    }
+    
+    
+    .review-date {
+        
+        color: #95a5a6;
+    }
+
+
+    .review-item .delete-button {
+    
+    background-color: #e74c3c; 
+   
+    color: white;
+     
+}
+
+.review-item .delete-button:hover {
+    background-color: #e63f2c; 
+}
+.review-user-email {
+   
+    color:cadetblue;
+   
+}
+
+  
+  }
