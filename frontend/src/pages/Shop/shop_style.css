@@ -57,3 +57,25 @@
         margin-bottom: 1rem;
     }
 }
+
+
+/* Light theme */
+html[data-theme="light"] {
+
+    .shop-container .filters {
+        
+        color: black;
+    }
+    .shop-container .select {
+        
+        border: 1px solid #0d0d0d;
+        
+        background-color: #e2ebed;
+    }
+    .shop-container .select-bordered {
+        border: 1px solid #626969;
+    }
+    
+    
+  
+  }

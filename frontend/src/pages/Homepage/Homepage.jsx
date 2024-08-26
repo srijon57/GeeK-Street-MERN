@@ -43,7 +43,7 @@ export const Homepage = () => {
                         </p>
                         <h3>
                             Please{" "}
-                            <span style={{ color: "rgb(80, 255, 198)" }}>
+                            <span className="sign-in-text" >
                                 Sign-In
                             </span>{" "}
                             to buy products

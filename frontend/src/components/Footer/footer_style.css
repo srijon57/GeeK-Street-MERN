@@ -4,7 +4,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
 }
 
 .footer-container {
@@ -22,13 +22,13 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start; 
+    justify-content: flex-start;
     right: 0;
     left: 0;
     margin: auto;
     margin-right: 55%;
     flex-wrap: wrap;
-    padding-left: 10px; 
+    padding-left: 10px;
 }
 
 .footer-social-icon li,
@@ -46,10 +46,10 @@
 
 .footer-social-icon li a:hover {
     transform: translateY(-10px);
-    
 }
 
-.footer p, .footer a {
+.footer p,
+.footer a {
     color: #17cf97;
     text-align: center;
     font-size: 1.1em;
@@ -108,9 +108,9 @@
     text-decoration: none;
     color: #17cf97;
 }
-.footer-container ul li a:hover{
-    color: cyan; 
-    text-shadow: 0 0 8px cyan; 
+.footer-container ul li a:hover {
+    color: cyan;
+    text-shadow: 0 0 8px cyan;
 }
 
 .news-link a {
@@ -119,23 +119,23 @@
     font-size: 1.1em;
     display: block;
     margin: 20px 0;
-    position: relative; 
+    position: relative;
 }
 
 .news-link a::after {
     content: "";
     position: absolute;
-    bottom: -5px; 
+    bottom: -5px;
     left: 0;
     width: 0;
     height: 2px;
-    background: cyan; 
+    background: cyan;
     transition: width 0.3s ease;
 }
 
 .news-link a:hover {
-    color: cyan; 
-    text-shadow: 0 0 8px cyan; 
+    color: cyan;
+    text-shadow: 0 0 8px cyan;
 }
 
 .news-link a:hover::after {
@@ -170,7 +170,7 @@
     left: 10px;
     animation: moving 2s linear infinite;
 }
-.footer-copyright{
+.footer-copyright {
     color: #17cf97;
     text-align: center;
 }
@@ -310,5 +310,73 @@
 
     .footer-underline {
         width: 40%;
+    }
+}
+
+
+html[data-theme="light"] {
+    .footer-container {
+        background: #005EB1;
+    }
+
+    .footer-social-icon li a {
+        color: lightskyblue;
+    }
+
+    .footer p,
+    .footer a {
+        color: lightskyblue;
+    }
+
+    .footer a:hover {
+        color: #000000;
+    }
+
+
+    .footer-col {
+        color: lightskyblue;
+    }
+
+    .footer-logo {
+        color: lightskyblue;
+    }
+
+    .footer-container ul li a {
+        color: lightskyblue;
+    }
+    .footer-container ul li a:hover {
+        color:cadetblue;
+        text-shadow: 0 0 8px cadetblue;
+    }
+
+    .news-link a {
+        color: lightskyblue;
+    }
+
+    .news-link a::after {
+        background: lightskyblue;
+    }
+
+    .news-link a:hover {
+        color: cadetblue;
+        text-shadow: 0 0 8px cadetblue;
+    }
+
+    .footer-container hr {
+        border-bottom: 3px solid lightskyblue;
+    }
+
+    .footer-underline {
+        background: #000000;
+    }
+
+    .footer-underline span {
+        background: lightskyblue;
+    }
+    .footer-copyright {
+        color:lightskyblue;
+    }
+    .footer-wave {
+        filter: brightness(0) saturate(100%) invert(17%) sepia(80%) saturate(3858%) hue-rotate(196deg) brightness(94%) contrast(102%);
     }
 }
