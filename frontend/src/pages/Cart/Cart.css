@@ -166,3 +166,55 @@
         font-size: 1.25rem;
     }
 }
+
+/* Light theme */
+html[data-theme="light"]  {
+    .cart-title {
+        color: rgb(11, 104, 203);
+        
+    }
+    .cart-item {
+        background-color: whitesmoke;
+        
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }  
+    .cart-empty-message {
+        
+        color: #125988;
+        
+        background-color: #a7c9f3;
+        
+
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }  
+    .cart-item-price {
+        
+        color:rgb(3, 46, 139);
+    }
+    .cart-remove-button {
+        
+
+        background-color: #3b94be;
+        
+        color: white;
+    }
+    .cart-total-price {
+        color: rgb(7, 73, 131);
+        
+    }
+    
+    .cart-checkout-button {
+        background-color: #3182ce;
+        color: white;
+        
+        
+    }
+    
+    .cart-checkout-button:hover {
+        background-color: #2c5282;
+    }
+    
+    
+   
+  
+  }
