@@ -85,3 +85,21 @@
     font-size: 18px;
     margin: 20px;
 }
+html[data-theme="light"] {
+    .news-container h1 {
+        color: #2c3e50; 
+    }
+    .news-title {
+        color: lightblue; 
+    }
+    .news-description{
+        color: #ecf0f1; 
+    }
+    .news-link {
+        color: red; 
+    }
+    .news-item {
+        background: linear-gradient(to right, #34495e, #2c3e50); /* Dark Blue to Slate Blue */
+    }
+}
+

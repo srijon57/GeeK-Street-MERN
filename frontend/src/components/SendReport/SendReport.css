@@ -1,4 +1,3 @@
-
 * {
   margin: 0;
   padding: 0;
@@ -6,7 +5,7 @@
 }
 
 .contact {
-  max-width: 600px;
+  max-width: 80%;
   margin: 20px auto;
   padding: 20px;
   background-color: #1e1e1e;
@@ -17,7 +16,7 @@
 .contact h2 {
   text-align: center;
   margin-bottom: 20px;
-  color: #ffffff;
+  color: aquamarine;
 }
 
 .contact form {
@@ -33,12 +32,15 @@
 .contact input,
 .contact textarea {
   width: 100%;
-  padding: 10px;
+  max-width: 100%; 
+  padding:15px 90px; 
   margin-top: 5px;
   border: 1px solid #444;
   border-radius: 4px;
   background-color: #333;
   color: #e0e0e0;
+  overflow:auto;
+  resize: none;
 }
 
 .contact input:focus,
@@ -48,17 +50,38 @@
 }
 
 .contact button {
-  padding: 10px;
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  border-radius: 4px;
+  --primary-color: #4CAF50;
+  --secondary-color: #388E3C;
+  --shadow-color: rgba(76, 175, 80, 0.4);
   cursor: pointer;
+  width: 184px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  font-size: 1.125em;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: #fff;
+  background: var(--primary-color);
+  border: 2px solid var(--secondary-color);
+  border-radius: 0.75rem;
+  box-shadow: 0 8px 0 var(--secondary-color);
+  transform: skew(-10deg);
+  transition: all 0.1s ease;
+  filter: drop-shadow(0 15px 20px var(--shadow-color));
   margin-top: 20px;
 }
 
 .contact button:hover {
   background-color: #45a049;
+}
+
+.contact button:active {
+  letter-spacing: 0px;
+  transform: skew(-10deg) translateY(8px);
+  box-shadow: 0 0 0 var(--shadow-color);
 }
 
 /* Mobile responsiveness */
@@ -73,17 +96,19 @@
 
   .contact input,
   .contact textarea {
-    padding: 8px;
+    padding: 10px; 
   }
 
   .contact button {
+    width: 100%;
+    height: 42px;
+    font-size: 1em;
+    letter-spacing: 1.5px;
     padding: 8px;
   }
 }
 
-
 html[data-theme="light"] {
-
   .contact {
     background-color: lightgrey;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -110,11 +135,12 @@ html[data-theme="light"] {
   }
 
   .contact button {
-    background-color:dodgerblue;
-    color: white;
+    --primary-color: #3484c5;
+  --secondary-color: #2e5e8b;
+  --shadow-color: midnightblue;
   }
 
   .contact button:hover {
-    background-color:midnightblue;
+    background-color: dodgerblue;
   }
 }

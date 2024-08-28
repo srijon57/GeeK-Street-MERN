@@ -58,6 +58,7 @@
     cursor: pointer;
     border-radius: 12px;
     z-index: 2;
+    cursor: url('../../../public/Pointer.svg'), pointer;
 }
 
 .product-image-container:hover .product-overlay {
@@ -134,6 +135,7 @@
     word-break: keep-all;
     z-index: 0;
     transition: background-color 0.3s, transform 0.2s;
+    cursor: url('../../../public/Pointer.svg'), pointer;
 }
 
 .product-btn-primary:before,

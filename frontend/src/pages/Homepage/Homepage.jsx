@@ -5,6 +5,7 @@ import axios from "axios";
 import ProductCard from "../../components/Product/ProductCard";
 import Spinner from "../../components/Spinner/Spinner";
 import { FaExchangeAlt, FaUndoAlt, FaHeadset } from "react-icons/fa";
+
 export const Homepage = () => {
     const [product, setProduct] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -26,6 +27,31 @@ export const Homepage = () => {
 
     return (
         <div>
+            {/* Bubble animation HTML */}
+            <div className="bubbles">
+                <div className="bubble"></div>
+                <div className="bubble"></div>
+                <div className="bubble"></div>
+                <div className="bubble"></div>
+                <div className="bubble"></div>
+                <div className="bubble"></div>
+                <div className="bubble"></div>
+                <div className="bubble"></div>
+                <div className="bubble"></div>
+                <div className="bubble"></div>
+                <div className="bubble"></div>
+                <div className="bubble"></div>
+                <div className="bubble"></div>
+                <div className="bubble"></div>
+                <div className="bubble"></div>
+                <div className="bubble"></div>
+                <div className="bubble"></div>
+                <div className="bubble"></div>
+                <div className="bubble"></div>
+                <div className="bubble"></div>
+                <div className="bubble"></div>
+            </div>
+
             <div>
                 <Hero />
             </div>
@@ -43,7 +69,7 @@ export const Homepage = () => {
                         </p>
                         <h3>
                             Please{" "}
-                            <span className="sign-in-text" >
+                            <span className="sign-in-text">
                                 Sign-In
                             </span>{" "}
                             to buy products
