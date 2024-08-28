@@ -12,6 +12,6 @@ body {
 
 /* Light theme */
 html[data-theme="light"] body {
-  background-color:#CCE7FF;
-
+  background-color:#A9D7FF;
+  /* background-color:#CCE7FF; */
 }

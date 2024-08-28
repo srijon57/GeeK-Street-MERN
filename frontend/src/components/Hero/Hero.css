@@ -2,7 +2,6 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    /* align-items: center;#213a5b; */
 }
 
 .hero-content {
@@ -14,6 +13,10 @@
     background: linear-gradient(to right, #213A5B, #366097); 
     /* background: radial-gradient(circle,  #213A5B, #3E6DAB);  */
 }
+.hero-content li{
+    list-style: none;
+}
+
 
 
 .hero-content .grid-container {
@@ -69,5 +72,12 @@ html[data-theme="light"] {
     .hero-content {
         background: linear-gradient(to right,#3FA5FF, #A9D7FF); 
         /* background: radial-gradient(circle,  #213A5B, #3E6DAB);  */
+    }
+    .hero-content .title {
+        color: black;
+    }
+    
+    .hero-content .description {
+        color: black;
     }
 }

@@ -38,7 +38,7 @@ const ProductSingleCard = ({ product }) => {
         </figure>
         <div className="product-card-body">
           <h2 className="product-card-title">{product.name}</h2>
-          <div className="product-price">BDT {(product.priceInCents ).toFixed(2)}</div>
+          <div className="product-price">BDT {(product.priceInCents).toFixed(2)}</div>
           <div className="product-card-actions">
             {user.isLoggedIn && (
               <>

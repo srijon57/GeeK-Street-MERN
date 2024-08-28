@@ -1,4 +1,4 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -7,7 +7,7 @@
 .about-container {
     padding: 20px 10px;
     text-align: center;
-    max-width: 100%;
+    max-width: 90%;
     margin: 0 auto;
     font-family: Helvetica, Arial, sans-serif;
     background: linear-gradient(to top, #34495e, #ffffff);
@@ -16,7 +16,7 @@
 }
 
 .about-container .header-container {
-    background-image: url('https://images.pexels.com/photos/592077/pexels-photo-592077.jpeg?auto=compress&cs=tinysrgb&w=600');
+    background-image: url("https://images.pexels.com/photos/592077/pexels-photo-592077.jpeg?auto=compress&cs=tinysrgb&w=600");
     background-size: cover;
     background-position: center;
     padding: 30px 20px;
@@ -109,7 +109,7 @@
 .about-container .developer-name {
     font-size: 1.5em;
     margin: 0 0 10px 0;
-    color: #007BFF;
+    color: #007bff;
     font-style: italic;
 }
 
@@ -131,18 +131,17 @@
 }
 .about-container .developer-card:hover,
 .why-choose-us-box:hover {
-    box-shadow: 0 0 50px rgba(0, 123, 255, 0.5); 
-}
-
-.about-container .icon:hover {
-    color: #007BFF; 
     box-shadow: 0 0 50px rgba(0, 123, 255, 0.5);
 }
 
+.about-container .icon:hover {
+    color: #007bff;
+    box-shadow: 0 0 50px rgba(0, 123, 255, 0.5);
+}
 
 .why-choose-us-header:hover,
 .about-container .developer-name:hover {
-    text-shadow: 0 0 50px rgba(0, 123, 255, 0.5); 
+    text-shadow: 0 0 50px rgba(0, 123, 255, 0.5);
 }
 @media (min-width: 600px) {
     .about-container .content {
@@ -162,5 +161,68 @@
     .why-choose-us-container {
         flex-direction: row;
         gap: 10px;
+    }
+}
+
+html[data-theme="light"] {
+    .about-container {
+        background: linear-gradient(to top, #4682b4, #ffffff);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .about-container .header {
+        color: #4169e1;
+        background-color: rgba(255, 255, 255, 0.8);
+    }
+
+    .about-container .text-container {
+        text-align: left;
+    }
+
+    .why-choose-us-header {
+        color: #4169e1;
+    }
+
+    .why-choose-us-box {
+        background-color: #ffffffdc;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .about-container .developers-header {
+        color: #4169e1;
+    }
+
+    .about-container .developer-card {
+        background-color: #ffffffdc;
+        border: 1px solid #000000;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .about-container .developer-name {
+        color: #4682b4;
+    }
+
+    .about-container .developer-id {
+        font-size: 1em;
+        color: #888;
+    }
+
+    .about-container .icon {
+        color: white;
+    }
+
+    .about-container .developer-card:hover,
+    .why-choose-us-box:hover {
+        box-shadow: 0 0 50px khaki;;
+    }
+
+    .about-container .icon:hover {
+        color:khaki;
+        box-shadow: 0 0 50px rgba(70, 130, 180, 0.5);
+    }
+
+    .why-choose-us-header:hover,
+    .about-container .developer-name:hover {
+        text-shadow: 0 0 50px rgba(70, 130, 180, 0.5);
     }
 }

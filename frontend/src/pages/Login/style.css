@@ -8,7 +8,7 @@
 }
 
 .login-page {
-    background-image: url(4.jpg);
+    /* background-image: url(4.jpg); */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -175,7 +175,7 @@
 .toggle {
     background-color: #2d73a8;
     height: 100%;
-    background: linear-gradient(to right, #5c9ac0, #5c9ac0);
+    background: linear-gradient(to right, #5c9ac0, #5cb9c0);
     color: #fff;
     position: relative;
     left: -100%;
@@ -251,6 +251,7 @@
     color: #2d73a8;
     font-weight: 600;
     margin-bottom: 20px;
+    text-align: center;
 }
 
 .reset-password-page input {
@@ -432,8 +433,88 @@
 /* Light theme */
 html[data-theme="light"]{
     .login-page {
-        background-image:none;
-        background-color:lightblue;
+        background-image: none;
+        background-color: #87CEEB; 
     }
+    .login-page .container {
+        background-color: #fff;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+    }
+    
+    .login-page .container p {
+        color: black;
+    }
+    
+    .login-page .container a {
+        color: #00008B; 
+    }
+    
+    .login-page .container button {
+        background-color: #4682B4; 
+        color: black;
+        font-size: 12px;
+    }
+    
+    .login-page .container button.hidden {
+        border-color: #00008B; 
+    }
+    
+    .login-page .container form {
+        background-color: #fff;
+    }
+    
+    .login-page .container input {
+        background-color: #B0E0E6; 
+        color: black;
+    }
+    
+    .login-page .container input::placeholder {
+        color: black;
+    }
+    .social-icons a {
+        border: 1px solid #00008B; 
+    }
+    
+    .toggle {
+        background-color: #4682B4; 
+        background: linear-gradient(to right, #B0E0E6, #4682B4); 
+        color: #fff;
+    }
+    .reset-password-page {
+        background: linear-gradient(to right, #87CEEB, #1E90FF);
+    }
+    
+    .reset-password-page h2 {
+        color:lightcyan;
+        
+    }
+    
+    .reset-password-page input {
+        background-color: white;
+        border: 1px solid black;
+        color: black;
 
+    }
+    
+    .reset-password-page button {
+        background-color: #2d73a8;
+        color: #fff;
+    }
+    
+    .reset-password-page button:hover {
+        background-color: #255a8b;
+    }
+    
+    .reset-password-page div {
+        background-color: grey;
+    }
+    
+    .reset-password-page input::placeholder {
+        color: black;
+    }
+    
+    .reset-password-page input:focus {
+        border-color: #2d73a8;
+    }
+    
 }
