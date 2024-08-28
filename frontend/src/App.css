@@ -8,8 +8,11 @@
 /* Dark theme (default) */
 body {
   background-color: #213a5b;
+  cursor: url('../public/cursor.svg'), auto;
 }
-
+a{
+  cursor: url('../public/Pointer.svg'), pointer;
+}
 /* Light theme */
 html[data-theme="light"] body {
   background-color:#A9D7FF;

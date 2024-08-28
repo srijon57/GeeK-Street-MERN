@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useSnackbar } from 'notistack';
+import { AuthContext } from '../../context/AuthContext';
 import './SendReport.css';
 
 export default function SendReport() {
   const { enqueueSnackbar } = useSnackbar();
+  const { user } = useContext(AuthContext);
   const [formData, setFormData] = useState({
     name: '',
-    email: '',
+    email: user?.username || '', 
     phone: '',
     subject: '',
     message: '',
@@ -23,21 +25,30 @@ export default function SendReport() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    if (!user.isLoggedIn) {
+      enqueueSnackbar('You must be logged in to send a report.', { variant: 'error' });
+      return;
+    }
+
     const formURL = 'https://formspree.io/f/xnnabqpy';
+
+    const { email, ...reportData } = formData;
 
     fetch(formURL, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(formData),
+      body: JSON.stringify({
+        ...reportData,
+        email: user.username, 
+      }),
     })
       .then((response) => {
         if (response.ok) {
           enqueueSnackbar('Message sent successfully!', { variant: 'success' });
           setFormData({
             name: '',
-            email: '',
             phone: '',
             subject: '',
             message: '',
@@ -54,6 +65,7 @@ export default function SendReport() {
 
   return (
     <div className="contact">
+      <h2>If you have any reports, please forward them to us.</h2>
       <form onSubmit={handleSubmit}>
         <label>
           Name:
@@ -61,16 +73,6 @@ export default function SendReport() {
             type="text"
             name="name"
             value={formData.name}
-            onChange={handleChange}
-            required
-          />
-        </label>
-        <label>
-          Email:
-          <input
-            type="email"
-            name="email"
-            value={formData.email}
             onChange={handleChange}
             required
           />
