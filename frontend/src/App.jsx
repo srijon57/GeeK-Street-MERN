@@ -22,6 +22,7 @@ import { AuthContext } from "./context/AuthContext.jsx";
 import News from "./pages/News/News.jsx";
 import ReviewPage from "./pages/RatingStar/ReviewPage.jsx";
 import ThemeProvider from "./components/Theme/Theme.jsx";
+import SendReport from "./components/SendReport/SendReport.jsx";
 
 function App() {
     const { user } = useContext(AuthContext);
@@ -51,6 +52,7 @@ function App() {
                 <Route path="/payment" element={<PaymentPage />} />
                 <Route path="/news" element={<News/>} />
                 <Route path="/review" element={<ReviewPage />} />
+                <Route path="/report" element={<SendReport />} />
                 <Route
                     path="/admin/*"
                     element={

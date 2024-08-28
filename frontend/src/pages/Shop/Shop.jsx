@@ -69,12 +69,7 @@ const Shop = () => {
         <div className="shop-container">
             {loading && <Spinner />}
 
-            {!loading && filteredProducts.length === 0 && (
-                <h3 style={{ textAlign: "center", margin: "0 auto", color: "white" }}>
-                    No products available. Please{" "}
-                    <span style={{ color: "rgb(80, 255, 198)" }}>check back later</span>.
-                </h3>
-            )}
+            
 
             <div className="filters">
                 <div className="form-control">
@@ -118,7 +113,12 @@ const Shop = () => {
                     </select>
                 </div>
             </div>
-
+            {!loading && filteredProducts.length === 0 && (
+                <h3 className="No-product" >
+                    No products available in this name. <span >Please 
+                    check back later.</span>
+                </h3>
+            )}
             {!loading && filteredProducts.length > 0 && (
                 <ProductCard product={filteredProducts} />
             )}

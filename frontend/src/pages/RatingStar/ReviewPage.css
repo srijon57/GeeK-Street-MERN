@@ -1,4 +1,3 @@
-
 * {
     margin: 0;
     padding: 0;
@@ -6,7 +5,7 @@
 }
 
 .review-page-container {
-    max-width: 70%;
+    max-width: 80%;
     margin: 20px auto;
     padding: 20px;
     background: linear-gradient(to bottom, #1e9ec9, #125d9a);
@@ -26,9 +25,9 @@
     margin-bottom: 20px;
     text-align: center;
     color: #1abc9c;
-    border-bottom: 2px solid #1abc9c; 
-    display: center; 
-    padding-bottom: 5px; 
+    border-bottom: 2px solid #1abc9c;
+    display: center;
+    padding-bottom: 5px;
 }
 
 .review-form {
@@ -47,8 +46,8 @@
     color: #ecf0f1;
 }
 
-
-.review-form-container .form-input, .review-form-container .form-textarea {
+.review-form-container .form-input,
+.review-form-container .form-textarea {
     padding: 10px;
     border: 1px solid #bdc3c7;
     border-radius: 4px;
@@ -77,13 +76,13 @@
     align-content: center;
 }
 
-
 .review-form-container .rating-star-component {
     margin-top: 10px;
 }
 
-
 .review-form-container .submit-button {
+    --c: #1abc9c; 
+
     padding: 10px 20px;
     background-color: #1abc9c;
     color: #fff;
@@ -91,32 +90,46 @@
     border-radius: 4px;
     font-size: 16px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-size 0.4s, background-position 0s 0.4s,
+        background-color 0.3s;
     margin: auto;
+
+    box-shadow: 0 0 0 0.1em inset var(--c);
+    --_g: linear-gradient(var(--c) 0 0) no-repeat;
+    background: var(--_g) calc(var(--_p, 0%) - 100%) 0%,
+        var(--_g) calc(200% - var(--_p, 0%)) 0%,
+        var(--_g) calc(var(--_p, 0%) - 100%) 100%,
+        var(--_g) calc(200% - var(--_p, 0%)) 100%;
+    background-size: 50.5% calc(var(--_p, 0%) / 2 + 0.5%);
+    outline-offset: 0.1em;
 }
 
 .review-form-container .submit-button:hover {
-    background-color: #16a085;
+    --_p: 100%;
+    transition: background-position 0.4s, background-size 0s;
 }
 
+.review-form-container .submit-button:active {
+    box-shadow: 0 0 0 0.1em inset #0009;
+    background-color: #1abc9c;
+    color: #fff;
+}
 
 .reviews-heading {
     font-size: 24px;
     margin-bottom: 20px;
     text-align: center;
-    color:whitesmoke;
-    border-bottom: 2px solid whitesmoke; 
-    display: center; 
+    color: whitesmoke;
+    border-bottom: 2px solid whitesmoke;
+    display: center;
     padding-bottom: 5px;
 }
-
 
 .reviews-list {
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
-
 
 .review-item {
     padding: 20px;
@@ -127,13 +140,11 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-
 .review-product-name {
     font-size: 18px;
     margin-bottom: 10px;
     color: #1abc9c;
 }
-
 
 .review-text {
     font-size: 16px;
@@ -141,19 +152,16 @@
     color: #ecf0f1;
 }
 
-
 .review-rating {
     font-size: 16px;
     margin-bottom: 10px;
     color: #f1c40f;
 }
 
-
 .review-date {
     font-size: 14px;
     color: #95a5a6;
 }
-
 
 .review-actions {
     display: flex;
@@ -161,26 +169,53 @@
     gap: 10px;
 }
 
-
 .review-item .delete-button {
     margin: auto;
-    background-color: #e74c3c; 
-    padding: 0.5rem 1rem; 
-    border-radius: 0.5rem; 
-    width: 30%; 
+    background-color:crimson;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    width: 30%;
     color: white;
     text-align: center;
     border: none;
     cursor: pointer;
-    transition: background-color 0.2s; 
+    transition: all 0.3s;
+    position: relative;
+    display: inline-block;
+    font-family: system-ui, -apple-system, system-ui, "Segoe UI", Roboto, Ubuntu,
+        "Helvetica Neue", sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+.review-item .delete-button:before {
+    background-color: initial;
+    background-image: linear-gradient(#fff 0, rgba(255, 255, 255, 0) 100%);
+    border-radius: 125px;
+    content: "";
+    height: 50%;
+    left: 4%;
+    opacity: 0.5;
+    position: absolute;
+    top: 0;
+    transition: all 0.3s;
+    width: 92%;
 }
 
 .review-item .delete-button:hover {
-    background-color: #e63f2c; 
+    background-color: rgba(220, 20, 60, 0.556);
+    box-shadow: rgba(255, 255, 255, 0.2) 0 3px 15px inset,
+        rgba(0, 0, 0, 0.1) 0 3px 5px, rgba(0, 0, 0, 0.1) 0 10px 13px;
+    transform: scale(1.05);
 }
+
 .review-user-email {
     font-style: italic;
-    color:cadetblue;
+    color: cadetblue;
     margin-bottom: 0.5rem;
 }
 
@@ -191,7 +226,8 @@
         margin: auto;
     }
 
-    .review-form-heading, .reviews-heading {
+    .review-form-heading,
+    .reviews-heading {
         font-size: 20px;
     }
 
@@ -207,7 +243,8 @@
         font-size: 14px;
     }
 
-    .review-rating, .review-date {
+    .review-rating,
+    .review-date {
         font-size: 12px;
     }
 
@@ -215,112 +252,78 @@
         font-size: 12px;
         padding: 4px 8px;
         width: 50%;
+        padding: 0.5rem 2rem;
     }
 
-    .review-form-container .form-input, .review-form-container .form-textarea {
+    .review-form-container .form-input,
+    .review-form-container .form-textarea {
         width: 100%;
     }
 }
-/* Light theme */
-html[data-theme="light"]{
-
+/* Light */
+html[data-theme="light"] {
     .review-page-container {
-        
-        background: linear-gradient(to bottom, #1e9ec9, #125d9a);
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-       
+        background: linear-gradient(to bottom, #003366, #001f3f);
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     }
-    
+
     .review-form-container {
-       
-        background: linear-gradient(to right, #2c3e50, #34495e);
-       
-   
+        background: linear-gradient(to right, #00274d, #001a3c);
     }
     .review-form-heading {
-       
-        color: #1abc9c;
-        border-bottom: 2px solid #1abc9c; 
-        
+        color: #1e90ff;
+        border-bottom: 2px solid #1e90ff;
     }
     .review-form-container .form-label {
-
-        color: #ecf0f1;
+        color: #d4d4d4;
     }
-    .review-form-container .form-input, .review-form-container .form-textarea {
-        
-        border: 1px solid #bdc3c7;
-        background-color: #34495e;
-        color: #ecf0f1;
-        
+    .review-form-container .form-input,
+    .review-form-container .form-textarea {
+        border: 1px solid #9e9e9e;
+        background-color: #001a3c;
+        color: #d4d4d4;
     }
     .review-form-container .submit-button {
-       
-        background-color: #1abc9c;
-        color: #fff;
-        
+        --c: #1e90ff;
     }
-    
-    .review-form-container .submit-button:hover {
-        background-color: #16a085;
+    .review-form-container .submit-button:active {
+        background-color: #1e90ff;
     }
-    
-    
     .reviews-heading {
-        
-        color:whitesmoke;
-        border-bottom: 2px solid whitesmoke; 
-        
+        color: #f2f2f2;
+        border-bottom: 2px solid #f2f2f2;
     }
     .review-item {
-        
-        background: linear-gradient(to bottom, #0871ae, #253c43);
-        border: 1px solid #7f8c8d;
-        
-        box-shadow: 0 2px 4px rgba(67, 69, 70, 0.1);
-    }
-    
-    
-    .review-product-name {
-        
-        color: #1abc9c;
-    }
-    
-    
-    .review-text {
-        
-        color: #ecf0f1;
-    }
-    
-    
-    .review-rating {
-        
-        color: #f1c40f;
-    }
-    
-    
-    .review-date {
-        
-        color: #95a5a6;
+        background: linear-gradient(to bottom, #002a6d, #001b4d);
+        border: 1px solid #6c6c6c;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     }
 
+    .review-product-name {
+        color: #1e90ff;
+    }
+
+    .review-text {
+        color: #d4d4d4;
+    }
+
+    .review-rating {
+        color: #f5b800;
+    }
+
+    .review-date {
+        color: #a0a0a0;
+    }
 
     .review-item .delete-button {
-    
-    background-color: #e74c3c; 
-   
-    color: white;
-     
-}
+        background-color: #c81010;
+        color: white;
+    }
 
-.review-item .delete-button:hover {
-    background-color: #e63f2c; 
+    .review-item .delete-button:hover {
+        background-color: #a90000;
+    }
+    .review-user-email {
+        color: #a3a3a3;
+    }
 }
-.review-user-email {
-   
-    color:cadetblue;
-   
-}
-
-  
-  }
