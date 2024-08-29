@@ -236,7 +236,7 @@
     transform: translate(-50%, -50%);
     width: 64px;
     height: 64px;
-    z-index: 99;
+    z-index: 999;
 }
 
 .lds-circle div {
