@@ -66,7 +66,7 @@ The frontend will be available at `http://localhost:5173`.
 2.  Create a .env file in the backend directory with the following contents:
 
 ```
-mongoDb="your mongodb uri"
+mongoDb="your mongodb url"
 FRONTEND_URL="your frontend url"
 PORT=any
 CLOUDINARY_CLOUD_NAME="your cloudinary cloud name"
@@ -129,4 +129,4 @@ If you'd like to contribute to this project, please fork the repository and subm
 
 -   Postman for API testing
 
-`Feel free to adjust any sections or add more details specific to your project.`
+`Feel free to adjust any sections or add more details specific in this project. Thank you.`

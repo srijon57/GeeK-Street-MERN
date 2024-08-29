@@ -108,54 +108,6 @@ nav {
     display: none;
 }
 
-.search-bar-container {
-    position: relative;
-}
-
-.search-icon {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    color: white;
-    margin-left: 10px;
-}
-
-.search-bar {
-    position: absolute;
-    right: 0;
-    top: 100%;
-    display: flex;
-    align-items: center;
-    background-color: teal;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    border-radius: 4px;
-    padding: 5px;
-    transition: width 0.3s ease;
-    width: 0; 
-    opacity: 0; 
-    overflow: hidden;
-    z-index: 1000;
-}
-
-.search-bar.active {
-    width: 300px; 
-    opacity: 1; 
-}
-
-.search-bar input {
-    border: none;
-    outline: none;
-    padding: 5px;
-    border-radius: 4px;
-    width: 100%;
-}
-
-.search-bar .close-icon {
-    cursor: pointer;
-    margin-left: 5px;
-    color: red;
-}
-
 .cart-icon {
     position: relative;
 }
@@ -226,13 +178,5 @@ nav {
         border: 0.5px solid white;
         padding: 1px;
         border-radius: 5px;
-    }
-
-    .search-bar input {
-        width: 200px;
-    }
-
-    .search-bar.active {
-        width: 200px;
     }
 }

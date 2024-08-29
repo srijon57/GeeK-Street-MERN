@@ -81,7 +81,7 @@
 }
 
 .review-form-container .submit-button {
-    --c: #1abc9c; 
+    --c: #1abc9c;
 
     padding: 10px 20px;
     background-color: #1abc9c;
@@ -171,7 +171,7 @@
 
 .review-item .delete-button {
     margin: auto;
-    background-color:crimson;
+    background-color: crimson;
     padding: 0.5rem 1rem;
     border-radius: 0.5rem;
     width: 30%;
@@ -218,12 +218,60 @@
     color: cadetblue;
     margin-bottom: 0.5rem;
 }
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(12, 12, 12, 0.8);
+    z-index: 98;
+}
+.lds-circle {
+    color: crimson;
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 64px;
+    height: 64px;
+    z-index: 99;
+}
 
+.lds-circle div {
+    box-sizing: border-box;
+    display: inline-block;
+    width: 64px;
+    height: 64px;
+    margin: 8px;
+    background: currentColor;
+    border-radius: 50%;
+    animation: lds-circle 2.4s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+
+@keyframes lds-circle {
+    0%,
+    100% {
+        animation-timing-function: cubic-bezier(0.5, 0, 1, 0.5);
+    }
+    0% {
+        transform: rotateY(0deg);
+    }
+    50% {
+        transform: rotateY(1800deg);
+        animation-timing-function: cubic-bezier(0, 0.5, 0.5, 1);
+    }
+    100% {
+        transform: rotateY(3600deg);
+    }
+}
 @media (max-width: 600px) {
     .review-page-container {
         padding: 10px;
         max-width: 90%;
         margin: auto;
+        margin-top: 10%;
     }
 
     .review-form-heading,

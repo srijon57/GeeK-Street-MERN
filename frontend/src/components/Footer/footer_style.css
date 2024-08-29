@@ -345,8 +345,8 @@ html[data-theme="light"] {
         color: lightskyblue;
     }
     .footer-container ul li a:hover {
-        color:cadetblue;
-        text-shadow: 0 0 8px cadetblue;
+        color:palevioletred;
+        text-shadow: 0 0 8px palevioletred;
     }
 
     .news-link a {
@@ -358,8 +358,8 @@ html[data-theme="light"] {
     }
 
     .news-link a:hover {
-        color: cadetblue;
-        text-shadow: 0 0 8px cadetblue;
+        color: palevioletred;
+        text-shadow: 0 0 8px palevioletred;
     }
 
     .footer-container hr {

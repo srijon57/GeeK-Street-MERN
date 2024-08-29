@@ -11,6 +11,7 @@ const ReviewPage = () => {
     const [starRating, setStarRating] = useState(null);
     const [reviews, setReviews] = useState([]);
     const [isAdmin, setIsAdmin] = useState(false);
+    const [loading, setLoading] = useState(true);
     const { user } = useContext(AuthContext);
     const { enqueueSnackbar } = useSnackbar();
 
@@ -50,6 +51,7 @@ const ReviewPage = () => {
     };
 
     const fetchReviews = async () => {
+        setLoading(true);
         try {
             const response = await axios.get(
                 `${import.meta.env.VITE_BASEURL}/reviews`
@@ -63,6 +65,8 @@ const ReviewPage = () => {
                     : "Error fetching reviews",
                 { variant: "error" }
             );
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -136,29 +140,38 @@ const ReviewPage = () => {
                 </div>
             )}
             <h2 className="reviews-heading">Reviews</h2>
-            <div className="reviews-list">
-                {reviews.map((review) =>
-                    review ? (
-                        <div key={review._id} className="review-item">
-                            <h3 className="review-product-name">
-                                {review.productName}
-                            </h3>
-                            <p className="review-text">{review.reviewText}</p>
-                            <p className="review-rating">
-                                Rating: {review.starRating} Stars
-                            </p>
-                            <p className="review-user-email">
-                                User: {review.user.email} 
-                            </p>
-                            <p className="review-date">
-                                {new Date(
-                                    review.createdAt
-                                ).toLocaleDateString()}
-                            </p>
-                            {user.isLoggedIn &&
-                                (isAdmin || review.user._id === user.id) && (
-                                    <div className="review-actions">
-                                        {isAdmin && (
+            {loading ? (
+                <div className="overlay">
+                    <div className="lds-circle">
+                        <div></div>
+                    </div>
+                </div>
+            ) : (
+                <div className="reviews-list">
+                    {reviews.map((review) =>
+                        review ? (
+                            <div key={review._id} className="review-item">
+                                <h3 className="review-product-name">
+                                    {review.productName}
+                                </h3>
+                                <p className="review-text">
+                                    {review.reviewText}
+                                </p>
+                                <p className="review-rating">
+                                    Rating: {review.starRating} Stars
+                                </p>
+                                <p className="review-user-email">
+                                    User: {review.user.email}
+                                </p>
+                                <p className="review-date">
+                                    {new Date(
+                                        review.createdAt
+                                    ).toLocaleDateString()}
+                                </p>
+                                {user.isLoggedIn &&
+                                    (isAdmin ||
+                                        review.user._id === user.id) && (
+                                        <div className="review-actions">
                                             <button
                                                 onClick={() =>
                                                     handleDelete(review._id)
@@ -167,24 +180,13 @@ const ReviewPage = () => {
                                             >
                                                 Delete
                                             </button>
-                                        )}
-                                        {!isAdmin &&
-                                            review.user._id === user.id && (
-                                                <button
-                                                    onClick={() =>
-                                                        handleDelete(review._id)
-                                                    }
-                                                    className="delete-button"
-                                                >
-                                                    Delete
-                                                </button>
-                                            )}
-                                    </div>
-                                )}
-                        </div>
-                    ) : null
-                )}
-            </div>
+                                        </div>
+                                    )}
+                            </div>
+                        ) : null
+                    )}
+                </div>
+            )}
         </div>
     );
 };
