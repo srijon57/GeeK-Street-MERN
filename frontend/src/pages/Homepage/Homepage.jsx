@@ -5,6 +5,7 @@ import axios from "axios";
 import ProductCard from "../../components/Product/ProductCard";
 import Spinner from "../../components/Spinner/Spinner";
 import { FaExchangeAlt, FaUndoAlt, FaHeadset } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 export const Homepage = () => {
     const [product, setProduct] = useState([]);
@@ -27,9 +28,8 @@ export const Homepage = () => {
 
     return (
         <div>
-            {/* Bubble animation HTML */}
+            {/* Bubble animation*/}
             <div className="bubbles">
-                <div className="bubble"></div>
                 <div className="bubble"></div>
                 <div className="bubble"></div>
                 <div className="bubble"></div>
@@ -69,15 +69,15 @@ export const Homepage = () => {
                         </p>
                         <h3>
                             Please{" "}
-                            <span className="sign-in-text">
+                            <Link to="/Login" className="sign-in-text">
                                 Sign-In
-                            </span>{" "}
+                            </Link>{" "}
                             to buy products
                         </h3>
                         <br></br>
-                        <a href="/shop" className="btn">
+                        <Link to="/shop" className="btn">
                             Shop
-                        </a>
+                        </Link>
                     </div>
                 </div>
 

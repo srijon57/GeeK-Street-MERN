@@ -2,7 +2,6 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    
 }
 .news-container {
     display: flex;
@@ -50,14 +49,14 @@
 .news-title {
     font-size: 24px;
     margin-bottom: 10px;
-    color:springgreen;
+    color: springgreen;
 }
-.news-description{
-    color:whitesmoke;
+.news-description {
+    color: whitesmoke;
 }
 .news-link {
     font-size: 16px;
-    color:tomato;
+    color: tomato;
     text-decoration: none;
 }
 
@@ -66,18 +65,53 @@
 }
 
 .spinner {
-    border: 8px solid #3b82f6;
-    border-top: 8px solid #a5b4fc;
-    border-radius: 50%;
-    width: 60px;
-    height: 60px;
-    animation: spin 1s linear infinite;
+    position: relative;
+    width: 120px;
+    height: 140px;
+    background-image: radial-gradient(circle 30px, #a5b4fc 100%, transparent 0),
+        radial-gradient(circle 5px, #a5b4fc 100%, transparent 0),
+        radial-gradient(circle 5px, #a5b4fc 100%, transparent 0),
+        linear-gradient(#a5b4fc 20px, transparent 0);
+    background-position: center 127px, 94px 102px, 16px 18px, center 114px;
+    background-size: 60px 60px, 10px 10px, 10px 10px, 4px 14px;
+    background-repeat: no-repeat;
+    z-index: 10;
+    perspective: 500px;
     margin: 50px auto;
 }
 
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+.spinner::before {
+    content: "";
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 3px solid #a5b4fc;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -55%) rotate(-45deg);
+    border-right-color: transparent;
+    box-sizing: border-box;
+}
+
+.spinner::after {
+    content: "";
+    position: absolute;
+    height: 80px;
+    width: 80px;
+    transform: translate(-50%, -55%) rotate(-45deg) rotateY(0deg);
+    left: 50%;
+    top: 50%;
+    box-sizing: border-box;
+    border: 7px solid #3b82f6;
+    border-radius: 50%;
+    animation: rotate 0.5s linear infinite;
+}
+
+@keyframes rotate {
+    to {
+        transform: translate(-50%, -55%) rotate(-45deg) rotateY(360deg);
+    }
 }
 
 .error-message {
@@ -87,19 +121,32 @@
 }
 html[data-theme="light"] {
     .news-container h1 {
-        color: #2c3e50; 
+        color: #2c3e50;
     }
     .news-title {
-        color: lightblue; 
+        color: lightblue;
     }
-    .news-description{
-        color: #ecf0f1; 
+    .news-description {
+        color: #ecf0f1;
     }
     .news-link {
-        color: red; 
+        color: red;
     }
     .news-item {
-        background: linear-gradient(to right, #34495e, #2c3e50); /* Dark Blue to Slate Blue */
+        background: linear-gradient(
+            to right,
+            #34495e,
+            #2c3e50
+        );
+    }
+    .spinner {
+        background-image: radial-gradient(circle 30px, #000 100%, transparent 0),
+            radial-gradient(circle 5px, #000 100%, transparent 0),
+            radial-gradient(circle 5px, #000 100%, transparent 0),
+            linear-gradient(#000 20px, transparent 0);
+    }
+    
+    .spinner::before {
+        border: 3px solid #000;
     }
 }
-

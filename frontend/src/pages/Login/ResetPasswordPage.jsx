@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useSnackbar } from 'notistack';
 import { useNavigate } from 'react-router-dom';
-import Spinner from "../../components/Spinner/Spinner"; 
+import "./style.css";
 
 function ResetPasswordPage() {
     const [email, setEmail] = useState('');
@@ -71,7 +71,7 @@ function ResetPasswordPage() {
                         onChange={(e) => setEmail(e.target.value)}
                     />
                     <button onClick={sendOtpHandler} disabled={loading && loadingStep === 'sendOtp'}>
-                        {loading && loadingStep === 'sendOtp' ? <Spinner /> : 'Send OTP'}
+                        {loading && loadingStep === 'sendOtp' ? <span className="verify-loader"></span> : 'Send OTP'}
                     </button>
                 </div>
             )}
@@ -85,7 +85,7 @@ function ResetPasswordPage() {
                         onChange={(e) => setOtp(e.target.value)}
                     />
                     <button onClick={verifyOtpHandler} disabled={loading && loadingStep === 'verifyOtp'}>
-                        {loading && loadingStep === 'verifyOtp' ? <Spinner /> : 'Verify OTP'}
+                        {loading && loadingStep === 'verifyOtp' ? <span className="verify-loader"></span> : 'Verify OTP'}
                     </button>
                 </div>
             )}
@@ -99,7 +99,7 @@ function ResetPasswordPage() {
                         onChange={(e) => setNewPassword(e.target.value)}
                     />
                     <button onClick={resetPasswordHandler} disabled={loading && loadingStep === 'resetPassword'}>
-                        {loading && loadingStep === 'resetPassword' ? <Spinner /> : 'Reset Password'}
+                        {loading && loadingStep === 'resetPassword' ? <span className="verify-loader"></span> : 'Reset Password'}
                     </button>
                 </div>
             )}
