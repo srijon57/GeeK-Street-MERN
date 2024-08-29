@@ -17,7 +17,7 @@
     padding: 20px;
 }
 
-.login-page .container {
+.login-page .login-container {
     background-color: #fff;
     border-radius: 30px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
@@ -30,7 +30,7 @@
     display: flex;
 }
 
-.login-page .container p {
+.login-page .login-container p {
     color: black;
     font-size: 14px;
     line-height: 20px;
@@ -38,18 +38,18 @@
     margin: 20px 0;
 }
 
-.login-page .container span {
+.login-page .login-container span {
     font-size: 12px;
 }
 
-.login-page .container a {
+.login-page .login-container a {
     color: #333;
     font-size: 13px;
     text-decoration: none;
     margin: 15px 0 10px;
 }
 
-.login-page .container button {
+.login-page .login-container button {
     background-color: #2d73a8;
     color: black;
     font-size: 12px;
@@ -64,12 +64,12 @@
     width: 100%;
 }
 
-.login-page .container button.hidden {
+.login-page .login-container button.hidden {
     background-color: transparent;
     border-color: black;
 }
 
-.login-page .container form {
+.login-page .login-container form {
     background-color: #fff;
     display: flex;
     align-items: center;
@@ -80,7 +80,7 @@
     width: 100%;
 }
 
-.login-page .container input {
+.login-page .login-container input {
     background-color: #eee;
     border: none;
     margin: 8px 0;
@@ -92,7 +92,7 @@
     color: black;
 }
 
-.login-page .container input::placeholder {
+.login-page .login-container input::placeholder {
     color: black;
 }
 
@@ -109,7 +109,7 @@
     left: 0;
 }
 
-.container.active .sign-in {
+.login-container.active .sign-in {
     transform: translateX(100%);
 }
 
@@ -120,7 +120,7 @@
     z-index: 1;
 }
 
-.container.active .sign-up {
+.login-container.active .sign-up {
     transform: translateX(100%);
     opacity: 1;
     z-index: 5;
@@ -167,7 +167,7 @@
     z-index: 1000;
 }
 
-.login-page .container.active .toggle-container {
+.login-page .login-container.active .toggle-container {
     transform: translateX(-100%);
     border-radius: 0 150px 100px 0;
 }
@@ -185,7 +185,7 @@
     transition: all 0.6s ease-in-out;
 }
 
-.login-page .container.active .toggle {
+.login-page .login-container.active .toggle {
     transform: translateX(50%);
 }
 
@@ -208,7 +208,7 @@
     transform: translateX(-200%);
 }
 
-.login-page .container.active .toggle-left {
+.login-page .login-container.active .toggle-left {
     transform: translateX(0);
 }
 
@@ -217,7 +217,7 @@
     transform: translateX(0);
 }
 
-.login-page .container.active .toggle-right {
+.login-page .login-container.active .toggle-right {
     transform: translateX(200%);
 }
 .login-page .password-container {
@@ -236,9 +236,9 @@
 /* reset password */
 .reset-password-page {
     background: linear-gradient(
-        135deg, 
-        #073242, 
-        #2c7d9a 
+        135deg,
+        #073242,
+        #2c7d9a
     );
     min-height: 100vh;
     display: flex;
@@ -321,7 +321,7 @@
         padding: 10px;
     }
 
-    .login-page .container {
+    .login-page .login-container {
         width: 100%;
         min-height: auto;
         padding: 20px;
@@ -331,31 +331,31 @@
         overflow: auto;
     }
 
-    .login-page .container p {
+    .login-page .login-container p {
         font-size: 12px;
         margin: 10px 0;
     }
 
-    .login-page .container span {
+    .login-page .login-container span {
         font-size: 10px;
     }
 
-    .login-page .container a {
+    .login-page .login-container a {
         font-size: 12px;
         margin: 10px 0 5px;
     }
 
-    .login-page .container button {
+    .login-page .login-container button {
         font-size: 14px;
         padding: 12px 20px;
     }
 
-    .login-page .container input {
+    .login-page .login-container input {
         font-size: 14px;
         padding: 12px 15px;
     }
 
-    .login-page .container form {
+    .login-page .login-container form {
         padding: 0 15px;
     }
 
@@ -434,87 +434,87 @@
 html[data-theme="light"]{
     .login-page {
         background-image: none;
-        background-color: #87CEEB; 
+        background-color: #87CEEB;
     }
-    .login-page .container {
+    .login-page .login-container {
         background-color: #fff;
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
     }
-    
-    .login-page .container p {
+
+    .login-page .login-container p {
         color: black;
     }
-    
-    .login-page .container a {
-        color: #00008B; 
+
+    .login-page .login-container a {
+        color: #00008B;
     }
-    
-    .login-page .container button {
-        background-color: #4682B4; 
+
+    .login-page .login-container button {
+        background-color: #4682B4;
         color: black;
         font-size: 12px;
     }
-    
-    .login-page .container button.hidden {
-        border-color: #00008B; 
+
+    .login-page .login-container button.hidden {
+        border-color: #00008B;
     }
-    
-    .login-page .container form {
+
+    .login-page .login-container form {
         background-color: #fff;
     }
-    
-    .login-page .container input {
-        background-color: #B0E0E6; 
+
+    .login-page .login-container input {
+        background-color: #B0E0E6;
         color: black;
     }
-    
-    .login-page .container input::placeholder {
+
+    .login-page .login-container input::placeholder {
         color: black;
     }
     .social-icons a {
-        border: 1px solid #00008B; 
+        border: 1px solid #00008B;
     }
-    
+
     .toggle {
-        background-color: #4682B4; 
-        background: linear-gradient(to right, #B0E0E6, #4682B4); 
+        background-color: #4682B4;
+        background: linear-gradient(to right, #B0E0E6, #4682B4);
         color: #fff;
     }
     .reset-password-page {
         background: linear-gradient(to right, #87CEEB, #1E90FF);
     }
-    
+
     .reset-password-page h2 {
         color:lightcyan;
-        
+
     }
-    
+
     .reset-password-page input {
         background-color: white;
         border: 1px solid black;
         color: black;
 
     }
-    
+
     .reset-password-page button {
         background-color: #2d73a8;
         color: #fff;
     }
-    
+
     .reset-password-page button:hover {
         background-color: #255a8b;
     }
-    
+
     .reset-password-page div {
         background-color: grey;
     }
-    
+
     .reset-password-page input::placeholder {
         color: black;
     }
-    
+
     .reset-password-page input:focus {
         border-color: #2d73a8;
     }
-    
+
 }
