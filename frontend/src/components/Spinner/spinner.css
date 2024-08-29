@@ -23,13 +23,13 @@
     display: flex;
 }
 
-.svg-spinner {
+.spinner-container .svg-spinner {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.loading-text {
+.loading-text2 {
     color: #ffffff;
     font-size: 1.5em;
     margin-top: 20px;
@@ -41,8 +41,7 @@
     left: 50%;
 }
 
-
-.container {
+.spinner-container-content {
     height: 31.25em;
     width: 21.87em;
     margin-top: -325px;
@@ -264,11 +263,10 @@
 }
 
 @media screen and (min-width: 600px) {
-    .container {
+    .spinner-container-content {
         font-size: 20px;
     }
 }
-
 
 
 /*Normal spinner

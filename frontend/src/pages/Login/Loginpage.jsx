@@ -109,7 +109,7 @@ function Loginpage() {
 
     return (
         <div className="login-page">
-            <div className={`container ${isActive ? "active" : ""}`} id="container">
+            <div className={`login-container ${isActive ? "active" : ""}`} id="container">
                 <div className="form-container sign-up">
                     <form className="register-form" onSubmit={submitHandler}>
                         <h1>Create Account</h1>

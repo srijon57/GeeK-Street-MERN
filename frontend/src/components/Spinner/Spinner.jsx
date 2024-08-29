@@ -5,7 +5,7 @@ const Spinner = ({ loading }) => {
     return (
         <div className={`spinner-container ${loading ? 'show' : ''}`}>
             <div className="svg-spinner">
-                <div className="container center">
+                <div className="spinner-container-content center">
                     <div className="rope center">
                         <div className="legs center">
                             <div className="boot-l"></div>
@@ -31,12 +31,13 @@ const Spinner = ({ loading }) => {
                     </div>
                 </div>
             </div>
-            <p className="loading-text">Loading...</p>
+            <p className="loading-text2">Loading...</p>
         </div>
     );
 };
 
-export default Spinner; 
+export default Spinner;
+
 /*
 import React from "react";
 import "./spinner.css"; 
