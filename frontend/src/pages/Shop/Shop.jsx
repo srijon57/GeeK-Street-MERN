@@ -12,6 +12,8 @@ const Shop = () => {
     const [searchTerm, setSearchTerm] = useState("");
     const [sortOrder, setSortOrder] = useState("");
     const [loading, setLoading] = useState(true);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [productsPerPage] = useState(12);
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -64,12 +66,16 @@ const Shop = () => {
     useEffect(() => {
         filterProducts();
     }, [product, category, searchTerm, sortOrder]);
+    //Pagination logic
+    const indexOfLastProduct = currentPage * productsPerPage;
+    const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+    const currentProducts = filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct);
+
+    const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
     return (
         <div className="shop-container">
             {loading && <Spinner />}
-
-            
 
             <div className="filters">
                 <div className="form-control">
@@ -90,7 +96,7 @@ const Shop = () => {
                 </div>
 
                 <div className="form-control">
-                <label className="label">
+                    <label className="label">
                         <span className="label-text">Search</span>
                     </label>
                     <Search onSearch={setSearchTerm} />
@@ -114,14 +120,26 @@ const Shop = () => {
                 </div>
             </div>
             {!loading && filteredProducts.length === 0 && (
-                <h3 className="No-product" >
-                    No products available in this name. <span >Please 
+                <h3 className="No-product">
+                    No products available in this name. <span>Please
                     check back later.</span>
                 </h3>
             )}
             {!loading && filteredProducts.length > 0 && (
-                <ProductCard product={filteredProducts} />
+                <ProductCard product={currentProducts} />
             )}
+
+            <div className="pagination">
+                {Array.from({ length: Math.ceil(filteredProducts.length / productsPerPage) }, (_, index) => (
+                    <button
+                        key={index}
+                        onClick={() => paginate(index + 1)}
+                        className={currentPage === index + 1 ? "active" : ""}
+                    >
+                        {index + 1}
+                    </button>
+                ))}
+            </div>
         </div>
     );
 };

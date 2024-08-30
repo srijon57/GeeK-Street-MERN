@@ -83,7 +83,7 @@ const EditProductPage = () => {
                     />
 
                     <label htmlFor="priceInCents" className="edit-product-page-form-label">
-                        Price in cents
+                        Price
                     </label>
                     <input
                         id="priceInCents"
