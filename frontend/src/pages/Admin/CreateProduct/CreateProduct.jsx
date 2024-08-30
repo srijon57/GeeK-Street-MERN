@@ -138,7 +138,7 @@ const CreateProduct = () => {
                     />
 
                     <label htmlFor="priceInCents" className="create-product-label">
-                        Price in cents
+                        Price
                     </label>
                     <input
                         id="priceInCents"

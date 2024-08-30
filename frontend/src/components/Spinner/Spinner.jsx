@@ -39,9 +39,6 @@ const Spinner = ({ loading }) => {
 export default Spinner;
 
 /*
-import React from "react";
-import "./spinner.css"; 
-
 const Spinner = ({ loading }) => {
     return (
         <div className={`spinner-container ${loading ? 'show' : ''}`}>
@@ -51,6 +48,5 @@ const Spinner = ({ loading }) => {
         </div>
     );
 };
-
 export default Spinner;
 */

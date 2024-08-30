@@ -12,6 +12,8 @@ const ReviewPage = () => {
     const [reviews, setReviews] = useState([]);
     const [isAdmin, setIsAdmin] = useState(false);
     const [loading, setLoading] = useState(true);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [reviewsPerPage] = useState(8);
     const { user } = useContext(AuthContext);
     const { enqueueSnackbar } = useSnackbar();
 
@@ -99,6 +101,14 @@ const ReviewPage = () => {
         fetchReviews();
     }, [user]);
 
+    // Get current reviews
+    const indexOfLastReview = currentPage * reviewsPerPage;
+    const indexOfFirstReview = indexOfLastReview - reviewsPerPage;
+    const currentReviews = reviews.slice(indexOfFirstReview, indexOfLastReview);
+
+    // Change page
+    const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
     return (
         <div className="review-page-container">
             {user.isLoggedIn && (
@@ -148,7 +158,7 @@ const ReviewPage = () => {
                 </div>
             ) : (
                 <div className="reviews-list">
-                    {reviews.map((review) =>
+                    {currentReviews.map((review) =>
                         review ? (
                             <div key={review._id} className="review-item">
                                 <h3 className="review-product-name">
@@ -187,6 +197,17 @@ const ReviewPage = () => {
                     )}
                 </div>
             )}
+            <div className="review-pagination">
+                {Array.from({ length: Math.ceil(reviews.length / reviewsPerPage) }, (_, index) => (
+                    <button
+                        key={index}
+                        onClick={() => paginate(index + 1)}
+                        className={currentPage === index + 1 ? "active" : ""}
+                    >
+                        {index + 1}
+                    </button>
+                ))}
+            </div>
         </div>
     );
 };
