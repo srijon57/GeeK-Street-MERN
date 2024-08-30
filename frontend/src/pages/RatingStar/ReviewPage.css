@@ -266,6 +266,32 @@
         transform: rotateY(3600deg);
     }
 }
+.review-pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.review-pagination button {
+    margin: 0 5px;
+    padding: 10px 20px;
+    border: 1px solid #bdc3c7;
+    border-radius: 4px;
+    background-color: #34495e;
+    color: #ecf0f1;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.review-pagination button.active {
+    background-color: #1abc9c;
+    color: #fff;
+}
+
+.review-pagination button:hover {
+    background-color: #2980b9;
+}
+
 @media (max-width: 600px) {
     .review-page-container {
         padding: 10px;
