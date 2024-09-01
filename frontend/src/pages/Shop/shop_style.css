@@ -3,7 +3,6 @@
     padding: 0;
     box-sizing: border-box;
 }
-
 .shop-container {
     padding: 1rem;
     max-width: 1250px;
@@ -50,6 +49,7 @@
     display: flex;
     justify-content: center;
     margin-top: 2rem;
+    flex-wrap: wrap;
 }
 
 .pagination button {
@@ -74,17 +74,19 @@
     color: yellow;
 }
 
-.No-product{
+.No-product {
     padding-top: 100px;
     padding-bottom: 100px;
-    text-align: center; 
-    width: 100%; 
-    margin: 0 auto; 
+    text-align: center;
+    width: 100%;
+    margin: 0 auto;
     color: white;
-    span{
-        color: aquamarine;
-    }
 }
+
+.No-product span {
+    color: aquamarine;
+}
+
 @media (max-width: 768px) {
     .filters {
         flex-direction: column;
@@ -94,6 +96,7 @@
         margin-right: 0;
         margin-bottom: 1rem;
     }
+
     .pagination {
         flex-wrap: wrap;
     }
@@ -109,33 +112,37 @@ html[data-theme="light"] {
     .shop-container .filters {
         color: black;
     }
+
     .shop-container .select {
         border: 1px solid #0d0d0d;
-
         background-color: #e2ebed;
     }
+
     .shop-container .select-bordered {
         border: 1px solid #626969;
     }
+
     .pagination button {
         background-color: transparent;
         border: 2px solid #007bff;
         color: black;
     }
-    
+
     .pagination button.active {
         background-color: #0056b3;
         color: white;
     }
-    
+
     .pagination button:hover {
         background-color: #0056b3;
         color: white;
     }
+
     .No-product {
-        color: black; 
-        span{
-            color: red;
-        }
+        color: black;
+    }
+
+    .No-product span {
+        color: red;
     }
 }

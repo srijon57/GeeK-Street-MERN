@@ -270,13 +270,14 @@
     display: flex;
     justify-content: center;
     margin-top: 20px;
+    flex-wrap: wrap;
 }
 
 .review-pagination button {
     margin: 0 5px;
     padding: 10px 20px;
     border: 1px solid #bdc3c7;
-    border-radius: 4px;
+    border-radius: 50%;
     background-color: #34495e;
     color: #ecf0f1;
     cursor: pointer;
@@ -289,9 +290,8 @@
 }
 
 .review-pagination button:hover {
-    background-color: #2980b9;
+    background-color: #0e670d87;
 }
-
 @media (max-width: 600px) {
     .review-page-container {
         padding: 10px;
@@ -332,6 +332,12 @@
     .review-form-container .form-input,
     .review-form-container .form-textarea {
         width: 100%;
+    }
+
+    .review-pagination button {
+        margin: 5px;
+        padding: 8px 16px;
+        font-size: 14px;
     }
 }
 /* Light */

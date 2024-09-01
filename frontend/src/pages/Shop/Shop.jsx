@@ -66,12 +66,66 @@ const Shop = () => {
     useEffect(() => {
         filterProducts();
     }, [product, category, searchTerm, sortOrder]);
-    //Pagination logic
+
+    // Pagination logic
     const indexOfLastProduct = currentPage * productsPerPage;
     const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
     const currentProducts = filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct);
 
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+    const pageNumbers = [];
+    for (let i = 1; i <= Math.ceil(filteredProducts.length / productsPerPage); i++) {
+        pageNumbers.push(i);
+    }
+
+    const renderPageNumbers = () => {
+        const totalPages = pageNumbers.length;
+        const visiblePages = 4; // Number of visible pages
+        const halfVisible = Math.floor(visiblePages / 2);
+
+        let startPage = Math.max(1, currentPage - halfVisible);
+        let endPage = Math.min(totalPages, currentPage + halfVisible);
+
+        if (endPage - startPage + 1 < visiblePages) {
+            if (startPage === 1) {
+                endPage = Math.min(totalPages, startPage + visiblePages - 1);
+            } else {
+                startPage = Math.max(1, endPage - visiblePages + 1);
+            }
+        }
+
+        const pages = [];
+        if (startPage > 1) {
+            pages.push(
+                <button key="prev" onClick={() => paginate(currentPage - 1)}>
+                    Previous
+                </button>
+            );
+        }
+
+        for (let i = startPage; i <= endPage; i++) {
+            pages.push(
+                <button
+                    key={i}
+                    onClick={() => paginate(i)}
+                    className={currentPage === i ? "active" : ""}
+                >
+                    {i}
+                </button>
+            );
+        }
+
+        if (endPage < totalPages) {
+            pages.push(
+                <button key="next" onClick={() => paginate(currentPage + 1)}>
+                    Next
+                </button>
+            );
+        }
+
+        return pages;
+    };
 
     return (
         <div className="shop-container">
@@ -130,15 +184,7 @@ const Shop = () => {
             )}
 
             <div className="pagination">
-                {Array.from({ length: Math.ceil(filteredProducts.length / productsPerPage) }, (_, index) => (
-                    <button
-                        key={index}
-                        onClick={() => paginate(index + 1)}
-                        className={currentPage === index + 1 ? "active" : ""}
-                    >
-                        {index + 1}
-                    </button>
-                ))}
+                {renderPageNumbers()}
             </div>
         </div>
     );
