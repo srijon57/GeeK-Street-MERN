@@ -4,7 +4,6 @@ import RatingStar from "./RatingStar";
 import "./ReviewPage.css";
 import { AuthContext } from "../../context/AuthContext";
 import { useSnackbar } from "notistack";
-
 const ReviewPage = () => {
     const [productName, setProductName] = useState("");
     const [reviewText, setReviewText] = useState("");
@@ -13,7 +12,7 @@ const ReviewPage = () => {
     const [isAdmin, setIsAdmin] = useState(false);
     const [loading, setLoading] = useState(true);
     const [currentPage, setCurrentPage] = useState(1);
-    const [reviewsPerPage] = useState(8);
+    const [reviewsPerPage] = useState(8);// Number of visible reviews
     const { user } = useContext(AuthContext);
     const { enqueueSnackbar } = useSnackbar();
 
@@ -89,7 +88,7 @@ const ReviewPage = () => {
                 variant: "success",
             });
         } catch (error) {
-            let errorMessage = "Only author of this review can delete";
+            let errorMessage = "Error deleting review";
             if (error.response) {
                 errorMessage = error.response.data.message || errorMessage;
             }
@@ -108,6 +107,60 @@ const ReviewPage = () => {
 
     // Change page
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+    // Pagination logic
+    const pageNumbers = [];
+    for (let i = 1; i <= Math.ceil(reviews.length / reviewsPerPage); i++) {
+        pageNumbers.push(i);
+    }
+
+    const renderPageNumbers = () => {
+        const totalPages = pageNumbers.length;
+        const visiblePages = 3; // Number of visible pages
+        const halfVisible = Math.floor(visiblePages / 2);
+
+        let startPage = Math.max(1, currentPage - halfVisible);
+        let endPage = Math.min(totalPages, currentPage + halfVisible);
+
+        if (endPage - startPage + 1 < visiblePages) {
+            if (startPage === 1) {
+                endPage = Math.min(totalPages, startPage + visiblePages - 1);
+            } else {
+                startPage = Math.max(1, endPage - visiblePages + 1);
+            }
+        }
+
+        const pages = [];
+        if (startPage > 1) {
+            pages.push(
+                <button key="prev" onClick={() => paginate(currentPage - 1)}>
+                    Previous
+                </button>
+            );
+        }
+
+        for (let i = startPage; i <= endPage; i++) {
+            pages.push(
+                <button
+                    key={i}
+                    onClick={() => paginate(i)}
+                    className={currentPage === i ? "active" : ""}
+                >
+                    {i}
+                </button>
+            );
+        }
+
+        if (endPage < totalPages) {
+            pages.push(
+                <button key="next" onClick={() => paginate(currentPage + 1)}>
+                    Next
+                </button>
+            );
+        }
+
+        return pages;
+    };
 
     return (
         <div className="review-page-container">
@@ -198,15 +251,7 @@ const ReviewPage = () => {
                 </div>
             )}
             <div className="review-pagination">
-                {Array.from({ length: Math.ceil(reviews.length / reviewsPerPage) }, (_, index) => (
-                    <button
-                        key={index}
-                        onClick={() => paginate(index + 1)}
-                        className={currentPage === index + 1 ? "active" : ""}
-                    >
-                        {index + 1}
-                    </button>
-                ))}
+                {renderPageNumbers()}
             </div>
         </div>
     );
