@@ -1,0 +1,77 @@
+.back-to-top {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    z-index: 1000;
+}
+
+.back-to-top-button {
+    background: linear-gradient(to right, #3498db, #29b99c);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    padding: 15px;
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.back-to-top-button:hover {
+    background: linear-gradient(to right, #2980b9, #1a846f);
+}
+
+.back-to-top-button:active {
+    background: linear-gradient(to right, #1f6d95, #1c836e);
+}
+
+.back-to-top-button::after {
+    content: "Back to top";
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    white-space: nowrap;
+}
+
+.back-to-top-button:hover::after {
+    opacity: 1;
+}
+
+@media (max-width: 768px) {
+    .back-to-top {
+        bottom: 20px;
+        right: 20px;
+    }
+
+    .back-to-top-button {
+        padding: 10px;
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .back-to-top {
+        bottom: 15px;
+        right: 15px;
+    }
+
+    .back-to-top-button {
+        padding: 8px;
+        font-size: 14px;
+    }
+
+    .back-to-top-button::after {
+        font-size: 10px;
+        bottom: -25px;
+    }
+}
