@@ -4,6 +4,7 @@ import RatingStar from "./RatingStar";
 import "./ReviewPage.css";
 import { AuthContext } from "../../context/AuthContext";
 import { useSnackbar } from "notistack";
+import BackToTop from "../../components/BackToTop/BackToTop";
 const ReviewPage = () => {
     const [productName, setProductName] = useState("");
     const [reviewText, setReviewText] = useState("");
@@ -253,6 +254,7 @@ const ReviewPage = () => {
             <div className="review-pagination">
                 {renderPageNumbers()}
             </div>
+            <BackToTop/>
         </div>
     );
 };

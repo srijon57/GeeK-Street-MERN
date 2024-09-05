@@ -11,13 +11,13 @@ const News = () => {
         const fetchArticles = async () => {
             const cachedArticles = localStorage.getItem('newsArticles');
             const cacheTime = localStorage.getItem('newsCacheTime');
-    
+
             if (cachedArticles && cacheTime && Date.now() - cacheTime < 3600000) {
                 setArticles(JSON.parse(cachedArticles));
                 setLoading(false);
                 return;
             }
-    
+
             try {
                 const response = await axios.get('https://newsdata.io/api/1/latest', {
                     params: {
@@ -39,9 +39,24 @@ const News = () => {
                 setLoading(false);
             }
         };
-    
+
         fetchArticles();
     }, []);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('scale-up');
+                } else {
+                    entry.target.classList.remove('scale-up');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        const images = document.querySelectorAll('.news-image');
+        images.forEach((image) => observer.observe(image));
+    }, [articles]);
 
     if (loading) return <div className="spinner"></div>;
     if (error) return <div className="error-message">{error}</div>;
