@@ -16,7 +16,7 @@ router.post('/register', async (req, res) => {
         const { email, password } = req.body;
 
         if (!validatePassword(password)) {
-            return res.status(400).json({ msg: 'Password must be at least 6 characters long and include numbers.' });
+            return res.status(400).json({ msg: 'Password must be at least 6 characters long including alphabets and numbers.' });
         }
 
         const userExists = await User.findOne({ email });
@@ -27,7 +27,7 @@ router.post('/register', async (req, res) => {
         const hashedPassword = await bcrypt.hash(password, 12);
 
         const verificationToken = crypto.randomBytes(32).toString('hex');
-        const verificationTokenExpiration = Date.now() + 24 * 60 * 60 * 1000; // 24 hours from now
+        const verificationTokenExpiration = Date.now() + 12 * 60 * 60 * 1000; // 12 hours from now
 
         const newUser = new User({
             email,
@@ -90,7 +90,7 @@ router.post('/login', async (req, res) => {
 
         const user = await User.findOne({ email });
         if (!user) {
-            return res.status(400).json({ msg: 'Invalid credentials' });
+            return res.status(400).json({ msg: 'User not found' });
         }
 
         if (!user.isVerified) {
@@ -104,11 +104,11 @@ router.post('/login', async (req, res) => {
                 email: user.email,
                 role: user.role
             };
-
+            // Access Token
             jwt.sign(
                 payload,
                 process.env.JWT_SECRET,
-                { expiresIn: 3600 },
+                { expiresIn: 3600 }, // 1 hour
                 (error, token) => {
                     if (error) throw error;
 
@@ -119,7 +119,7 @@ router.post('/login', async (req, res) => {
                 }
             );
         } else {
-            return res.status(400).json({ msg: 'Invalid credentials' });
+            return res.status(400).json({ msg: 'Wrong Password' });
         }
     } catch (error) {
         console.error(error);

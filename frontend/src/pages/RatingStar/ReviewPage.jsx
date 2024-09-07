@@ -13,7 +13,7 @@ const ReviewPage = () => {
     const [isAdmin, setIsAdmin] = useState(false);
     const [loading, setLoading] = useState(true);
     const [currentPage, setCurrentPage] = useState(1);
-    const [reviewsPerPage] = useState(8);// Number of visible reviews
+    const [reviewsPerPage] = useState(8); // Number of visible reviews
     const { user } = useContext(AuthContext);
     const { enqueueSnackbar } = useSnackbar();
 
@@ -59,7 +59,7 @@ const ReviewPage = () => {
                 `${import.meta.env.VITE_BASEURL}/reviews`
             );
             setReviews(response.data);
-            setIsAdmin(true);
+            setIsAdmin(user?.role === "admin"); // Check if the user is admin based on the role
         } catch (error) {
             enqueueSnackbar(
                 error.response
@@ -232,9 +232,21 @@ const ReviewPage = () => {
                                         review.createdAt
                                     ).toLocaleDateString()}
                                 </p>
+                                {/* {user.isLoggedIn && (
+                                    <>
+                                        {console.log(
+                                            "Review User ID:",
+                                            review.user._id
+                                        )}
+                                        {console.log(
+                                            "Current User ID:",
+                                            user.id
+                                        )}
+                                    </>
+                                )} */}
                                 {user.isLoggedIn &&
                                     (isAdmin ||
-                                        review.user._id === user.id) && (
+                                        (review.user._id === user.id)) && (
                                         <div className="review-actions">
                                             <button
                                                 onClick={() =>
@@ -251,10 +263,8 @@ const ReviewPage = () => {
                     )}
                 </div>
             )}
-            <div className="review-pagination">
-                {renderPageNumbers()}
-            </div>
-            <BackToTop/>
+            <div className="review-pagination">{renderPageNumbers()}</div>
+            <BackToTop />
         </div>
     );
 };
