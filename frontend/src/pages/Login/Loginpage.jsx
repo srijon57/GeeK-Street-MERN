@@ -89,16 +89,16 @@ function Loginpage() {
     const submitHandler2 = async (e) => {
         e.preventDefault();
         setLoading(true);
-
+    
         try {
             const response = await axios.post(`${import.meta.env.VITE_BASEURL}/auth/login`, loginData);
             const { token, user } = response.data;
-
+    
             localStorage.setItem('token', token);
-            login({ username: user.email, role: user.role });
-
+            login({ username: user.email, role: user.role, id: user.id });
+    
             enqueueSnackbar("Sign in successful", { variant: 'success' });
-
+    
             navigate(user.role === 'admin' ? '/admin' : '/');
         } catch (error) {
             enqueueSnackbar(error.response?.data?.msg || "An error occurred", { variant: 'error' });
@@ -106,6 +106,7 @@ function Loginpage() {
             setLoading(false);
         }
     };
+    
 
     return (
         <div className="login-page">
