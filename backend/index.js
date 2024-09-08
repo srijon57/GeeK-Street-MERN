@@ -8,6 +8,7 @@ import { CloudinaryStorage } from "multer-storage-cloudinary";
 import productRoute from "./routes/productRoute.js";
 import { authRouter } from "./controllers/authController.js";
 import reviewRoute from './routes/reviewRoute.js';
+import { salesRouter } from './routes/salesRoute.js'; 
 import nodemailer from "nodemailer";
 
 config();
@@ -64,6 +65,9 @@ const transporter = nodemailer.createTransport({
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS,
     },
+    tls: {
+        rejectUnauthorized: false, // Ignore SSL certificate errors
+    },
 });
 
 // Route for sending emails
@@ -85,8 +89,11 @@ app.post('/send-email', async (req, res) => {
         res.status(500).send({ message: 'Failed to send email', error: error.message });
     }
 });
+
 // API routes
 app.use('/product', productRoute);
 app.use('/auth', authRouter);
 app.use('/reviews', reviewRoute);
+app.use('/sales', salesRouter); 
+
 app.listen(process.env.PORT, () => console.log(`Server running on port ${process.env.PORT}`));

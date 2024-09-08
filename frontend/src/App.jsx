@@ -23,6 +23,7 @@ import News from "./pages/News/News.jsx";
 import ReviewPage from "./pages/RatingStar/ReviewPage.jsx";
 import ThemeProvider from "./components/Theme/Theme.jsx";
 import SendReport from "./components/SendReport/SendReport.jsx";
+import AdminDashboard from "./pages/Admin/AdminDashboard/AdminDashboard.jsx";
 
 function App() {
     const { user } = useContext(AuthContext);
@@ -40,29 +41,30 @@ function App() {
     return (
         <>
             <ThemeProvider>
-            {renderNavbar()}
-            <Routes>
-                <Route path="/" element={<Homepage />} />
-                <Route path="/shop" element={<Shop />} />
-                <Route path="/About" element={<About />} />
-                <Route path="/cart" element={<Cart />} />
-                <Route path="/Login" element={<Loginpage />} />
-                <Route path="/verify-email" element={<VerifyEmailPage />} />
-                <Route path="/reset-password" element={<ResetPasswordPage />} />
-                <Route path="/payment" element={<PaymentPage />} />
-                <Route path="/news" element={<News/>} />
-                <Route path="/review" element={<ReviewPage />} />
-                <Route path="/report" element={<SendReport />} />
-                <Route
-                    path="/admin/*"
-                    element={
-                        <ProtectedRoute role="admin">
-                            <AdminRoutes />
-                        </ProtectedRoute>
-                    }
-                />
-            </Routes>
-            <Footer />
+                {renderNavbar()}
+                <Routes>
+                    <Route path="/" element={<Homepage />} />
+                    <Route path="/shop" element={<Shop />} />
+                    <Route path="/About" element={<About />} />
+                    <Route path="/cart" element={<Cart />} />
+                    <Route path="/Login" element={<Loginpage />} />
+                    <Route path="/verify-email" element={<VerifyEmailPage />} />
+                    <Route path="/reset-password" element={<ResetPasswordPage />} />
+                    <Route path="/payment" element={<PaymentPage />} />
+                    <Route path="/news" element={<News />} />
+                    <Route path="/review" element={<ReviewPage />} />
+                    <Route path="/report" element={<SendReport />} />
+                    <Route path="/admindashboard" element={<AdminDashboard />} />
+                    <Route
+                        path="/admin/*"
+                        element={
+                            <ProtectedRoute role="admin">
+                                <AdminRoutes />
+                            </ProtectedRoute>
+                        }
+                    />
+                </Routes>
+                <Footer />
             </ThemeProvider>
         </>
     );
@@ -72,9 +74,9 @@ const AdminRoutes = () => {
     return (
         <Routes>
             <Route path="/" element={<Admin />} />
-            <Route path="/product/create" element={<CreateProduct />} />
-            <Route path="/product/edit/:id" element={<EditProduct />} />
-            <Route path="/product/delete/:id" element={<DeleteProduct />} />
+            <Route path="product/create" element={<CreateProduct />} />
+            <Route path="product/edit/:id" element={<EditProduct />} />
+            <Route path="product/delete/:id" element={<DeleteProduct />} />
         </Routes>
     );
 };
