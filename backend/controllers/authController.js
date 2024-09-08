@@ -113,7 +113,7 @@ router.post('/login', async (req, res) => {
                     if (error) throw error;
 
                     res.json({
-                        token,
+                        token,// access token
                         user: { id: user._id, email: user.email, role: user.role }
                     });
                 }

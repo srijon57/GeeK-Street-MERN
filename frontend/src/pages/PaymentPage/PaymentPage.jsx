@@ -4,11 +4,11 @@ import { useSnackbar } from 'notistack';
 import Spinner from "../../components/Spinner/Spinner";
 import { useNavigate } from 'react-router-dom';
 import { useCart } from '../../context/CartContext';
-import { AuthContext } from '../../context/AuthContext'; 
+import { AuthContext } from '../../context/AuthContext';
 import './PaymentPage.css';
 
 const PaymentPage = () => {
-    const [name, setName] = useState(''); 
+    const [name, setName] = useState('');
     const [address, setAddress] = useState('');
     const [phone, setPhone] = useState('');
     const [loading, setLoading] = useState(false);
@@ -26,7 +26,7 @@ const PaymentPage = () => {
             enqueueSnackbar('Name, address, and phone number are required!', { variant: 'error' });
             return;
         }
-        
+
         if (!/^\d+$/.test(phone)) {
             enqueueSnackbar('Phone number must contain only numbers!', { variant: 'error' });
             return;
@@ -39,9 +39,15 @@ const PaymentPage = () => {
                 subject: 'New Order Received',
                 text: `Name: ${name}\nE-mail: ${user.username}\nAddress: ${address}\nPhone: ${phone}\nItems: ${cartDetails}\nTotal Price: BDT ${(totalPrice).toFixed(2)}`,
             });
+
+            await axios.post(`${import.meta.env.VITE_BASEURL}/sales/update-sales`, {
+                items: cartItems.reduce((acc, item) => acc + item.quantity, 0),
+                cost: totalPrice,
+            });
+
             enqueueSnackbar('Order completed. A confirmation email will be sent shortly.', { variant: 'success' });
-            clearCart(); 
-            navigate('/'); 
+            clearCart();
+            navigate('/');
         } catch (error) {
             console.error('Error sending email:', error);
             enqueueSnackbar('Failed to send email. Please try again later.', { variant: 'error' });
@@ -99,10 +105,10 @@ const PaymentPage = () => {
                     <p><strong>Items:</strong> {cartDetails}</p>
                     <p><strong>Total Price:</strong> BDT {(totalPrice-1).toFixed(2)}</p>
                 </div>
-                <button 
-                    type='button' 
-                    onClick={() => setShowConfirmation(true)} 
-                    className='payment-button' 
+                <button
+                    type='button'
+                    onClick={() => setShowConfirmation(true)}
+                    className='payment-button'
                     disabled={loading}
                 >
                     {loading ? <Spinner /> : 'DONE'}

@@ -14,6 +14,7 @@ const Navbar1 = () => {
         { name: "Shop", href: "/Shop" },
         { name: "Review", href: "/review" },
         { name: "Admin", href: "/admin" },
+        { name: "Dashboard", href: "/admindashboard" },
     ];
 
     const toggleMenu = () => {

@@ -107,7 +107,6 @@ function Loginpage() {
         }
     };
     
-
     return (
         <div className="login-page">
             <div className={`login-container ${isActive ? "active" : ""}`} id="container">
