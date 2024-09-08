@@ -38,7 +38,6 @@ const Shop = () => {
     }, []);
 
     useEffect(() => {
-        // Synchronize input fields with slider values
         setMinPriceInput(priceRange[0]);
         setMaxPriceInput(priceRange[1]);
     }, [priceRange]);
@@ -85,6 +84,7 @@ const Shop = () => {
 
     useEffect(() => {
         filterProducts();
+        setCurrentPage(1);
     }, [product, category, searchTerm, sortOrder, priceRange]);
 
     // Pagination logic
