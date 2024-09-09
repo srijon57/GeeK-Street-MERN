@@ -11,7 +11,7 @@ const Navbar2 = () => {
     const { theme, toggleTheme } = useContext(ThemeContext);
     const navItems = [
         { name: "Home", href: "/" },
-        { name: "Shop", href: "/Shop" },
+        { name: "Shop", href: "/shop" },
         { name: "Review", href: "/review" },
         { name: "About", href: "/About" },
     ];
