@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import Search from "../../components/search/search"; 
+import Search from "../../components/search/search";
+import Spinner from "../../components/Spinner/Spinner"; 
 import "./admin.css";
 
 const Admin = () => {
     const [products, setProducts] = useState([]);
     const [filteredProducts, setFilteredProducts] = useState([]);
     const [loading, setLoading] = useState(false);
-    const [currentPage, setCurrentPage] = useState(1); 
-    const itemsPerPage = 20; 
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 20;
 
     useEffect(() => {
         setLoading(true);
@@ -34,7 +35,7 @@ const Admin = () => {
                 product.name.toLowerCase().includes(searchTerm.toLowerCase())
             );
             setFilteredProducts(filtered);
-            setCurrentPage(1); 
+            setCurrentPage(1);
         }
     };
 
@@ -55,10 +56,10 @@ const Admin = () => {
 
     return (
         <div className="container2">
-            <Search onSearch={handleSearch} /> 
+            <Search onSearch={handleSearch} />
             <div className="table-container">
                 {loading ? (
-                    <p>Loading...</p>
+                    <Spinner loading={loading} />
                 ) : (
                     <>
                         <table className="product-table">
