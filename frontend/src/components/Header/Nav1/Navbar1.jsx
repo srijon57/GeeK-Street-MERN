@@ -11,10 +11,10 @@ const Navbar1 = () => {
     const { theme, toggleTheme } = useContext(ThemeContext);
     const navItems = [
         { name: "Home", href: "/" },
-        { name: "Shop", href: "/Shop" },
+        { name: "Shop", href: "/shop" }, 
         { name: "Review", href: "/review" },
         { name: "Admin", href: "/admin" },
-        { name: "Dashboard", href: "/admindashboard" },
+        { name: "Dashboard", href: "/admin/admindashboard" }, 
     ];
 
     const toggleMenu = () => {

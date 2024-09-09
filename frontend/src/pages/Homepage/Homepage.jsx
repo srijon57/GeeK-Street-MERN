@@ -24,7 +24,7 @@ export const Homepage = () => {
             });
     }, []);
 
-    const latestProducts = product.slice(0, 6);
+    const latestProducts = [...product].reverse().slice(0, 9);
 
     return (
         <div>

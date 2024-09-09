@@ -54,7 +54,6 @@ function App() {
                     <Route path="/news" element={<News />} />
                     <Route path="/review" element={<ReviewPage />} />
                     <Route path="/report" element={<SendReport />} />
-                    <Route path="/admindashboard" element={<AdminDashboard />} />
                     <Route
                         path="/admin/*"
                         element={
@@ -77,6 +76,7 @@ const AdminRoutes = () => {
             <Route path="product/create" element={<CreateProduct />} />
             <Route path="product/edit/:id" element={<EditProduct />} />
             <Route path="product/delete/:id" element={<DeleteProduct />} />
+            <Route path="admindashboard" element={<AdminDashboard />} />
         </Routes>
     );
 };
