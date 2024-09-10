@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import { FaFacebookF, FaGoogle, FaEye, FaEyeSlash } from "react-icons/fa";
+import { FaGithub, FaGoogle, FaEye, FaEyeSlash } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import { useSnackbar } from 'notistack';
@@ -89,16 +89,16 @@ function Loginpage() {
     const submitHandler2 = async (e) => {
         e.preventDefault();
         setLoading(true);
-    
+
         try {
             const response = await axios.post(`${import.meta.env.VITE_BASEURL}/auth/login`, loginData);
             const { token, user } = response.data;
-    
+
             localStorage.setItem('token', token);
             login({ username: user.email, role: user.role, id: user.id });
-    
+
             enqueueSnackbar("Sign in successful", { variant: 'success' });
-    
+
             navigate(user.role === 'admin' ? '/admin' : '/');
         } catch (error) {
             enqueueSnackbar(error.response?.data?.msg || "An error occurred", { variant: 'error' });
@@ -106,7 +106,11 @@ function Loginpage() {
             setLoading(false);
         }
     };
-    
+
+    const handleGoogleLogin = () => {
+        window.location.href = `${import.meta.env.VITE_BASEURL}/auth/google`;
+    };
+
     return (
         <div className="login-page">
             <div className={`login-container ${isActive ? "active" : ""}`} id="container">
@@ -114,11 +118,11 @@ function Loginpage() {
                     <form className="register-form" onSubmit={submitHandler}>
                         <h1>Create Account</h1>
                         <div className="social-icons">
-                            <a href="#" className="icon">
+                            <a href="#" className="icon" onClick={handleGoogleLogin}>
                                 <FaGoogle />
                             </a>
                             <a href="#" className="icon">
-                                <FaFacebookF />
+                                <FaGithub />
                             </a>
                         </div>
                         <span>or use your email for registration</span>
@@ -175,11 +179,11 @@ function Loginpage() {
                     <form className='form' onSubmit={submitHandler2}>
                         <h1>Sign In</h1>
                         <div className="social-icons">
-                            <a href="#" className="icon">
+                            <a href="#" className="icon" onClick={handleGoogleLogin}>
                                 <FaGoogle />
                             </a>
                             <a href="#" className="icon">
-                                <FaFacebookF />
+                                <FaGithub />
                             </a>
                         </div>
                         <span>or use your email for password</span>
