@@ -2,6 +2,7 @@ import React, { createContext, useState, useEffect, useContext } from 'react';
 import Cookies from 'js-cookie';
 import { useCart } from '../context/CartContext';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const AuthContext = createContext();
 
@@ -9,7 +10,8 @@ const AuthProvider = ({ children }) => {
     const [user, setUser] = useState({
         isLoggedIn: false,
         role: "",
-        username: ""
+        username: "",
+        id: ""
     });
 
     const { clearCart } = useCart();
@@ -25,15 +27,25 @@ const AuthProvider = ({ children }) => {
         const token = urlParams.get('token');
         if (token) {
             localStorage.setItem('token', token);
-            // Assuming you have a way to get user info from the token or backend
-            // For simplicity, let's assume the token contains the user info
-            const userInfo = {
-                isLoggedIn: true,
-                role: 'customer', // Replace with actual role
-                username: 'user@example.com' // Replace with actual email
-            };
-            login(userInfo);
-            navigate('/'); // Redirect to the home page or any other logged-in page
+            axios
+                .get(`${import.meta.env.VITE_BASEURL}/auth/user-info`, {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                })
+                .then((response) => {
+                    const userInfo = {
+                        isLoggedIn: true,
+                        role: response.data.role,
+                        username: response.data.email,
+                        id: response.data._id, 
+                    };
+                    login(userInfo);
+                    navigate('/');
+                })
+                .catch((error) => {
+                    console.error('Error fetching user info:', error);
+                });
         }
     }, [navigate]);
 
@@ -43,7 +55,7 @@ const AuthProvider = ({ children }) => {
     };
 
     const logout = () => {
-        setUser({ isLoggedIn: false, role: "", username: "" });
+        setUser({ isLoggedIn: false, role: "", username: "", id: "" });
         Cookies.remove('user');
         localStorage.removeItem("token");
         clearCart();
