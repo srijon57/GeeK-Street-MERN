@@ -111,6 +111,10 @@ function Loginpage() {
         window.location.href = `${import.meta.env.VITE_BASEURL}/auth/google`;
     };
 
+    const handleGitHubLogin = () => {
+        window.location.href = `${import.meta.env.VITE_BASEURL}/auth/github`;
+    };
+
     return (
         <div className="login-page">
             <div className={`login-container ${isActive ? "active" : ""}`} id="container">
@@ -121,7 +125,7 @@ function Loginpage() {
                             <a href="#" className="icon" onClick={handleGoogleLogin}>
                                 <FaGoogle />
                             </a>
-                            <a href="#" className="icon">
+                            <a href="#" className="icon" onClick={handleGitHubLogin}>
                                 <FaGithub />
                             </a>
                         </div>
@@ -182,7 +186,7 @@ function Loginpage() {
                             <a href="#" className="icon" onClick={handleGoogleLogin}>
                                 <FaGoogle />
                             </a>
-                            <a href="#" className="icon">
+                            <a href="#" className="icon" onClick={handleGitHubLogin}>
                                 <FaGithub />
                             </a>
                         </div>
