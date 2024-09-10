@@ -1,6 +1,7 @@
 import React, { createContext, useState, useEffect, useContext } from 'react';
 import Cookies from 'js-cookie';
-import { useCart } from '../context/CartContext'; 
+import { useCart } from '../context/CartContext';
+import { useNavigate } from 'react-router-dom';
 
 const AuthContext = createContext();
 
@@ -11,14 +12,30 @@ const AuthProvider = ({ children }) => {
         username: ""
     });
 
-    const { clearCart } = useCart(); 
+    const { clearCart } = useCart();
+    const navigate = useNavigate();
 
     useEffect(() => {
         const storedUser = Cookies.get('user');
         if (storedUser) {
             setUser(JSON.parse(storedUser));
         }
-    }, []);
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const token = urlParams.get('token');
+        if (token) {
+            localStorage.setItem('token', token);
+            // Assuming you have a way to get user info from the token or backend
+            // For simplicity, let's assume the token contains the user info
+            const userInfo = {
+                isLoggedIn: true,
+                role: 'customer', // Replace with actual role
+                username: 'user@example.com' // Replace with actual email
+            };
+            login(userInfo);
+            navigate('/'); // Redirect to the home page or any other logged-in page
+        }
+    }, [navigate]);
 
     const login = (userData) => {
         setUser({ isLoggedIn: true, ...userData });
@@ -30,7 +47,7 @@ const AuthProvider = ({ children }) => {
         Cookies.remove('user');
         localStorage.removeItem("token");
         clearCart();
-        window.location.href = "/";
+        navigate('/'); // Redirect to the home page or any other logged-out page
     };
 
     return (

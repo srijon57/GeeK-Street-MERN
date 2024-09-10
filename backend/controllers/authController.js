@@ -4,7 +4,13 @@ import jwt from "jsonwebtoken";
 import User from "../models/userModel.js";
 import crypto from 'crypto';
 import nodemailer from 'nodemailer';
+import passport from 'passport';
+import { config } from "dotenv";
+
+config();
+
 const router = express.Router();
+
 const validatePassword = (password) => {
     const passwordRegex = /^(?=.*\d)(?=.*[a-zA-Z]).{6,}$/;
     return passwordRegex.test(password);
@@ -61,6 +67,7 @@ router.post('/register', async (req, res) => {
         res.status(500).send('Server error');
     }
 });
+
 //ROUTE FOR VERIFY EMAIL
 router.get('/verify-email', async (req, res) => {
     const { token } = req.query;
@@ -83,6 +90,7 @@ router.get('/verify-email', async (req, res) => {
         res.status(500).json({ msg: 'Server error' });
     }
 });
+
 //ROUTE FOR LOGIN
 router.post('/login', async (req, res) => {
     try {
@@ -126,6 +134,7 @@ router.post('/login', async (req, res) => {
         res.status(500).send('Server error');
     }
 });
+
 // Generate OTP and send it to the user's email
 router.post('/forgot-password', async (req, res) => {
     const { email } = req.body;
@@ -213,5 +222,26 @@ router.post('/reset-password', async (req, res) => {
     }
 });
 
+// Google OAuth routes
+router.get('/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
+
+router.get('/google/callback', passport.authenticate('google', { failureRedirect: '/login' }), (req, res) => {
+    const payload = {
+        id: req.user._id,
+        email: req.user.email,
+        role: req.user.role
+    };
+
+    jwt.sign(
+        payload,
+        process.env.JWT_SECRET,
+        { expiresIn: 3600 }, // 1 hour
+        (error, token) => {
+            if (error) throw error;
+
+            res.redirect(`${process.env.FRONTEND_URL}/login?token=${token}`);
+        }
+    );
+});
 
 export { router as authRouter };

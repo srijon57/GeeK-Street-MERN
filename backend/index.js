@@ -1,5 +1,6 @@
-import express from "express";
 import { config } from "dotenv";
+import jwt from "jsonwebtoken";
+import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 import { v2 as cloudinary } from "cloudinary";
@@ -8,14 +9,29 @@ import { CloudinaryStorage } from "multer-storage-cloudinary";
 import productRoute from "./routes/productRoute.js";
 import { authRouter } from "./controllers/authController.js";
 import reviewRoute from './routes/reviewRoute.js';
-import { salesRouter } from './routes/salesRoute.js'; 
+import { salesRouter } from './routes/salesRoute.js';
 import nodemailer from "nodemailer";
+import passport from 'passport';
+import session from 'express-session';
+import './config/passport.js'; 
 
 config();
 const app = express();
 
 app.use(cors());
-app.use(express.json()); // Parse JSON bodies
+app.use(express.json()); 
+
+// Configure express-session
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false } //for http if https it will be true
+}));
+
+// Initialize Passport
+app.use(passport.initialize());
+app.use(passport.session());
 
 // MongoDB connection
 mongoose
@@ -94,6 +110,6 @@ app.post('/send-email', async (req, res) => {
 app.use('/product', productRoute);
 app.use('/auth', authRouter);
 app.use('/reviews', reviewRoute);
-app.use('/sales', salesRouter); 
+app.use('/sales', salesRouter);
 
 app.listen(process.env.PORT, () => console.log(`Server running on port ${process.env.PORT}`));
