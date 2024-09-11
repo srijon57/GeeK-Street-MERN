@@ -45,7 +45,7 @@ passport.use(new GitHubStrategy({
         if (!user) {
             user = new User({
                 email,
-                password: 'github-auth', // You can set a dummy password or leave it empty
+                password: 'github-auth', // a dummy pass for github lgoin
                 isVerified: true,
                 role: 'customer'
             });
