@@ -12,7 +12,6 @@ const Navbar1 = () => {
     const navItems = [
         { name: "Home", href: "/" },
         { name: "Shop", href: "/shop" }, 
-        { name: "Review", href: "/review" },
         { name: "Admin", href: "/admin" },
         { name: "Dashboard", href: "/admin/admindashboard" }, 
     ];

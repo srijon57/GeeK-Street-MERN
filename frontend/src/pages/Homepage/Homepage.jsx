@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import "./Home.css";
 import Hero from "../../components/Hero/Hero";
 import axios from "axios";
@@ -6,10 +6,12 @@ import ProductCard from "../../components/Product/ProductCard";
 import Spinner from "../../components/Spinner/Spinner";
 import { FaExchangeAlt, FaUndoAlt, FaHeadset } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../context/AuthContext.jsx";
 
 export const Homepage = () => {
     const [product, setProduct] = useState([]);
     const [loading, setLoading] = useState(true);
+    const { user } = useContext(AuthContext);
 
     useEffect(() => {
         axios
@@ -67,13 +69,17 @@ export const Homepage = () => {
                             devices, gadgets, components, and laptops for
                             purchase.
                         </p>
-                        <h3>
-                            Please{" "}
-                            <Link to="/Login" className="sign-in-text">
-                                Sign-In
-                            </Link>{" "}
-                            to buy products
-                        </h3>
+                        {user.isLoggedIn ? (
+                            <h3>Thank you for choosing Geek Street BD.</h3>
+                        ) : (
+                            <h3>
+                                Please{" "}
+                                <Link to="/Login" className="sign-in-text">
+                                    Sign-In
+                                </Link>{" "}
+                                to buy products
+                            </h3>
+                        )}
                         <br></br>
                         <Link to="/shop" className="btn">
                             Shop
