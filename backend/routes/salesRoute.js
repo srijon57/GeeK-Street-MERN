@@ -5,7 +5,7 @@ const router = express.Router();
 
 // Route to update sales data
 router.post('/update-sales', async (req, res) => {
-    const { items, cost } = req.body;
+    const { items, cost, productId, productName, totalPrice, customerName } = req.body;
     const currentDate = new Date().toISOString().slice(0, 10); // Format: YYYY-MM-DD
 
     try {
@@ -16,7 +16,8 @@ router.post('/update-sales', async (req, res) => {
                 totalItems: items,
                 totalCost: cost,
                 customerCount: 1,
-                dailySales: [{ date: currentDate, items, cost, customer: 0 }], 
+                dailySales: [{ date: currentDate, items, cost, customer: 0 }],
+                recentOrders: [{ productId, productName, totalPrice, customerName, date: new Date() }],
             });
             await newSales.save();
         } else {
@@ -28,9 +29,14 @@ router.post('/update-sales', async (req, res) => {
             if (existingDate) {
                 existingDate.items += items;
                 existingDate.cost += cost;
-                existingDate.customer += 1;  
+                existingDate.customer += 1;
             } else {
-                sales.dailySales.push({ date: currentDate, items, cost, customer: 0 });  
+                sales.dailySales.push({ date: currentDate, items, cost, customer: 0 });
+            }
+
+            sales.recentOrders.push({ productId, productName, totalPrice, customerName, date: new Date() });
+            if (sales.recentOrders.length > 15) {
+                sales.recentOrders.shift(); // Remove the oldest order
             }
 
             await sales.save();
@@ -39,6 +45,33 @@ router.post('/update-sales', async (req, res) => {
         res.status(200).json({ msg: 'Sales data updated successfully' });
     } catch (error) {
         console.error('Error updating sales data:', error);
+        res.status(500).json({ msg: 'Server error' });
+    }
+});
+
+
+// Route to update order status
+router.put('/update-order-status/:orderId', async (req, res) => {
+    const { orderId } = req.params;
+    const { status } = req.body;
+
+    try {
+        const sales = await Sales.findOne();
+        if (!sales) {
+            return res.status(404).json({ msg: 'No sales data found' });
+        }
+
+        const order = sales.recentOrders.id(orderId);
+        if (!order) {
+            return res.status(404).json({ msg: 'Order not found' });
+        }
+
+        order.status = status;
+        await sales.save();
+
+        res.status(200).json({ msg: 'Order status updated successfully' });
+    } catch (error) {
+        console.error('Error updating order status:', error);
         res.status(500).json({ msg: 'Server error' });
     }
 });

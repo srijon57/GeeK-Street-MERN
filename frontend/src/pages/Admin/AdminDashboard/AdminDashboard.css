@@ -7,13 +7,13 @@
 .admin-dashboard {
     padding: 20px;
     font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #141e30, #243b55); 
+    background: linear-gradient(135deg, #141e30, #243b55);
     color: #fff;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    animation: fadeIn 1s ease-in-out; 
+    animation: fadeIn 1s ease-in-out;
 }
 
 .admin-dashboard h2 {
@@ -23,7 +23,7 @@
     letter-spacing: 3px;
     text-align: center;
     color: #f0f0f0;
-    animation: slideDown 1s ease-out; 
+    animation: slideDown 1s ease-out;
 }
 
 .admin-dashboard .stats {
@@ -37,7 +37,7 @@
 }
 
 .stats .stat {
-    background: rgba(255, 255, 255, 0.1); 
+    background: rgba(255, 255, 255, 0.1);
     padding: 20px;
     border-radius: 10px;
     text-align: center;
@@ -45,7 +45,7 @@
     min-width: 280px;
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    backdrop-filter: blur(10px); 
+    backdrop-filter: blur(10px);
 }
 
 .stats .stat h3 {
@@ -62,7 +62,7 @@
 }
 
 .stats .stat:hover {
-    transform: translateY(-10px); 
+    transform: translateY(-10px);
     box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.3);
 }
 
@@ -90,6 +90,65 @@
     color: #f0f0f0;
 }
 
+.admin-dashboard .recent-orders {
+    width: 100%;
+    max-width: 1200px;
+    margin-bottom: 40px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.admin-dashboard .recent-orders h3 {
+    font-size: 22px;
+    margin-bottom: 15px;
+    text-align: center;
+    color: #f0f0f0;
+}
+
+.admin-dashboard .recent-orders table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.admin-dashboard .recent-orders table th,
+.admin-dashboard .recent-orders table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.admin-dashboard .recent-orders table th {
+    background: rgba(255, 255, 255, 0.1);
+    color: #a0f0ed;
+    font-weight: 600;
+}
+
+.admin-dashboard .recent-orders table td {
+    color: #ffffff;
+}
+
+.admin-dashboard .recent-orders table button {
+    background: #a0f0ed;
+    color: #141e30;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+    cursor: pointer;
+    font-size: 18px;
+    margin-right: 10px;
+}
+
+.admin-dashboard .recent-orders table button:hover {
+    background: #a9f0a0;
+    color: grey;
+}
+
 @media (max-width: 768px) {
     .stats {
         flex-direction: column;
@@ -101,12 +160,65 @@
         margin-bottom: 20px;
     }
 
-    .chart {
+    .chart,
+    .recent-orders {
         width: 100%;
+    }
+
+    .recent-orders table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    .recent-orders table th,
+    .recent-orders table td {
+        padding: 10px;
+        text-align: left;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .recent-orders table th {
+        background: rgba(255, 255, 255, 0.1);
+        color: #a0f0ed;
+        font-weight: 600;
+    }
+
+    .recent-orders table td {
+        color: #ffffff;
+    }
+
+    .recent-orders table button {
+        background: #a0f0ed;
+        color: #141e30;
+        border: none;
+        padding: 6px 10px;
+        border-radius: 5px;
+        transition: background 0.3s ease;
+        cursor: pointer;
+        font-size: 18px;
+        margin-right: 10px;
+    }
+
+    .recent-orders table button:hover {
+        background: #a9f0a0;
+        color: grey;
     }
 }
 
-/* Fade In Animation */
+@media (max-width: 480px) {
+    .recent-orders table th,
+    .recent-orders table td {
+        padding: 8px;
+        font-size: 14px;
+    }
+
+    .recent-orders table button {
+        font-size: 14px;
+        padding: 4px 8px;
+    }
+}
+
 @keyframes fadeIn {
     0% {
         opacity: 0;
@@ -116,7 +228,6 @@
     }
 }
 
-/* Slide Down Animation */
 @keyframes slideDown {
     0% {
         transform: translateY(-30px);

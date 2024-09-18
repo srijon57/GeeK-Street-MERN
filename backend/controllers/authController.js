@@ -122,29 +122,63 @@ router.post("/login", async (req, res) => {
                 role: user.role,
             };
             // Access Token
-            jwt.sign(
+            const accessToken = jwt.sign(
                 payload,
                 process.env.JWT_SECRET,
-                { expiresIn: 3600 }, // 1 hour
-                (error, token) => {
-                    if (error) throw error;
-
-                    res.json({
-                        token, // access token
-                        user: {
-                            id: user._id,
-                            email: user.email,
-                            role: user.role,
-                        },
-                    });
-                }
+                { expiresIn: 3600 } // 1 hour
             );
+            // Refresh Token
+            const refreshToken = jwt.sign(
+                payload,
+                process.env.JWT_REFRESH_SECRET,
+                { expiresIn: '7d' } // 7 days
+            );
+
+            res.json({
+                accessToken, // access token
+                refreshToken, // refresh token
+                user: {
+                    id: user._id,
+                    email: user.email,
+                    role: user.role,
+                },
+            });
         } else {
             return res.status(400).json({ msg: "Wrong Password" });
         }
     } catch (error) {
         console.error(error);
         res.status(500).send("Server error");
+    }
+});
+
+//ROUTE FOR REFRESH TOKEN
+router.post("/refresh-token", async (req, res) => {
+    const { refreshToken } = req.body;
+
+    if (!refreshToken) {
+        return res.status(400).json({ msg: "Refresh token is required" });
+    }
+
+    try {
+        const decoded = jwt.verify(refreshToken, process.env.JWT_REFRESH_SECRET);
+
+        const payload = {
+            id: decoded.id,
+            email: decoded.email,
+            role: decoded.role,
+        };
+
+        const accessToken = jwt.sign(
+            payload,
+            process.env.JWT_SECRET,
+            { expiresIn: 3600 } // 1 hour
+        );
+
+        res.json({ accessToken });
+    } catch (error) {
+        console.error("Error refreshing token:", error);
+        res.status(400).json({ msg: "Invalid refresh token" });
     }
 });
 
@@ -253,27 +287,31 @@ router.get(
 router.get(
     "/google/callback",
     passport.authenticate("google", { failureRedirect: "/login" }),
-    (req, res) => {
+    async (req, res) => {
         const payload = {
             id: req.user._id,
             email: req.user.email,
             role: req.user.role,
         };
 
-        jwt.sign(
+        const accessToken = jwt.sign(
             payload,
             process.env.JWT_SECRET,
-            { expiresIn: 3600 }, // 1 hour
-            (error, token) => {
-                if (error) throw error;
+            { expiresIn: 3600 } // 1 hour
+        );
 
-                res.redirect(
-                    `${process.env.FRONTEND_URL}/login?token=${token}`
-                );
-            }
+        const refreshToken = jwt.sign(
+            payload,
+            process.env.JWT_REFRESH_SECRET,
+            { expiresIn: '7d' } // 7 days
+        );
+
+        res.redirect(
+            `${process.env.FRONTEND_URL}/login?token=${accessToken}&refreshToken=${refreshToken}`
         );
     }
 );
+
 router.get(
     "/github",
     passport.authenticate("github", { scope: ["user:email"] })
@@ -282,27 +320,32 @@ router.get(
 router.get(
     "/github/callback",
     passport.authenticate("github", { failureRedirect: "/login" }),
-    (req, res) => {
+    async (req, res) => {
         const payload = {
             id: req.user._id,
             email: req.user.email,
             role: req.user.role,
         };
 
-        jwt.sign(
+        const accessToken = jwt.sign(
             payload,
             process.env.JWT_SECRET,
-            { expiresIn: 3600 }, // 1 hour
-            (error, token) => {
-                if (error) throw error;
+            { expiresIn: 3600 } // 1 hour
+        );
 
-                res.redirect(
-                    `${process.env.FRONTEND_URL}/login?token=${token}`
-                );
-            }
+        const refreshToken = jwt.sign(
+            payload,
+            process.env.JWT_REFRESH_SECRET,
+            { expiresIn: '7d' } // 7 days
+        );
+
+        res.redirect(
+            `${process.env.FRONTEND_URL}/login?token=${accessToken}&refreshToken=${refreshToken}`
         );
     }
 );
+
+
 // Get user info
 router.get('/user-info', async (req, res) => {
     try {
@@ -320,4 +363,5 @@ router.get('/user-info', async (req, res) => {
         res.status(500).send('Server error');
     }
 });
+
 export { router as authRouter };

@@ -46,12 +46,23 @@
     border-radius: 0.5rem;
     margin-bottom: 0.5rem;
 }
-
+@keyframes slide-in {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
 .cart-empty-message {
+    width: 70%;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 700px;
+    margin: 5% auto;
     font-size: 1.5rem;
     font-weight: bold;
     color: #666;
@@ -170,7 +181,7 @@ html[data-theme="light"] {
     }
     .cart-empty-message {
         color: #125988;
-        background-color: #a7c9f3;
+        background-color:skyblue;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
 

@@ -10,7 +10,16 @@ const salesSchema = new mongoose.Schema({
         cost: { type: Number, default: 0 },
         customer: { type: Number, default: 0 },
     }],
+    recentOrders: [{
+        productId: { type: mongoose.Schema.Types.ObjectId, required: true },
+        productName: { type: String, required: true },
+        totalPrice: { type: Number, required: true },
+        customerName: { type: String, required: true },
+        status: { type: String, default: 'Pending' },
+        date: { type: Date, default: Date.now },
+    }],
 });
+
 
 const Sales = mongoose.model('Sales', salesSchema);
 

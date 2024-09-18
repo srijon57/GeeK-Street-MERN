@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import Search from "../../components/search/search";
-import Spinner from "../../components/Spinner/Spinner"; 
+import Spinner from "../../components/Spinner/Spinner";
 import "./admin.css";
 
 const Admin = () => {
@@ -74,6 +74,7 @@ const Admin = () => {
                                     <th>Price</th>
                                     <th>Description</th>
                                     <th>Category</th>
+                                    <th>Quantity</th>
                                     <th>Modify</th>
                                 </tr>
                             </thead>
@@ -91,6 +92,7 @@ const Admin = () => {
                                         <td className="table-cell">{product.priceInCents}</td>
                                         <td className="table-cell">{product.description}</td>
                                         <td className="table-cell">{product.category}</td>
+                                        <td className="table-cell">{product.quantity}</td>
                                         <td className="table-cell">
                                             <div className="action-buttons">
                                                 <Link
