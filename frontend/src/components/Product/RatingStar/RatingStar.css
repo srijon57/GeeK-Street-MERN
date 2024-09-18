@@ -8,11 +8,14 @@
     display: flex;
     align-items: center;
     font-family: 'Arial', sans-serif;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .rating-star-label {
     cursor: pointer;
-    margin: 0 3px; 
+    margin: 0 5px;
     position: relative;
 }
 
@@ -26,33 +29,33 @@
 }
 
 .rating-star-icon:hover {
-    color: #f7c04a;
+    color: #ffd700;
     transform: scale(1.2);
 }
 
 .rating-star-text {
-    margin-left: 8px;
-    font-size: 14px; 
-    color: #f7c04a;
+    margin-left: 10px;
+    font-size: 16px;
+    color: #ffd700;
     font-weight: 600;
 }
 
 @media (max-width: 600px) {
     .rating-star-container {
-        /* flex-direction: column; */
-        align-items: flex-start;
+        flex-direction: column;
+        align-items: center;
     }
 
     .rating-star-label {
-        margin: 0 2px;
+        margin: 0 3px;
     }
 
     .rating-star-icon {
-        font-size: 30px; 
+        font-size: 30px;
     }
 
     .rating-star-text {
-        font-size: 12px; 
-        margin-left: 5px; 
+        font-size: 14px;
+        margin-top: 10px;
     }
 }

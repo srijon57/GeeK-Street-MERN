@@ -1,68 +1,71 @@
-import express from 'express';
-import Review from '../models/reviewModel.js';
-import { auth } from '../middleware/authMiddleware.js';
+import express from "express";
+import { auth } from "../middleware/authMiddleware.js";
+import { Product } from "../models/productModel.js";
 
 const router = express.Router();
 
-// Submit a review (logged-in users only)
-router.post('/', auth, async (req, res) => {
-    const { productName, reviewText, starRating } = req.body;
-    const userId = req.user.id;
-
-    if (!productName || !reviewText || !starRating) {
-        return res.status(400).json({ message: 'All fields are required' });
-    }
-    
-    if (isNaN(starRating) || starRating < 1 || starRating > 5) {
-        return res.status(400).json({ message: 'Star rating must be between 1 and 5' });
-    }
+// Add a review
+router.post("/:productId/reviews", auth, async (req, res) => {
+    const { productId } = req.params;
+    const { rating, comment } = req.body;
 
     try {
-        const newReview = new Review({ productName, reviewText, starRating, user: userId });
-        await newReview.save();
-        res.status(201).json(newReview);
+        const product = await Product.findById(productId);
+        if (!product) {
+            return res.status(404).json({ msg: "Product not found" });
+        }
+
+        const newReview = {
+            user: req.user.id,
+            rating,
+            comment,
+        };
+
+        product.reviews.push(newReview);
+        await product.save();
+
+        const populatedReview = await Product.findById(productId).populate('reviews.user', 'email');
+        res.status(201).json(populatedReview.reviews[populatedReview.reviews.length - 1]);
     } catch (error) {
-        console.error('Error during review submission:', error);
-        res.status(500).json({ message: 'Failed to submit review', error: error.message });
+        console.error("Error adding review:", error);
+        res.status(500).json({ msg: "Internal server error" });
     }
 });
 
-// Get all reviews
-router.get('/', async (req, res) => {
-    try {
-        const reviews = await Review.find().populate({
-            path: 'user',
-            select: 'email'  
-        }).sort({ createdAt: -1 });
-        res.status(200).json(reviews);
-    } catch (error) {
-        console.error('Error fetching reviews:', error);
-        res.status(500).json({ message: 'Failed to fetch reviews', error: error.message });
-    }
-});
-
-
-// Delete a review (admin only & the creator)
-router.delete('/:id', auth, async (req, res) => {
-    const { id } = req.params;
-    const userId = req.user.id;
+// Delete a review
+router.delete("/:productId/reviews/:reviewId", auth, async (req, res) => {
+    const { productId, reviewId } = req.params;
 
     try {
-        const review = await Review.findById(id).populate('user');
+        const product = await Product.findById(productId);
+        if (!product) {
+            return res.status(404).json({ msg: "Product not found" });
+        }
 
+        const review = product.reviews.find(
+            (r) => r._id.toString() === reviewId
+        );
         if (!review) {
-            return res.status(404).json({ message: 'Review not found' });
+            return res.status(404).json({ msg: "Review not found" });
         }
 
-        if (req.user.role !== 'admin' && review.user._id.toString() !== userId.toString()) {
-            return res.status(403).json({ message: 'Only the author of this review can delete it.' });
+        if (
+            req.user.role === "admin" ||
+            review.user.toString() === req.user.id
+        ) {
+            product.reviews = product.reviews.filter(
+                (r) => r._id.toString() !== reviewId
+            );
+            await product.save();
+            res.status(200).json({ msg: "Review deleted" });
+        } else {
+            res.status(403).json({
+                msg: "Not authorized to delete this review",
+            });
         }
-
-        await Review.findByIdAndDelete(id); 
-        res.status(200).json({ message: 'Review deleted' });
     } catch (error) {
-        console.error('Error deleting review:', error); 
-        res.status(500).json({ message: 'Failed to delete review', error: error.message });
+        console.error("Error deleting review:", error);
+        res.status(500).json({ msg: "Internal server error" });
     }
 });
 

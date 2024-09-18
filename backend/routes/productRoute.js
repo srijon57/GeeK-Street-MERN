@@ -40,10 +40,10 @@ router.post('/', auth, async (request, response) => {
 // GET ALL PRODUCTS ROUTE
 router.get('/', async (request, response) => {
     try {
-        const product = await Product.find({});
+        const products = await Product.find({}).populate('reviews.user', 'email');
 
         return response.status(200).json({
-            data: product
+            data: products
         });
     } catch (error) {
         console.log(error.message);
@@ -56,7 +56,7 @@ router.get('/:id', async (request, response) => {
     try {
         const { id } = request.params;
 
-        const product = await Product.findById(id);
+        const product = await Product.findById(id).populate('reviews.user', 'email');
 
         return response.status(200).json(product);
     } catch (error) {
