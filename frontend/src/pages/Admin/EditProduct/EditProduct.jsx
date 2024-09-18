@@ -10,6 +10,7 @@ const EditProductPage = () => {
     const [priceInCents, setPriceInCents] = useState("");
     const [category, setCategory] = useState("");
     const [description, setDescription] = useState("");
+    const [quantity, setQuantity] = useState("");
     const [loading, setLoading] = useState(false);
 
     const navigate = useNavigate();
@@ -34,6 +35,7 @@ const EditProductPage = () => {
                 setPriceInCents(response.data.priceInCents);
                 setDescription(response.data.description);
                 setCategory(response.data.category);
+                setQuantity(response.data.quantity);
                 setLoading(false);
             })
             .catch((error) => {
@@ -44,7 +46,7 @@ const EditProductPage = () => {
     }, [id]);
 
     const handleEditProduct = () => {
-        const data = { name, priceInCents, description, category };
+        const data = { name, priceInCents, description, category, quantity };
         setLoading(true);
         axios
             .put(`${import.meta.env.VITE_BASEURL}/product/${id}`, data, config)
@@ -122,6 +124,17 @@ const EditProductPage = () => {
                         <option value="Components">Components</option>
                         <option value="Gadgets">Gadgets</option>
                     </select>
+
+                    <label htmlFor="quantity" className="edit-product-page-form-label">
+                        Quantity
+                    </label>
+                    <input
+                        id="quantity"
+                        type="number"
+                        value={quantity}
+                        onChange={(e) => setQuantity(e.target.value)}
+                        className="edit-product-page-form-input"
+                    />
 
                     <button onClick={handleEditProduct} className="edit-product-page-submit-button">
                         Save Changes

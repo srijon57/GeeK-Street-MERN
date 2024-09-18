@@ -250,7 +250,19 @@
         linear-gradient(92.83deg, #f87171 0, #ef4444 100%);
 }
 
+.product-stock {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-top: 0.5rem;
+}
 
+.product-stock.in-stock {
+    color:chartreuse;
+}
+
+.product-stock.out-of-stock {
+    color: red;
+}
 .product-modal-overlay {
     position: fixed;
     top: 0;

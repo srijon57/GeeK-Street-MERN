@@ -26,12 +26,12 @@ const PaymentPage = () => {
             enqueueSnackbar('Name, address, and phone number are required!', { variant: 'error' });
             return;
         }
-
+    
         if (!/^\d+$/.test(phone)) {
             enqueueSnackbar('Phone number must contain only numbers!', { variant: 'error' });
             return;
         }
-
+    
         setLoading(true);
         try {
             await axios.post(`${import.meta.env.VITE_BASEURL}/send-email`, {
@@ -39,12 +39,17 @@ const PaymentPage = () => {
                 subject: 'New Order Received',
                 text: `Name: ${name}\nE-mail: ${user.username}\nAddress: ${address}\nPhone: ${phone}\nItems: ${cartDetails}\nTotal Price: BDT ${(totalPrice).toFixed(2)}`,
             });
-
+    
             await axios.post(`${import.meta.env.VITE_BASEURL}/sales/update-sales`, {
                 items: cartItems.reduce((acc, item) => acc + item.quantity, 0),
                 cost: totalPrice,
+                productId: cartItems[0]._id, 
+                productName: cartDetails,
+                totalPrice: totalPrice,
+                customerName: name,
+                date: new Date(),
             });
-
+    
             enqueueSnackbar('Order completed. A confirmation email will be sent shortly.', { variant: 'success' });
             clearCart();
             navigate('/');
@@ -55,6 +60,7 @@ const PaymentPage = () => {
             setLoading(false);
         }
     };
+    
 
     const handleConfirm = () => {
         setShowConfirmation(false);

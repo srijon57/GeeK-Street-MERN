@@ -27,7 +27,7 @@ function Loginpage() {
 
     const navigate = useNavigate();
     const { enqueueSnackbar } = useSnackbar();
-    const { login } = useContext(AuthContext);
+    const { login, refreshToken } = useContext(AuthContext);
 
     const [userData, setUserData] = useState({
         name: "",
@@ -92,9 +92,10 @@ function Loginpage() {
 
         try {
             const response = await axios.post(`${import.meta.env.VITE_BASEURL}/auth/login`, loginData);
-            const { token, user } = response.data;
+            const { accessToken, refreshToken, user } = response.data;
 
-            localStorage.setItem('token', token);
+            localStorage.setItem('token', accessToken);
+            localStorage.setItem('refreshToken', refreshToken);
             login({ username: user.email, role: user.role, id: user.id });
 
             enqueueSnackbar("Sign in successful", { variant: 'success' });

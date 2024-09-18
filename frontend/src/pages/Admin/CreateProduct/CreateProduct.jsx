@@ -10,10 +10,9 @@ const CreateProduct = () => {
     const [priceInCents, setPriceInCents] = useState("");
     const [category, setCategory] = useState("");
     const [description, setDescription] = useState("");
+    const [quantity, setQuantity] = useState("");
     const [img, setImg] = useState(null);
-
     const [imgPreview, setImgPreview] = useState(null);
-
     const [loading, setLoading] = useState(false);
 
     const navigate = useNavigate();
@@ -68,7 +67,7 @@ const CreateProduct = () => {
     };
 
     const handleSaveProduct = async () => {
-        if (!name || !priceInCents || !category) {
+        if (!name || !priceInCents || !category || !quantity) {
             enqueueSnackbar("Please fill all required fields", {
                 variant: "warning",
             });
@@ -97,6 +96,7 @@ const CreateProduct = () => {
                 description,
                 image: uploadedImageUrl,
                 category,
+                quantity: parseInt(quantity),
             };
 
             await axios.post(`${import.meta.env.VITE_BASEURL}/product`, formData, config);
@@ -177,6 +177,17 @@ const CreateProduct = () => {
                         <option value="Components">Components</option>
                         <option value="Gadgets">Gadgets</option>
                     </select>
+
+                    <label htmlFor="quantity" className="create-product-label">
+                        Quantity
+                    </label>
+                    <input
+                        id="quantity"
+                        type="number"
+                        value={quantity}
+                        onChange={(e) => setQuantity(e.target.value)}
+                        className="create-product-input"
+                    />
 
                     <label htmlFor="img" className="create-product-label">
                         Upload Image

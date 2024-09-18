@@ -45,8 +45,11 @@ const ProductSingleCard = ({ product }) => {
                     <div className="product-price">
                         BDT {product.priceInCents.toFixed(2)}
                     </div>
+                    <div className={`product-stock ${product.quantity > 0 ? 'in-stock' : 'out-of-stock'}`}>
+                        {product.quantity > 0 ? "In Stock" : "Out of Stock"}
+                    </div>
                     <div className="product-card-actions">
-                        {user.isLoggedIn && (
+                        {user.isLoggedIn && product.quantity > 0 && (
                             <>
                                 {quantity > 0 ? (
                                     <button
@@ -93,8 +96,11 @@ const ProductSingleCard = ({ product }) => {
                         <div className="product-price">
                             BDT {product.priceInCents.toFixed(2)}
                         </div>
+                        <div className={`product-stock ${product.quantity > 0 ? 'in-stock' : 'out-of-stock'}`}>
+                            {product.quantity > 0 ? "In Stock" : "Out of Stock"}
+                        </div>
                         <div className="product-modal-actions">
-                            {user.isLoggedIn && (
+                            {user.isLoggedIn && product.quantity > 0 && (
                                 <>
                                     {quantity > 0 ? (
                                         <button
