@@ -23,6 +23,7 @@ import News from "./pages/News/News.jsx";
 import ThemeProvider from "./components/Theme/Theme.jsx";
 import SendReport from "./components/SendReport/SendReport.jsx";
 import AdminDashboard from "./pages/Admin/AdminDashboard/AdminDashboard.jsx";
+import OrderHistory from './components/OrderHistory/OrderHistory';
 
 function App() {
     const { user } = useContext(AuthContext);
@@ -52,6 +53,7 @@ function App() {
                     <Route path="/payment" element={<PaymentPage />} />
                     <Route path="/news" element={<News />} />
                     <Route path="/report" element={<SendReport />} />
+                    <Route path="/orderhistory" element={<OrderHistory />} />
                     <Route
                         path="/admin/*"
                         element={

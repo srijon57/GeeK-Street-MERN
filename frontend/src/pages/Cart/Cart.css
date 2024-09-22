@@ -93,11 +93,25 @@
     font-size: 1rem;
     margin-bottom: 0.5rem;
 }
+.quantity-button {
+    background-color:rgb(91, 91, 180);
+    color: white;
+    padding: 3px 5px;
+    border: none;
+    margin: 8px auto;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: background-color 0.3s ease;
+}
 
+.quantity-button:hover {
+    background-color: midnightblue;
+}
 .cart-remove-button {
     cursor: pointer;
     background-color: #3b94be;
-
+    margin-top: 5px;
     border: none;
     padding: 0.5rem;
     border-radius: 10% 30% 50% 70%;

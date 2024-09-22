@@ -6,7 +6,7 @@ import crypto from "crypto";
 import nodemailer from "nodemailer";
 import passport from "passport";
 import { config } from "dotenv";
-
+import { auth } from '../middleware/authMiddleware.js';
 config();
 
 const router = express.Router();
@@ -363,5 +363,17 @@ router.get('/user-info', async (req, res) => {
         res.status(500).send('Server error');
     }
 });
-
+// Route to get user order history
+router.get('/order-history', auth, async (req, res) => {
+    try {
+        const user = await User.findById(req.user.id);
+        if (!user) {
+            return res.status(404).json({ msg: 'User not found' });
+        }
+        res.status(200).json({ orderHistory: user.orderHistory });
+    } catch (error) {
+        console.error('Error fetching order history:', error);
+        res.status(500).json({ msg: 'Server error' });
+    }
+});
 export { router as authRouter };

@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { MdMenu, MdClose, MdWbSunny, MdNightsStay } from "react-icons/md";
 import "./Navbar_style.css";
-import Image1 from "../../../public/G.png";
+import Image1 from "../../../G.svg";
 import { ThemeContext } from "../Theme/Theme"; 
 
 const Navbar = () => {

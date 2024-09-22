@@ -1,0 +1,84 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.order-history {
+    margin: 50px;
+    margin-bottom: 150px;
+    padding: 20px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #031830, #0e4776);
+    color: #fff;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    animation: fadeIn 1s ease-in-out;
+}
+
+.order-history h2 {
+    text-align: center;
+    font-size: 36px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #f0f0f0;
+}
+
+.order-history table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.order-history th, .order-history td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: background 0.3s ease;
+}
+
+.order-history th {
+    background: rgba(255, 255, 255, 0.1);
+    color: #a0f0ed;
+    font-weight: 600;
+}
+
+.order-history tr:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.01);
+}
+
+.order-history td {
+    color: #ffffff;
+}
+
+@media (max-width: 768px) {
+    .order-history {
+        margin: 10px;
+        padding: 15px;
+    }
+
+    .order-history h2 {
+        font-size: 28px;
+    }
+
+    .order-history th, .order-history td {
+        padding: 10px;
+        font-size: 14px;
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+html[data-theme="light"] {
+    .order-history {
+        background: linear-gradient(135deg, #1e386a, #2a5298);
+    }
+}
