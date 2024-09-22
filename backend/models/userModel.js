@@ -22,7 +22,20 @@ const userSchema = mongoose.Schema({
     isVerified: {
         type: Boolean,
         default: false
-    }
+    },
+    orderHistory: [
+        {
+            productName: String,
+            totalPrice: Number,
+            customerName: String,
+            date: Date,
+            status: {
+                type: String,
+                enum: ["Pending", "Canceled", "Delivered"],
+                default: "Pending"
+            }
+        }
+    ]
 });
 
 export default mongoose.model('User', userSchema);

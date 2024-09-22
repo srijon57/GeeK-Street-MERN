@@ -101,7 +101,7 @@ nav {
 }
 
 .Righter div {
-    margin-left: 10px;
+    margin-left: 20px;
 }
 
 .hamburger {
@@ -122,7 +122,22 @@ nav {
     padding: 0.2rem 0.4rem;
     font-size: 0.8rem;
 }
+.NavHistory {
+    position: relative;
+}
 
+.NavHistory a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 24px; 
+    transition: color 0.3s ease;
+}
+
+.NavHistory a:hover {
+    color: cyan; 
+}
 .dropdown-content {
     display: none;
     position: absolute;

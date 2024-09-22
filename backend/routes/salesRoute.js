@@ -1,11 +1,12 @@
 import express from 'express';
 import Sales from '../models/salesModel.js';
+import User from '../models/userModel.js';
 
 const router = express.Router();
 
 // Route to update sales data
 router.post('/update-sales', async (req, res) => {
-    const { items, cost, productId, productName, totalPrice, customerName } = req.body;
+    const { items, cost, productId, productName, totalPrice, customerName, userId } = req.body;
     const currentDate = new Date().toISOString().slice(0, 10); // Format: YYYY-MM-DD
 
     try {
@@ -17,7 +18,7 @@ router.post('/update-sales', async (req, res) => {
                 totalCost: cost,
                 customerCount: 1,
                 dailySales: [{ date: currentDate, items, cost, customer: 0 }],
-                recentOrders: [{ productId, productName, totalPrice, customerName, date: new Date() }],
+                recentOrders: [{ productId, productName, totalPrice, customerName, date: new Date(), userId }],
             });
             await newSales.save();
         } else {
@@ -34,12 +35,25 @@ router.post('/update-sales', async (req, res) => {
                 sales.dailySales.push({ date: currentDate, items, cost, customer: 0 });
             }
 
-            sales.recentOrders.push({ productId, productName, totalPrice, customerName, date: new Date() });
+            sales.recentOrders.push({ productId, productName, totalPrice, customerName, date: new Date(), userId });
             if (sales.recentOrders.length > 15) {
                 sales.recentOrders.shift(); // Remove the oldest order
             }
 
             await sales.save();
+        }
+
+        // Add order history to user
+        const user = await User.findById(userId);
+        if (user) {
+            user.orderHistory.push({
+                productName,
+                totalPrice,
+                customerName,
+                date: new Date(),
+                status: "Pending"
+            });
+            await user.save();
         }
 
         res.status(200).json({ msg: 'Sales data updated successfully' });
@@ -48,7 +62,6 @@ router.post('/update-sales', async (req, res) => {
         res.status(500).json({ msg: 'Server error' });
     }
 });
-
 
 // Route to update order status
 router.put('/update-order-status/:orderId', async (req, res) => {
@@ -68,6 +81,16 @@ router.put('/update-order-status/:orderId', async (req, res) => {
 
         order.status = status;
         await sales.save();
+
+        // Update user order history status
+        const user = await User.findById(order.userId);
+        if (user) {
+            const userOrder = user.orderHistory.id(orderId);
+            if (userOrder) {
+                userOrder.status = status;
+                await user.save();
+            }
+        }
 
         res.status(200).json({ msg: 'Order status updated successfully' });
     } catch (error) {
