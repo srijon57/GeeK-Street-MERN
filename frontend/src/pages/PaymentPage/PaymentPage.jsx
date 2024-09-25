@@ -27,8 +27,9 @@ const PaymentPage = () => {
             return;
         }
 
-        if (!/^\d+$/.test(phone)) {
-            enqueueSnackbar('Phone number must contain only numbers!', { variant: 'error' });
+        // Validate phone number length
+        if (!/^\d{11}$/.test(phone)) {
+            enqueueSnackbar('Phone number must be exactly 11 digits!', { variant: 'error' });
             return;
         }
 
@@ -74,42 +75,52 @@ const PaymentPage = () => {
     return (
         <div className='payment-container'>
             <h2>Payment Details</h2>
-            <br></br>
+            <br />
             <h4>Please ensure that your name, address, and phone number are entered correctly for the Cash on Delivery process.</h4>
-            <br></br>
+            <br />
             <form className='payment-form'>
-                <label>
-                    Name:
-                    <input
-                        type='text'
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                        required
-                    />
-                </label>
-                <label>
-                    Address:
-                    <input
-                        type='text'
-                        value={address}
-                        onChange={(e) => setAddress(e.target.value)}
-                        required
-                    />
-                </label>
-                <label>
-                    Phone Number:
-                    <input
-                        type='text'
-                        value={phone}
-                        onChange={(e) => setPhone(e.target.value)}
-                        required
-                        pattern="\d*"
-                        title="Phone number must contain only numbers."
-                    />
-                </label>
+                <div className='form-group'>
+                    <label>
+                        Name:
+                        <input
+                            type='text'
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                            required
+                            className='input-field'
+                        />
+                    </label>
+                </div>
+                <div className='form-group'>
+                    <label>
+                        Address:
+                        <input
+                            type='text'
+                            value={address}
+                            onChange={(e) => setAddress(e.target.value)}
+                            required
+                            className='input-field'
+                        />
+                    </label>
+                </div>
+                <div className='form-group'>
+                    <label>
+                        Phone Number:
+                        <input
+                            type='text'
+                            value={phone}
+                            onChange={(e) => setPhone(e.target.value)}
+                            required
+                            maxLength={11} // Restrict input to 11 characters
+                            pattern="\d*"
+                            title="Phone number must contain exactly 11 digits."
+                            className='input-field'
+                        />
+                    </label>
+                </div>
                 <div className='cart-summary'>
                     <p><strong>Items:</strong> {cartDetails}</p>
-                    <p><strong>Total Price:</strong> BDT {(totalPrice-1).toFixed(2)}</p>
+                    <p><strong>Total Price:</strong> BDT {(totalPrice).toFixed(2)}</p>
                 </div>
                 <button
                     type='button'
