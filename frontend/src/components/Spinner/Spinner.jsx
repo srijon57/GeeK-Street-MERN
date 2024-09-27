@@ -1,6 +1,6 @@
 import React from "react";
 import "./spinner.css";
-
+/*
 const Spinner = ({ loading }) => {
     return (
         <div className={`spinner-container ${loading ? 'show' : ''}`}>
@@ -37,8 +37,8 @@ const Spinner = ({ loading }) => {
 };
 
 export default Spinner;
+*/
 
-/*
 const Spinner = ({ loading }) => {
     return (
         <div className={`spinner-container ${loading ? 'show' : ''}`}>
@@ -49,4 +49,4 @@ const Spinner = ({ loading }) => {
     );
 };
 export default Spinner;
-*/
+

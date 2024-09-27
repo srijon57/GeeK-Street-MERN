@@ -169,7 +169,9 @@
     transition: all 100ms ease-out;
     z-index: -1;
 }
-
+.average-rating-number{
+    color:#ffd700;
+}
 /* Add Button */
 
 .product-btn-primary:before {

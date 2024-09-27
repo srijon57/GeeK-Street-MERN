@@ -152,7 +152,7 @@ router.post("/login", async (req, res) => {
     }
 });
 
-//ROUTE FOR REFRESH TOKEN
+// ROUTE FOR REFRESH TOKEN
 router.post("/refresh-token", async (req, res) => {
     const { refreshToken } = req.body;
 
@@ -175,7 +175,14 @@ router.post("/refresh-token", async (req, res) => {
             { expiresIn: 3600 } // 1 hour
         );
 
-        res.json({ accessToken });
+        // Optionally, generate a new refresh token here
+        const newRefreshToken = jwt.sign(
+            payload,
+            process.env.JWT_REFRESH_SECRET,
+            { expiresIn: '7d' } // 7 days
+        );
+
+        res.json({ accessToken, refreshToken: newRefreshToken });
     } catch (error) {
         console.error("Error refreshing token:", error);
         res.status(400).json({ msg: "Invalid refresh token" });

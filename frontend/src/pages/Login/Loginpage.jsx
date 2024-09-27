@@ -252,6 +252,7 @@ function Loginpage() {
                     </div>
                 </div>
             </div>
+            {loading && <Spinner loading={loading} />}
         </div>
     );
 }
