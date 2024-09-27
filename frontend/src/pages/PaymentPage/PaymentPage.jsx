@@ -22,16 +22,24 @@ const PaymentPage = () => {
     const cartDetails = cartItems.map(item => `${item.name} (x${item.quantity})`).join(', ');
 
     const handleSubmit = async () => {
+        
         if (!name || !address || !phone) {
             enqueueSnackbar('Name, address, and phone number are required!', { variant: 'error' });
             return;
         }
-    
+
+        
         if (!/^\d+$/.test(phone)) {
             enqueueSnackbar('Phone number must contain only numbers!', { variant: 'error' });
             return;
         }
-    
+
+        
+        if (phone.length !== 11) {
+            enqueueSnackbar('Phone number must be exactly 11 digits!', { variant: 'error' });
+            return;
+        }
+
         setLoading(true);
         try {
             await axios.post(`${import.meta.env.VITE_BASEURL}/send-email`, {
@@ -39,7 +47,7 @@ const PaymentPage = () => {
                 subject: 'New Order Received',
                 text: `Name: ${name}\nE-mail: ${user.username}\nAddress: ${address}\nPhone: ${phone}\nItems: ${cartDetails}\nTotal Price: BDT ${(totalPrice).toFixed(2)}`,
             });
-    
+
             await axios.post(`${import.meta.env.VITE_BASEURL}/sales/update-sales`, {
                 items: cartItems.reduce((acc, item) => acc + item.quantity, 0),
                 cost: totalPrice,
@@ -50,7 +58,7 @@ const PaymentPage = () => {
                 userId: user.id, 
                 date: new Date(),
             });
-    
+
             enqueueSnackbar('Order completed. A confirmation email will be sent shortly.', { variant: 'success' });
             clearCart();
             navigate('/');
@@ -61,7 +69,6 @@ const PaymentPage = () => {
             setLoading(false);
         }
     };
-    
 
     const handleConfirm = () => {
         setShowConfirmation(false);
@@ -75,9 +82,9 @@ const PaymentPage = () => {
     return (
         <div className='payment-container'>
             <h2>Payment Details</h2>
-            <br></br>
+            <br />
             <h4>Please ensure that your name, address, and phone number are entered correctly for the Cash on Delivery process.</h4>
-            <br></br>
+            <br />
             <form className='payment-form'>
                 <label>
                     Name:
@@ -106,11 +113,12 @@ const PaymentPage = () => {
                         required
                         pattern="\d*"
                         title="Phone number must contain only numbers."
+                        maxLength="11" 
                     />
                 </label>
                 <div className='cart-summary'>
                     <p><strong>Items:</strong> {cartDetails}</p>
-                    <p><strong>Total Price:</strong> BDT {(totalPrice-1).toFixed(2)}</p>
+                    <p><strong>Total Price:</strong> BDT {(totalPrice).toFixed(2)}</p>
                 </div>
                 <button
                     type='button'
