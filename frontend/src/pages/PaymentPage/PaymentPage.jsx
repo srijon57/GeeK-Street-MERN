@@ -26,13 +26,12 @@ const PaymentPage = () => {
             enqueueSnackbar('Name, address, and phone number are required!', { variant: 'error' });
             return;
         }
-
-        // Validate phone number length
-        if (!/^\d{11}$/.test(phone)) {
-            enqueueSnackbar('Phone number must be exactly 11 digits!', { variant: 'error' });
+    
+        if (!/^\d+$/.test(phone)) {
+            enqueueSnackbar('Phone number must contain only numbers!', { variant: 'error' });
             return;
         }
-
+    
         setLoading(true);
         try {
             await axios.post(`${import.meta.env.VITE_BASEURL}/send-email`, {
@@ -40,7 +39,7 @@ const PaymentPage = () => {
                 subject: 'New Order Received',
                 text: `Name: ${name}\nE-mail: ${user.username}\nAddress: ${address}\nPhone: ${phone}\nItems: ${cartDetails}\nTotal Price: BDT ${(totalPrice).toFixed(2)}`,
             });
-
+    
             await axios.post(`${import.meta.env.VITE_BASEURL}/sales/update-sales`, {
                 items: cartItems.reduce((acc, item) => acc + item.quantity, 0),
                 cost: totalPrice,
@@ -48,10 +47,10 @@ const PaymentPage = () => {
                 productName: cartDetails,
                 totalPrice: totalPrice,
                 customerName: name,
+                userId: user.id, 
                 date: new Date(),
-                userId: user.id, // Include user ID
             });
-
+    
             enqueueSnackbar('Order completed. A confirmation email will be sent shortly.', { variant: 'success' });
             clearCart();
             navigate('/');
@@ -62,6 +61,7 @@ const PaymentPage = () => {
             setLoading(false);
         }
     };
+    
 
     const handleConfirm = () => {
         setShowConfirmation(false);
@@ -75,52 +75,42 @@ const PaymentPage = () => {
     return (
         <div className='payment-container'>
             <h2>Payment Details</h2>
-            <br />
+            <br></br>
             <h4>Please ensure that your name, address, and phone number are entered correctly for the Cash on Delivery process.</h4>
-            <br />
+            <br></br>
             <form className='payment-form'>
-                <div className='form-group'>
-                    <label>
-                        Name:
-                        <input
-                            type='text'
-                            value={name}
-                            onChange={(e) => setName(e.target.value)}
-                            required
-                            className='input-field'
-                        />
-                    </label>
-                </div>
-                <div className='form-group'>
-                    <label>
-                        Address:
-                        <input
-                            type='text'
-                            value={address}
-                            onChange={(e) => setAddress(e.target.value)}
-                            required
-                            className='input-field'
-                        />
-                    </label>
-                </div>
-                <div className='form-group'>
-                    <label>
-                        Phone Number:
-                        <input
-                            type='text'
-                            value={phone}
-                            onChange={(e) => setPhone(e.target.value)}
-                            required
-                            maxLength={11} // Restrict input to 11 characters
-                            pattern="\d*"
-                            title="Phone number must contain exactly 11 digits."
-                            className='input-field'
-                        />
-                    </label>
-                </div>
+                <label>
+                    Name:
+                    <input
+                        type='text'
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        required
+                    />
+                </label>
+                <label>
+                    Address:
+                    <input
+                        type='text'
+                        value={address}
+                        onChange={(e) => setAddress(e.target.value)}
+                        required
+                    />
+                </label>
+                <label>
+                    Phone Number:
+                    <input
+                        type='text'
+                        value={phone}
+                        onChange={(e) => setPhone(e.target.value)}
+                        required
+                        pattern="\d*"
+                        title="Phone number must contain only numbers."
+                    />
+                </label>
                 <div className='cart-summary'>
                     <p><strong>Items:</strong> {cartDetails}</p>
-                    <p><strong>Total Price:</strong> BDT {(totalPrice).toFixed(2)}</p>
+                    <p><strong>Total Price:</strong> BDT {(totalPrice-1).toFixed(2)}</p>
                 </div>
                 <button
                     type='button'

@@ -11,7 +11,6 @@ import {
     Tooltip,
     Legend,
 } from "chart.js";
-import { MdDoneOutline, MdClose } from "react-icons/md";
 import "./AdminDashboard.css";
 
 // Register the necessary components
@@ -199,7 +198,6 @@ const AdminDashboard = () => {
                             <th>Customer Name</th>
                             <th>Date</th>
                             <th>Status</th>
-                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -212,32 +210,15 @@ const AdminDashboard = () => {
                                 <td>
                                     {new Date(order.date).toLocaleDateString()}
                                 </td>
-                                <td>{order.status}</td>
                                 <td>
-                                    {order.status === "Pending" && (
-                                        <>
-                                            <button
-                                                onClick={() =>
-                                                    handleUpdateStatus(
-                                                        order._id,
-                                                        "Delivered"
-                                                    )
-                                                }
-                                            >
-                                                <MdDoneOutline />
-                                            </button>
-                                            <button
-                                                onClick={() =>
-                                                    handleUpdateStatus(
-                                                        order._id,
-                                                        "Canceled"
-                                                    )
-                                                }
-                                            >
-                                                <MdClose />
-                                            </button>
-                                        </>
-                                    )}
+                                    <select
+                                        value={order.status}
+                                        onChange={(e) => handleUpdateStatus(order._id, e.target.value)}
+                                    >
+                                        <option value="Pending">Pending</option>
+                                        <option value="Delivered">Delivered</option>
+                                        <option value="Canceled">Canceled</option>
+                                    </select>
                                 </td>
                             </tr>
                         ))}

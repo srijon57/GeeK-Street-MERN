@@ -4,24 +4,22 @@ import { AuthContext } from '../../context/AuthContext';
 import './OrderHistory.css';
 
 const OrderHistory = () => {
-    const [orderHistory, setOrderHistory] = useState([]);
+    const [recentOrders, setRecentOrders] = useState([]);
     const { user } = useContext(AuthContext);
 
     useEffect(() => {
-        const fetchOrderHistory = async () => {
+        const fetchRecentOrders = async () => {
             try {
-                const response = await axios.get(`${import.meta.env.VITE_BASEURL}/auth/order-history`, {
-                    headers: {
-                        Authorization: `Bearer ${localStorage.getItem('token')}`,
-                    },
-                });
-                setOrderHistory(response.data.orderHistory);
+                const response = await axios.get(`${import.meta.env.VITE_BASEURL}/sales/get-recent-orders/${user.id}`);
+                setRecentOrders(response.data);
             } catch (error) {
-                console.error('Error fetching order history:', error);
+                console.error('Error fetching recent orders:', error);
             }
         };
 
-        fetchOrderHistory();
+        if (user.isLoggedIn) {
+            fetchRecentOrders();
+        }
     }, [user]);
 
     return (
@@ -38,7 +36,7 @@ const OrderHistory = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {orderHistory.map((order, index) => (
+                    {recentOrders.map((order, index) => (
                         <tr key={index}>
                             <td>{order.productName}</td>
                             <td>{order.totalPrice.toFixed(2)}</td>

@@ -15,15 +15,12 @@
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
     animation: fadeInUp 0.8s ease-in-out;
 }
-
-.payment-container h2 {
+.payment-container h2{
     text-align: center;
 }
-
-.payment-container h4 {
-    color: powderblue;
+.payment-container h4{
+    color:powderblue
 }
-
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -32,6 +29,25 @@
     to {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+.payment-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #f5f5f5;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    animation: fadeIn 1s ease-in-out;
+    text-shadow: 0 3px 5px rgba(0, 0, 0, 0.5);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
     }
 }
 
@@ -59,7 +75,7 @@
     gap: 0.5rem;
 }
 
-.payment-form label {
+.payment-form.form-group label {
     font-weight: 600;
     color: #f5f5f5;
 }
@@ -133,7 +149,22 @@
     background-color: #4b6584;
     cursor: not-allowed;
 }
+.payment-form {
+    display: flex;
+    flex-direction: column;
+}
 
+.payment-form label {
+    margin-bottom: 1rem;
+}
+
+.payment-form input {
+    width: 100%;
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 0.25rem;
+}
 .confirmation-card {
     position: fixed;
     top: 50%;
@@ -179,7 +210,6 @@
 .confirmation-buttons .cancel-button:hover {
     background: #c0392b;
 }
-
 @media (max-width: 768px) {
     .payment-container {
         padding: 1rem;
@@ -216,6 +246,11 @@ html[data-theme="light"] {
         box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
     }
     
+    .payment-title {
+        color: #dcdde1; 
+        text-shadow: 0 3px 5px rgba(0, 0, 0, 0.5);
+    }
+    
     .input-field {
         border: 2px solid #3a506b;
         background-color: #1c2833; 
@@ -245,4 +280,8 @@ html[data-theme="light"] {
     .payment-button:hover {
         background-color: #2c4750;
     }
+    
+    .payment-button:disabled {
+        background-color: #4b6584;
+    } 
 }

@@ -15,11 +15,11 @@ const salesSchema = new mongoose.Schema({
         productName: { type: String, required: true },
         totalPrice: { type: Number, required: true },
         customerName: { type: String, required: true },
+        userId: { type: String, required: true }, // Add userId field
         status: { type: String, default: 'Pending' },
         date: { type: Date, default: Date.now },
     }],
 });
-
 
 const Sales = mongoose.model('Sales', salesSchema);
 
