@@ -3,7 +3,7 @@
     padding: 0;
     box-sizing: border-box;
 }
-
+/*Normal spinner
 .spinner-container {
     display: none; 
     position: fixed;
@@ -267,18 +267,18 @@
         font-size: 20px;
     }
 }
+*/
 
 
-/*Normal spinner
 .spinner-container {
-    display: flex;
-    position: fixed;
+    display: none; /* Hide by default */
+    position: fixed; /* Stay in place */
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     background: rgba(12, 12, 12, 0.8);
-    z-index: 9999; 
+    z-index: 9999; /* Ensure it's on top */
 }
 
 .spinner-container.show {
@@ -360,4 +360,3 @@
         transform: rotate(405deg);
     }
 }
-*/

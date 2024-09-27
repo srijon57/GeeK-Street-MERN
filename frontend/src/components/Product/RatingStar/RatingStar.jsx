@@ -3,7 +3,7 @@ import { MdStar, MdStarBorder, MdStarHalf } from 'react-icons/md';
 import PropTypes from 'prop-types';
 import './RatingStar.css';
 
-const RatingStar = ({ noOfStars, rating, onChange, isReadOnly = false }) => {
+const RatingStar = ({ noOfStars, rating, onChange = () => {}, isReadOnly = false }) => {
     const [hover, setHover] = useState(null);
 
     const handleClick = (star) => {
@@ -78,11 +78,6 @@ RatingStar.propTypes = {
     rating: PropTypes.number.isRequired,
     onChange: PropTypes.func,
     isReadOnly: PropTypes.bool,
-};
-
-RatingStar.defaultProps = {
-    isReadOnly: false,
-    onChange: () => {},
 };
 
 export default RatingStar;

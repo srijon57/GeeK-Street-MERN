@@ -11,6 +11,7 @@ import {
     Tooltip,
     Legend,
 } from "chart.js";
+import Spinner from '../../../components/Spinner/Spinner'; 
 import "./AdminDashboard.css";
 
 // Register the necessary components
@@ -26,6 +27,7 @@ ChartJS.register(
 
 const AdminDashboard = () => {
     const [salesData, setSalesData] = useState(null);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchSalesData = async () => {
@@ -36,14 +38,16 @@ const AdminDashboard = () => {
                 setSalesData(response.data);
             } catch (error) {
                 console.error("Error fetching sales data:", error);
+            } finally {
+                setLoading(false);
             }
         };
 
         fetchSalesData();
     }, []);
 
-    if (!salesData) {
-        return <div>Loading...</div>;
+    if (loading) {
+        return <Spinner loading={loading} />;
     }
 
     const getMonthlyData = (data) => {

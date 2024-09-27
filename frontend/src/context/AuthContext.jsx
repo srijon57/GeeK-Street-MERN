@@ -4,7 +4,7 @@ import { useCart } from '../context/CartContext';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { jwtDecode } from 'jwt-decode';
-import { enqueueSnackbar } from 'notistack';
+import { useSnackbar } from 'notistack';
 
 const AuthContext = createContext();
 
@@ -18,6 +18,7 @@ const AuthProvider = ({ children }) => {
 
     const { clearCart } = useCart();
     const navigate = useNavigate();
+    const { enqueueSnackbar } = useSnackbar();
 
     useEffect(() => {
         const storedUser = Cookies.get('user');
@@ -25,50 +26,43 @@ const AuthProvider = ({ children }) => {
             setUser(JSON.parse(storedUser));
         }
 
-        const urlParams = new URLSearchParams(window.location.search);
-        const token = urlParams.get('token');
-        const refreshToken = urlParams.get('refreshToken');
-        if (token && refreshToken) {
-            localStorage.setItem('token', token);
-            localStorage.setItem('refreshToken', refreshToken);
-            axios
-                .get(`${import.meta.env.VITE_BASEURL}/auth/user-info`, {
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                    },
-                })
-                .then((response) => {
-                    const userInfo = {
-                        isLoggedIn: true,
-                        role: response.data.role,
-                        username: response.data.email,
-                        id: response.data._id,
-                    };
-                    login(userInfo);
-                    navigate('/');
-                })
-                .catch((error) => {
-                    console.error('Error fetching user info:', error);
-                });
-        }
-
-        const checkTokenExpiration = () => {
+        const checkTokenExpiration = async () => {
             const token = localStorage.getItem('token');
-            if (token) {
+            const refreshToken = localStorage.getItem('refreshToken');
+            if (token && refreshToken) {
                 const decoded = jwtDecode(token);
                 const currentTime = Date.now() / 1000;
                 if (decoded.exp < currentTime) {
-                    enqueueSnackbar('Token expired please log in again', { variant: 'info' });
-                    logout();
+                    try {
+                        const newAccessToken = await refreshToken();
+                        if (newAccessToken) {
+                            const userInfo = await axios.get(`${import.meta.env.VITE_BASEURL}/auth/user-info`, {
+                                headers: {
+                                    Authorization: `Bearer ${newAccessToken}`,
+                                },
+                            });
+                            const userData = {
+                                isLoggedIn: true,
+                                role: userInfo.data.role,
+                                username: userInfo.data.email,
+                                id: userInfo.data._id,
+                            };
+                            login(userData);
+                        }
+                    } catch (error) {
+                        console.error('Error refreshing token:', error);
+                        logout();
+                    }
                 }
             }
         };
 
         checkTokenExpiration();
-        const interval = setInterval(checkTokenExpiration, 60000); // Check every minute
+
+        const interval = setInterval(checkTokenExpiration, 5 * 60 * 1000); // Check every 5 minutes
 
         return () => clearInterval(interval);
-    }, [navigate]);
+    }, []);
 
     const login = (userData) => {
         setUser({ isLoggedIn: true, ...userData });
@@ -89,11 +83,13 @@ const AuthProvider = ({ children }) => {
         if (refreshToken) {
             try {
                 const response = await axios.post(`${import.meta.env.VITE_BASEURL}/auth/refresh-token`, { refreshToken });
-                const { accessToken } = response.data;
+                const { accessToken, refreshToken: newRefreshToken } = response.data;
                 localStorage.setItem('token', accessToken);
+                localStorage.setItem('refreshToken', newRefreshToken);
                 return accessToken;
             } catch (error) {
                 console.error('Error refreshing token:', error);
+                enqueueSnackbar('Failed to refresh token. Please log in again.', { variant: 'error' });
                 logout();
             }
         }
