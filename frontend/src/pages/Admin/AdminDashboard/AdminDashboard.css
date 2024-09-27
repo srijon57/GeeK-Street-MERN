@@ -149,6 +149,24 @@
     color: grey;
 }
 
+.admin-dashboard .recent-orders table select {
+    background: #a0f0ed;
+    color: #141e30;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+    cursor: pointer;
+    font-size: 18px;
+    margin-right: 10px;
+    outline: none;
+}
+
+.admin-dashboard .recent-orders table select:hover {
+    background:#319a97;
+    color: white;
+}
+
 @media (max-width: 768px) {
     .stats {
         flex-direction: column;
@@ -180,17 +198,11 @@
 
     .recent-orders table th {
         background: rgba(255, 255, 255, 0.1);
-        color: #a0f0ed;
         font-weight: 600;
     }
 
-    .recent-orders table td {
-        color: #ffffff;
-    }
 
     .recent-orders table button {
-        background: #a0f0ed;
-        color: #141e30;
         border: none;
         padding: 6px 10px;
         border-radius: 5px;
@@ -200,9 +212,16 @@
         margin-right: 10px;
     }
 
-    .recent-orders table button:hover {
-        background: #a9f0a0;
-        color: grey;
+
+    .recent-orders table select {
+        border: none;
+        padding: 6px 10px;
+        border-radius: 5px;
+        transition: background 0.3s ease;
+        cursor: pointer;
+        font-size: 18px;
+        margin-right: 10px;
+        outline: none;
     }
 }
 
@@ -214,6 +233,11 @@
     }
 
     .recent-orders table button {
+        font-size: 14px;
+        padding: 4px 8px;
+    }
+
+    .recent-orders table select {
         font-size: 14px;
         padding: 4px 8px;
     }
