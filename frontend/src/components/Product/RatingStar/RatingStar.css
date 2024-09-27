@@ -33,13 +33,6 @@
     transform: scale(1.2);
 }
 
-.rating-star-text {
-    margin-left: 10px;
-    font-size: 16px;
-    color: #ffd700;
-    font-weight: 600;
-}
-
 @media (max-width: 600px) {
     .rating-star-container {
         flex-direction: column;
@@ -52,10 +45,5 @@
 
     .rating-star-icon {
         font-size: 30px;
-    }
-
-    .rating-star-text {
-        font-size: 14px;
-        margin-top: 10px;
     }
 }

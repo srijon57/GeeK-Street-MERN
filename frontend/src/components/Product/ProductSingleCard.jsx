@@ -21,6 +21,15 @@ const ProductSingleCard = ({ product }) => {
         setReviews(product.reviews || []);
     }, [product]);
 
+    // Function to calculate average rating
+    const calculateAverageRating = () => {
+        if (reviews.length === 0) return 0;
+        const totalRating = reviews.reduce((acc, review) => acc + review.rating, 0);
+        return (totalRating / reviews.length).toFixed(1);
+    };
+
+    const averageRating = parseFloat(calculateAverageRating());
+
     const handleAddToCart = () => {
         addToCart(product);
     };
@@ -43,17 +52,20 @@ const ProductSingleCard = ({ product }) => {
     };
 
     const handleReviewSubmit = async () => {
+        if (!newReview.rating || !newReview.comment.trim()) {
+            enqueueSnackbar("Please provide both rating and comment.", {
+                variant: "error",
+            });
+            return;
+        }
+
         try {
             const response = await axios.post(
-                `${import.meta.env.VITE_BASEURL}/reviews/${
-                    product._id
-                }/reviews`,
+                `${import.meta.env.VITE_BASEURL}/reviews/${product._id}/reviews`,
                 newReview,
                 {
                     headers: {
-                        Authorization: `Bearer ${localStorage.getItem(
-                            "token"
-                        )}`,
+                        Authorization: `Bearer ${localStorage.getItem("token")}`,
                     },
                 }
             );
@@ -64,7 +76,7 @@ const ProductSingleCard = ({ product }) => {
             });
         } catch (error) {
             console.error("Error adding review:", error);
-            enqueueSnackbar("Error adding review (all fields required)", {
+            enqueueSnackbar("Error adding review. Please try again.", {
                 variant: "error",
             });
         }
@@ -73,14 +85,10 @@ const ProductSingleCard = ({ product }) => {
     const handleReviewDelete = async (reviewId) => {
         try {
             await axios.delete(
-                `${import.meta.env.VITE_BASEURL}/reviews/${
-                    product._id
-                }/reviews/${reviewId}`,
+                `${import.meta.env.VITE_BASEURL}/reviews/${product._id}/reviews/${reviewId}`,
                 {
                     headers: {
-                        Authorization: `Bearer ${localStorage.getItem(
-                            "token"
-                        )}`,
+                        Authorization: `Bearer ${localStorage.getItem("token")}`,
                     },
                 }
             );
@@ -90,7 +98,9 @@ const ProductSingleCard = ({ product }) => {
             });
         } catch (error) {
             console.error("Error deleting review:", error);
-            enqueueSnackbar("Error deleting review", { variant: "error" });
+            enqueueSnackbar("Error deleting review. Please try again.", {
+                variant: "error",
+            });
         }
     };
 
@@ -170,6 +180,17 @@ const ProductSingleCard = ({ product }) => {
                         <div className="product-price">
                             BDT {product.priceInCents.toFixed(2)}
                         </div>
+                        {/* Average Rating inside Modal */}
+                        <div className="average-rating">
+                            <RatingStar
+                                noOfStars={5}
+                                rating={averageRating}
+                                isReadOnly={true}
+                            />
+                            <span className="average-rating-number">
+                                {averageRating}
+                            </span>
+                        </div>
                         <div
                             className={`product-stock ${
                                 product.quantity > 0
@@ -243,6 +264,9 @@ const ProductSingleCard = ({ product }) => {
                                                 rating={review.rating}
                                                 isReadOnly={true}
                                             />
+                                            <span className="average-rating-number">
+                                                {review.rating}
+                                            </span>
                                         </div>
                                         <div className="review-comment">
                                             -{review.comment}
@@ -274,7 +298,7 @@ const ProductSingleCard = ({ product }) => {
                                     </div>
                                 ))
                             ) : (
-                                <p>No reviews added still</p>
+                                <p>No reviews yet.</p>
                             )}
                         </div>
                     </div>
