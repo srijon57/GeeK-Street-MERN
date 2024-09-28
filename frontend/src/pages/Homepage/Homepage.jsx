@@ -31,24 +31,24 @@ export const Homepage = () => {
 
     const questions = [
         {
-            question: "How much do deliveries cost?",
-            answer: "Deliveries cost ৳50 for inside Dhaka and ৳100 for outside Dhaka."
+            question: "Q: How much do deliveries cost?",
+            answer: "A: Deliveries cost ৳50 for inside served cities and ৳100 for outside served cities."
         },
         {
-            question: "What are your delivery hours?",
-            answer: "Our delivery hours are from 9 AM to 6 PM, Saturday to Thursday."
+            question: "Q: What are your delivery hours?",
+            answer: "A: Our delivery hours are from 9 AM to 6 PM, Saturday to Thursday."
         },
         {
-            question: "What is your policy on refunds?",
-            answer: "We offer a full refund within 30 days of purchase, provided the item is in its original condition."
+            question: "Q: What is your policy on refunds?",
+            answer: "A: We offer a full refund within 30 days of purchase, provided the item is in its original condition."
         },
         {
-            question: "What about the prices?",
-            answer: "Our prices are competitive and we offer regular discounts and promotions."
+            question: "Q: What about the prices?",
+            answer: "A: Our prices are competitive and we offer regular discounts and promotions."
         },
         {
-            question: "Do you serve my area?",
-            answer: "We serve in Dhaka, Khulna, Sylhet, Rajshahi, Chattogram, Mymensingh, Jessore and Barisal."
+            question: "Q: Which cites do you serve ?",
+            answer: "A: We serve in Dhaka, Khulna, Sylhet, Rajshahi, Chattogram, Mymensingh, Jessore and Barisal."
         }
     ];
 
