@@ -2,7 +2,7 @@
 import express from 'express';
 import Sales from '../models/salesModel.js';
 import User from '../models/userModel.js';
-
+import { auth } from '../middleware/authMiddleware.js';
 const router = express.Router();
 
 // Route to update sales data
@@ -115,7 +115,7 @@ router.get('/get-sales', async (req, res) => {
 });
 
 // Route to get recent orders for a specific user
-router.get('/get-recent-orders/:userId', async (req, res) => {
+router.get('/get-recent-orders/:userId',auth, async (req, res) => {
     const { userId } = req.params;
 
     try {

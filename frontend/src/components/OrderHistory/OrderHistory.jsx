@@ -8,11 +8,17 @@ const OrderHistory = () => {
     const [recentOrders, setRecentOrders] = useState([]);
     const [loading, setLoading] = useState(true);
     const { user } = useContext(AuthContext);
-
+    const token = localStorage.getItem("token");
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+        },
+    };
     useEffect(() => {
         const fetchRecentOrders = async () => {
             try {
-                const response = await axios.get(`${import.meta.env.VITE_BASEURL}/sales/get-recent-orders/${user.id}`);
+                const response = await axios.get(`${import.meta.env.VITE_BASEURL}/sales/get-recent-orders/${user.id}`,config);
                 setRecentOrders(response.data);
             } catch (error) {
                 console.error('Error fetching recent orders:', error);
