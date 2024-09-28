@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import { Homepage } from "./pages/Homepage/Homepage";
 import Navbar from "./components/Header/Navbar";
 import Navbar1 from "./components/Header/Nav1/Navbar1";
@@ -47,7 +47,12 @@ function App() {
                     <Route path="/shop" element={<Shop />} />
                     <Route path="/About" element={<About />} />
                     <Route path="/cart" element={<Cart />} />
-                    <Route path="/Login" element={<Loginpage />} />
+                    <Route
+                        path="/Login"
+                        element={
+                            user.isLoggedIn ? <Navigate to="/" /> : <Loginpage />
+                        }
+                    />
                     <Route path="/verify-email" element={<VerifyEmailPage />} />
                     <Route path="/reset-password" element={<ResetPasswordPage />} />
                     <Route path="/payment" element={<PaymentPage />} />
