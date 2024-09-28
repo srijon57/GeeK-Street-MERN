@@ -58,7 +58,7 @@ const AuthProvider = ({ children }) => {
                 const decoded = jwtDecode(token);
                 const currentTime = Date.now() / 1000;
                 if (decoded.exp < currentTime) {
-                    await refreshToken();
+                    await refreshToken(); 
                 }
             }
         };
