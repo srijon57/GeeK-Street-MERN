@@ -7,6 +7,8 @@ import BackToTop from "../../components/BackToTop/BackToTop";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 import "./shop_style.css";
+import { useLocation } from "react-router-dom";
+import queryString from "query-string";
 
 const Shop = () => {
     const [filteredProducts, setFilteredProducts] = useState([]);
@@ -20,6 +22,8 @@ const Shop = () => {
     const [priceRange, setPriceRange] = useState([0, 1000000]); //price range
     const [minPriceInput, setMinPriceInput] = useState(0);
     const [maxPriceInput, setMaxPriceInput] = useState(1000000);
+
+    const location = useLocation();
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -36,6 +40,13 @@ const Shop = () => {
 
         fetchProducts();
     }, []);
+
+    useEffect(() => {
+        const params = queryString.parse(location.search);
+        if (params.category) {
+            setCategory(params.category);
+        }
+    }, [location.search]);
 
     useEffect(() => {
         setMinPriceInput(priceRange[0]);
