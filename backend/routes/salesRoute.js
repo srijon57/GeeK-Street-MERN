@@ -101,7 +101,7 @@ router.put('/update-order-status/:orderId', async (req, res) => {
 });
 
 // Route to get sales data
-router.get('/get-sales', async (req, res) => {
+router.get('/get-sales', auth, async (req, res) => {
     try {
         const sales = await Sales.findOne();
         if (!sales) {

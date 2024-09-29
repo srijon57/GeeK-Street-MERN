@@ -46,19 +46,54 @@ function App() {
                     <Route path="/" element={<Homepage />} />
                     <Route path="/shop" element={<Shop />} />
                     <Route path="/About" element={<About />} />
-                    <Route path="/cart" element={<Cart />} />
+                    <Route path="/news" element={<News />} />
+                    <Route path="/report" element={<SendReport />} />
                     <Route
                         path="/Login"
                         element={
                             user.isLoggedIn ? <Navigate to="/" /> : <Loginpage />
                         }
                     />
-                    <Route path="/verify-email" element={<VerifyEmailPage />} />
-                    <Route path="/reset-password" element={<ResetPasswordPage />} />
-                    <Route path="/payment" element={<PaymentPage />} />
-                    <Route path="/news" element={<News />} />
-                    <Route path="/report" element={<SendReport />} />
-                    <Route path="/orderhistory" element={<OrderHistory />} />
+                    <Route
+                        path="/verify-email"
+                        element={
+                            <ProtectedRoute>
+                                <VerifyEmailPage />
+                            </ProtectedRoute>
+                        }
+                    />
+                    <Route
+                        path="/reset-password"
+                        element={
+                            <ProtectedRoute>
+                                <ResetPasswordPage />
+                            </ProtectedRoute>
+                        }
+                    />
+                    <Route
+                        path="/payment"
+                        element={
+                            <ProtectedRoute>
+                                <PaymentPage />
+                            </ProtectedRoute>
+                        }
+                    />
+                    <Route
+                        path="/cart"
+                        element={
+                            <ProtectedRoute>
+                                <Cart />
+                            </ProtectedRoute>
+                        }
+                    />
+                    <Route
+                        path="/orderhistory"
+                        element={
+                            <ProtectedRoute>
+                                <OrderHistory />
+                            </ProtectedRoute>
+                        }
+                    />
                     <Route
                         path="/admin/*"
                         element={

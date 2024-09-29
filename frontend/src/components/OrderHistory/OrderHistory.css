@@ -24,6 +24,11 @@
     color: #f0f0f0;
 }
 
+.order-history .table-container {
+    overflow-x: auto; 
+    width: 100%;
+}
+
 .order-history table {
     width: 100%;
     border-collapse: collapse;
@@ -77,6 +82,7 @@
         opacity: 1;
     }
 }
+
 html[data-theme="light"] {
     .order-history {
         background: linear-gradient(135deg, #1e386a, #2a5298);
