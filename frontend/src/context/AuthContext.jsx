@@ -58,7 +58,7 @@ const AuthProvider = ({ children }) => {
                 const decoded = jwtDecode(token);
                 const currentTime = Date.now() / 1000;
                 if (decoded.exp < currentTime) {
-                    await refreshToken(); 
+                    await refreshToken();  
                 }
             }
         };
@@ -83,7 +83,7 @@ const AuthProvider = ({ children }) => {
         navigate('/'); // Redirect to the home page
     };
 
-    const refreshToken = async () => {
+    const refreshToken = async () => {  
         const refreshToken = localStorage.getItem('refreshToken');
         if (refreshToken) {
             try {

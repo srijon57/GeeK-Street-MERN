@@ -28,12 +28,19 @@ ChartJS.register(
 const AdminDashboard = () => {
     const [salesData, setSalesData] = useState(null);
     const [loading, setLoading] = useState(true);
+    const token = localStorage.getItem('token');
 
+    const config = {
+        headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+        }
+    };
     useEffect(() => {
         const fetchSalesData = async () => {
             try {
                 const response = await axios.get(
-                    `${import.meta.env.VITE_BASEURL}/sales/get-sales`
+                    `${import.meta.env.VITE_BASEURL}/sales/get-sales`,config
                 );
                 setSalesData(response.data);
             } catch (error) {
@@ -125,14 +132,6 @@ const AdminDashboard = () => {
         ],
     };
 
-    const token = localStorage.getItem('token');
-
-    const config = {
-        headers: {
-            'Authorization': `Bearer ${token}`,
-            'Content-Type': 'application/json'
-        }
-    };
 
     const handleUpdateStatus = async (orderId, status) => {
         try {
